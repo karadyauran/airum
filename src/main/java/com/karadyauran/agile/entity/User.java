@@ -15,7 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-  private UUID id;
+  private UUID userId;
   private String username;
   private String email;
   private String passwordHash;
@@ -33,17 +33,17 @@ public class User {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     User user = (User) o;
-    return id == user.id;
+    return userId == user.userId;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(userId);
   }
 
   @Override
   public String toString() {
     return String.format("User: %s, %s, %s, %s",
-            id, username, createdAt, tasks);
+            userId, username, createdAt, tasks);
   }
 }

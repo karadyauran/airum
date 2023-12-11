@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Notification {
-  private UUID id;
+  private UUID notificationId;
   private UUID senderId;
   private UUID receiverId;
   private String message;
@@ -26,12 +26,12 @@ public class Notification {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Notification that = (Notification) o;
-    return Objects.equals(id, that.id);
+    return Objects.equals(notificationId, that.notificationId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(notificationId);
   }
 
   @Override

@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Attachment {
-  private UUID id;
+  private UUID attachmentId;
   private UUID taskId;
   private String fileName;
   private FileFormat fileFormat;
@@ -25,12 +25,12 @@ public class Attachment {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Attachment that = (Attachment) o;
-    return Objects.equals(id, that.id);
+    return Objects.equals(attachmentId, that.attachmentId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(attachmentId);
   }
 
   @Override

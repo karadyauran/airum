@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProjectMember {
-  private UUID id;
+  private UUID projectMemberId;
   private UUID userId;
   private UUID roleId;
 
@@ -24,12 +24,12 @@ public class ProjectMember {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ProjectMember that = (ProjectMember) o;
-    return Objects.equals(id, that.id);
+    return Objects.equals(projectMemberId, that.projectMemberId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(projectMemberId);
   }
 
   @Override

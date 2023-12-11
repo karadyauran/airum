@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TimeLog {
-  private UUID id;
+  private UUID timeLogId;
   private UUID taskId;
   private UUID userId;
   private int minuteSpent;
@@ -25,12 +25,12 @@ public class TimeLog {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     TimeLog timeLog = (TimeLog) o;
-    return Objects.equals(id, timeLog.id);
+    return Objects.equals(timeLogId, timeLog.timeLogId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(timeLogId);
   }
 
   @Override

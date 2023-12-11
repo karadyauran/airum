@@ -18,7 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Task {
-  private UUID id;
+  private UUID taskId;
   private String title;
   private String description;
   private TaskStatus status;
@@ -39,12 +39,12 @@ public class Task {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (!(o instanceof Task task)) return false;
-    return Objects.equals(id, task.id);
+    return Objects.equals(taskId, task.taskId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(taskId);
   }
 
   @Override

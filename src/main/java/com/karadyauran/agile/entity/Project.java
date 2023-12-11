@@ -16,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Project {
-  private UUID id;
+  private UUID projectId;
   private String projectName;
   private UUID ownerId;
   private String description;
@@ -31,17 +31,17 @@ public class Project {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Project project = (Project) o;
-    return Objects.equals(id, project.id);
+    return Objects.equals(projectId, project.projectId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(projectId);
   }
 
   @Override
   public String toString() {
     return String.format("Project: %s, %s, %s, %s",
-            id, projectName, createdAt, tasks);
+            projectId, projectName, createdAt, tasks);
   }
 }

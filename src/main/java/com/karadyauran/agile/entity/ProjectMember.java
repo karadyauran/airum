@@ -31,4 +31,10 @@ public class ProjectMember {
   public int hashCode() {
     return Objects.hash(id);
   }
+
+  @Override
+  public String toString() {
+    return String.format("ProjectMember: %s, %s",
+            userId, role);
+  }
 }

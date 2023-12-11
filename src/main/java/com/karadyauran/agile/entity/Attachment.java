@@ -32,4 +32,10 @@ public class Attachment {
   public int hashCode() {
     return Objects.hash(id);
   }
+
+  @Override
+  public String toString() {
+    return String.format("Attachment: %s, %s",
+            taskId, fileName);
+  }
 }

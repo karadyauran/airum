@@ -18,7 +18,7 @@ public class Attachment {
   private UUID taskId;
   private String fileName;
   private FileFormat fileFormat;
-  private byte[] fileContent; // byte[] is used to store binary data
+  private String filePath;
 
   @Override
   public boolean equals(Object o) {

@@ -1,31 +1,45 @@
 package com.karadyauran.agile.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.*;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
+@Table("users")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
+
+  @Id
+  @Column("user_id")
   private UUID userId;
+
+  @Column("user_name")
   private String username;
   private String email;
   private String passwordHash;
   private LocalDate createdAt;
   private LocalDate lastLogin;
 
+  @OneToMany(mappedBy = "user", targetEntity = Notification.class)
   private List<Notification> notifications;
+  @OneToMany(mappedBy = "user", targetEntity = ProjectMember.class)
   private List<ProjectMember> listOfAssignedProjects;
+  @OneToMany(mappedBy = "user", targetEntity = Comment.class)
   private List<Comment> comments;
+  @OneToMany(mappedBy = "user", targetEntity = Task.class)
   private List<Task> tasks;
+  @OneToMany(mappedBy = "user", targetEntity = Attachment.class)
   private List<TimeLog> timeLogs;
 
   @Override

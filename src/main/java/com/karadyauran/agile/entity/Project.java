@@ -1,5 +1,8 @@
 package com.karadyauran.agile.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,11 +14,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Project {
+  @Id
   private UUID projectId;
   private String projectName;
   private UUID ownerId;
@@ -23,7 +28,9 @@ public class Project {
   private LocalDate createdAt;
   private Date deadline;
 
+  @OneToMany(mappedBy = "project", targetEntity = ProjectMember.class)
   private List<ProjectMember> projectMembers;
+  @OneToMany(mappedBy = "project", targetEntity = Task.class)
   private List<Task> tasks;
 
   @Override

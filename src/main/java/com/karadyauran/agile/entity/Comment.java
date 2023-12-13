@@ -1,5 +1,7 @@
 package com.karadyauran.agile.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,11 +11,13 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Comment {
+  @Id
   private UUID commentId;
   private UUID taskId;
   private UUID userId;

@@ -1,5 +1,8 @@
 package com.karadyauran.agile.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,15 +11,18 @@ import lombok.Setter;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProjectMember {
+  @Id
   private UUID projectMemberId;
   private UUID userId;
   private UUID roleId;
 
+  @OneToOne(mappedBy = "projectMember", targetEntity = Role.class)
   private Role role;
 
   @Override

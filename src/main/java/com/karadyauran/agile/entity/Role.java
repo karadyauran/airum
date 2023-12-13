@@ -1,6 +1,8 @@
 package com.karadyauran.agile.entity;
 
 import com.karadyauran.agile.entity.enums.RoleName;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,11 +11,13 @@ import lombok.Setter;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Role {
+  @Id
   private UUID roleId;
   private RoleName roleName;
   private String description;

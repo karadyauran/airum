@@ -1,8 +1,6 @@
 package com.karadyauran.agile.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,14 +10,20 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
+@Table(name = "project_members")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProjectMember {
   @Id
+  @Column(name = "project_member_id")
   private UUID projectMemberId;
+
+  @Column(name = "user_id")
   private UUID userId;
+
+  @Column(name = "role_id")
   private UUID roleId;
 
   @OneToOne(mappedBy = "projectMember", targetEntity = Role.class)

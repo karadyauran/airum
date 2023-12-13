@@ -1,7 +1,9 @@
 package com.karadyauran.agile.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,16 +14,26 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
+@Table(name = "comments")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Comment {
   @Id
+  @Column(name = "comment_id")
   private UUID commentId;
+
+  @Column(name = "task_id")
   private UUID taskId;
+
+  @Column(name = "user_id")
   private UUID userId;
+
+  @Column(name = "comment")
   private String text;
+
+  @Column(name = "created_at")
   private LocalDate createdAt;
 
   @Override

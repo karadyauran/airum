@@ -26,19 +26,31 @@ public class User {
 
   @Column("user_name")
   private String username;
+
+  @Column("email")
   private String email;
+
+  @Column("password_hash")
   private String passwordHash;
+
+  @Column("created_at")
   private LocalDate createdAt;
+
+  @Column("last_login")
   private LocalDate lastLogin;
 
   @OneToMany(mappedBy = "user", targetEntity = Notification.class)
   private List<Notification> notifications;
+
   @OneToMany(mappedBy = "user", targetEntity = ProjectMember.class)
   private List<ProjectMember> listOfAssignedProjects;
+
   @OneToMany(mappedBy = "user", targetEntity = Comment.class)
   private List<Comment> comments;
+
   @OneToMany(mappedBy = "user", targetEntity = Task.class)
   private List<Task> tasks;
+
   @OneToMany(mappedBy = "user", targetEntity = Attachment.class)
   private List<TimeLog> timeLogs;
 

@@ -1,7 +1,9 @@
 package com.karadyauran.agile.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,17 +14,29 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
+@Table(name = "notifications")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Notification {
   @Id
+  @Column(name = "notification_id")
   private UUID notificationId;
+
+  @Column(name = "sender_id")
   private UUID senderId;
+
+  @Column(name = "receiver_id")
   private UUID receiverId;
+
+  @Column(name = "message")
   private String message;
+
+  @Column(name = "created_at")
   private LocalDate createdAt;
+
+  @Column(name = "is_read")
   private boolean isRead;
 
   @Override

@@ -14,20 +14,35 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
+@Table(name = "tasks")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Task {
   @Id
+  @Column(name = "task_id")
   private UUID taskId;
+
+  @Column(name = "title")
   private String title;
+
+  @Column(name = "description")
   private String description;
+
+  @Column(name = "status")
   private TaskStatus status;
+
+  @Column(name = "created_at")
   private LocalDate createdAt;
+
+  @Column(name = "due_date")
   private Date dueDate;
 
+  @Column(name = "project_id")
   private UUID projectId;
+
+  @Column(name = "assigned_to_id")
   private UUID assignedToId;
 
   @ManyToOne(targetEntity = Project.class)

@@ -21,13 +21,13 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Role {
   @Id
-  @Column(name = "role_id")
+  @Column(name = "r_role_id")
   private UUID roleId;
 
-  @Column(name = "role_name")
+  @Column(name = "r_role_name")
   private RoleName roleName;
 
-  @Column(name = "role_description")
+  @Column(name = "r_role_description")
   private String description;
 
   @Override

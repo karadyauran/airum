@@ -20,27 +20,27 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Project {
   @Id
-  @Column(name = "project_id")
+  @Column(name = "p_project_id")
   private UUID projectId;
 
-  @Column(name = "project_name")
+  @Column(name = "p_project_name")
   private String projectName;
 
-  @Column(name = "owner_id")
+  @Column(name = "p_owner_id")
   private UUID ownerId;
 
-  @Column(name = "description")
+  @Column(name = "p_description")
   private String description;
 
-  @Column(name = "created_at")
+  @Column(name = "p_created_at")
   private LocalDate createdAt;
 
-  @Column(name = "deadline")
+  @Column(name = "p_deadline")
   private Date deadline;
 
-  @OneToMany(mappedBy = "project", targetEntity = ProjectMember.class)
+  @OneToMany(mappedBy = "projects", targetEntity = ProjectMember.class)
   private List<ProjectMember> projectMembers;
-  @OneToMany(mappedBy = "project", targetEntity = Task.class)
+  @OneToMany(mappedBy = "projects", targetEntity = Task.class)
   private List<Task> tasks;
 
   @Override

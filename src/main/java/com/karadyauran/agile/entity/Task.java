@@ -21,28 +21,28 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Task {
   @Id
-  @Column(name = "task_id")
+  @Column(name = "t_task_id")
   private UUID taskId;
 
-  @Column(name = "title")
+  @Column(name = "t_title")
   private String title;
 
-  @Column(name = "description")
+  @Column(name = "t_description")
   private String description;
 
-  @Column(name = "status")
+  @Column(name = "t_status")
   private TaskStatus status;
 
-  @Column(name = "created_at")
+  @Column(name = "t_created_at")
   private LocalDate createdAt;
 
-  @Column(name = "due_date")
+  @Column(name = "t_due_date")
   private Date dueDate;
 
-  @Column(name = "project_id")
+  @Column(name = "t_project_id")
   private UUID projectId;
 
-  @Column(name = "assigned_to_id")
+  @Column(name = "t_assigned_to_id")
   private UUID assignedToId;
 
   @ManyToOne(targetEntity = Project.class)

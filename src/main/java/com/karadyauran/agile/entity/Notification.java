@@ -24,19 +24,19 @@ public class Notification {
   @Column(name = "notification_id")
   private UUID notificationId;
 
-  @Column(name = "sender_id")
+  @Column(name = "n_sender_id")
   private UUID senderId;
 
-  @Column(name = "receiver_id")
+  @Column(name = "n_receiver_id")
   private UUID receiverId;
 
-  @Column(name = "message")
+  @Column(name = "n_message")
   private String message;
 
-  @Column(name = "created_at")
+  @Column(name = "n_created_at")
   private LocalDate createdAt;
 
-  @Column(name = "is_read")
+  @Column(name = "n_is_read")
   private boolean isRead;
 
   @Override

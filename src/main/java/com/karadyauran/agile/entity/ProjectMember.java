@@ -20,14 +20,14 @@ public class ProjectMember {
   @Column(name = "project_member_id")
   private UUID projectMemberId;
 
-  @Column(name = "user_id")
+  @Column(name = "pm_user_id")
   private UUID userId;
 
-  @Column(name = "role_id")
+  @Column(name = "pm_role_id")
   private UUID roleId;
 
   @OneToOne(mappedBy = "projectMember", targetEntity = Role.class)
-  private Role role;
+  private String role;
 
   @Override
   public boolean equals(Object o) {

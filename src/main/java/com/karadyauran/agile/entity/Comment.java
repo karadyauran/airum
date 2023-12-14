@@ -24,16 +24,16 @@ public class Comment {
   @Column(name = "comment_id")
   private UUID commentId;
 
-  @Column(name = "task_id")
+  @Column(name = "c_task_id")
   private UUID taskId;
 
-  @Column(name = "user_id")
+  @Column(name = "c_user_id")
   private UUID userId;
 
-  @Column(name = "comment")
+  @Column(name = "c_comment")
   private String text;
 
-  @Column(name = "created_at")
+  @Column(name = "c_created_at")
   private LocalDate createdAt;
 
   @Override

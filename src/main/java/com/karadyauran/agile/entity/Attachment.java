@@ -24,16 +24,16 @@ public class Attachment {
   @Column(name = "attachment_id")
   private UUID attachmentId;
 
-  @Column(name = "task_id")
+  @Column(name = "a_task_id")
   private UUID taskId;
 
-  @Column(name = "file_name")
+  @Column(name = "a_file_name")
   private String fileName;
 
-  @Column(name = "file_format")
+  @Column(name = "a_file_format")
   private FileFormat fileFormat;
 
-  @Column(name = "file_path")
+  @Column(name = "a_file_path")
   private String filePath;
 
   @Override

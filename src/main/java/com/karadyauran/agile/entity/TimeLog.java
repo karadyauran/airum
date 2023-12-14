@@ -24,16 +24,16 @@ public class TimeLog {
   @Column(name = "time_log_id")
   private UUID timeLogId;
 
-  @Column(name = "task_id")
+  @Column(name = "tl_task_id")
   private UUID taskId;
 
-  @Column(name = "user_id")
+  @Column(name = "tl_user_id")
   private UUID userId;
 
-  @Column(name = "minute_spent")
+  @Column(name = "tl_minute_spent")
   private int minuteSpent;
 
-  @Column(name = "log_date")
+  @Column(name = "tl_log_date")
   private LocalDate logDate;
 
   @Override

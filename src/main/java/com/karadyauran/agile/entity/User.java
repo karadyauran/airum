@@ -1,11 +1,7 @@
 package com.karadyauran.agile.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,7 +9,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table("users")
+@Table(name = "users")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -21,37 +17,37 @@ import java.util.UUID;
 public class User {
 
   @Id
-  @Column("user_id")
+  @Column(name = "user_id")
   private UUID userId;
 
-  @Column("user_name")
+  @Column(name = "u_user_name")
   private String username;
 
-  @Column("email")
+  @Column(name = "u_email")
   private String email;
 
-  @Column("password_hash")
+  @Column(name = "u_password_hash")
   private String passwordHash;
 
-  @Column("created_at")
+  @Column(name = "u_created_at")
   private LocalDate createdAt;
 
-  @Column("last_login")
+  @Column(name = "u_last_login")
   private LocalDate lastLogin;
 
-  @OneToMany(mappedBy = "user", targetEntity = Notification.class)
+  @OneToMany(mappedBy = "users", targetEntity = Notification.class)
   private List<Notification> notifications;
 
-  @OneToMany(mappedBy = "user", targetEntity = ProjectMember.class)
+  @OneToMany(mappedBy = "users", targetEntity = ProjectMember.class)
   private List<ProjectMember> listOfAssignedProjects;
 
-  @OneToMany(mappedBy = "user", targetEntity = Comment.class)
+  @OneToMany(mappedBy = "users", targetEntity = Comment.class)
   private List<Comment> comments;
 
-  @OneToMany(mappedBy = "user", targetEntity = Task.class)
+  @OneToMany(mappedBy = "users", targetEntity = Task.class)
   private List<Task> tasks;
 
-  @OneToMany(mappedBy = "user", targetEntity = Attachment.class)
+  @OneToMany(mappedBy = "users", targetEntity = TimeLog.class)
   private List<TimeLog> timeLogs;
 
   @Override

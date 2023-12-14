@@ -47,12 +47,16 @@ public class Task {
 
   @ManyToOne(targetEntity = Project.class)
   private Project project;
+
   @OneToOne(targetEntity = User.class)
   private User assignedTo;
+
   @OneToMany(mappedBy = "task", targetEntity = Comment.class)
   private List<Comment> taskComments;
+
   @OneToMany(mappedBy = "task", targetEntity = Attachment.class)
   private List<Attachment> attachments;
+
   @OneToMany(mappedBy = "task", targetEntity = TimeLog.class)
   private List<TimeLog> timeLogs;
 

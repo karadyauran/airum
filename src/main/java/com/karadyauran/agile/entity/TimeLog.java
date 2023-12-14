@@ -21,7 +21,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class TimeLog {
   @Id
-  @Column(name = "time_log_id")
+  @Column(name = "tl_time_log_id")
   private UUID timeLogId;
 
   @Column(name = "tl_task_id")

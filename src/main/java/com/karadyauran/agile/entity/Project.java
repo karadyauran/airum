@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "projects")
@@ -38,9 +35,10 @@ public class Project {
   @Column(name = "p_deadline")
   private Date deadline;
 
-  @OneToMany(mappedBy = "projects", targetEntity = ProjectMember.class)
-  private List<ProjectMember> projectMembers;
-  @OneToMany(mappedBy = "projects", targetEntity = Task.class)
+  @OneToMany(mappedBy = "project")
+  private Set<ProjectMember> projectMembers;
+
+  @OneToMany(mappedBy = "project")
   private List<Task> tasks;
 
   @Override
@@ -59,6 +57,6 @@ public class Project {
   @Override
   public String toString() {
     return String.format("Project: %s, %s, %s, %s",
-            projectId, projectName, createdAt, tasks);
+            projectId, projectName, createdAt);
   }
 }

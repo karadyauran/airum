@@ -1,9 +1,6 @@
 package com.karadyauran.agile.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Comment {
   @Id
-  @Column(name = "comment_id")
+  @Column(name = "c_comment_id")
   private UUID commentId;
 
   @Column(name = "c_task_id")
@@ -35,6 +32,14 @@ public class Comment {
 
   @Column(name = "c_created_at")
   private LocalDate createdAt;
+
+  @ManyToOne
+  @JoinColumn(name = "c_task_id", insertable = false, updatable = false)
+  private Task task;
+
+  @ManyToOne
+  @JoinColumn(name = "c_user_id", insertable = false, updatable = false)
+  private User user;
 
   @Override
   public boolean equals(Object o) {

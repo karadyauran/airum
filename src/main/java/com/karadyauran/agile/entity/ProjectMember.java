@@ -17,7 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ProjectMember {
   @Id
-  @Column(name = "project_member_id")
+  @Column(name = "pm_project_member_id")
   private UUID projectMemberId;
 
   @Column(name = "pm_user_id")
@@ -26,8 +26,13 @@ public class ProjectMember {
   @Column(name = "pm_role_id")
   private UUID roleId;
 
-  @OneToOne(mappedBy = "projectMember", targetEntity = Role.class)
-  private String role;
+  @ManyToOne
+  @JoinColumn(name = "pm_project_id")
+  private Project project;
+
+  @ManyToOne
+  @JoinColumn(name = "pm_user_id")
+  private User user;
 
   @Override
   public boolean equals(Object o) {
@@ -44,7 +49,7 @@ public class ProjectMember {
 
   @Override
   public String toString() {
-    return String.format("ProjectMember: %s, %s",
-            userId, role);
+    return String.format("ProjectMember: %s",
+            userId);
   }
 }

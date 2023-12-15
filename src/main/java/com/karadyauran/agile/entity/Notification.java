@@ -1,9 +1,6 @@
 package com.karadyauran.agile.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Notification {
   @Id
-  @Column(name = "notification_id")
+  @Column(name = "n_notification_id")
   private UUID notificationId;
 
   @Column(name = "n_sender_id")
@@ -38,6 +35,14 @@ public class Notification {
 
   @Column(name = "n_is_read")
   private boolean isRead;
+
+  @ManyToOne
+  @JoinColumn(name = "n_sender_id", insertable = false, updatable = false)
+  private User sender;
+
+  @ManyToOne
+  @JoinColumn(name = "n_receiver_id", insertable = false, updatable = false)
+  private User receiver;
 
   @Override
   public boolean equals(Object o) {

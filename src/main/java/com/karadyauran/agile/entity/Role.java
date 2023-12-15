@@ -1,10 +1,6 @@
 package com.karadyauran.agile.entity;
 
-import com.karadyauran.agile.entity.enums.RoleName;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,10 +21,14 @@ public class Role {
   private UUID roleId;
 
   @Column(name = "r_role_name")
-  private RoleName roleName;
+  private String roleName;
 
   @Column(name = "r_role_description")
   private String description;
+
+  @OneToOne
+  @JoinColumn(name = "r_role_id") // Adjust the column name as needed
+  private ProjectMember projectMember;
 
   @Override
   public boolean equals(Object o) {

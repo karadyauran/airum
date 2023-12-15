@@ -35,19 +35,22 @@ public class User {
   @Column(name = "u_last_login")
   private LocalDate lastLogin;
 
-  @OneToMany(mappedBy = "users", targetEntity = Notification.class)
-  private List<Notification> notifications;
+  @OneToMany(mappedBy = "sender")
+  private List<Notification> sentNotifications;
 
-  @OneToMany(mappedBy = "users", targetEntity = ProjectMember.class)
+  @OneToMany(mappedBy = "receiver")
+  private List<Notification> receivedNotifications;
+
+  @OneToMany(mappedBy = "user")
   private List<ProjectMember> listOfAssignedProjects;
 
-  @OneToMany(mappedBy = "users", targetEntity = Comment.class)
+  @OneToMany(mappedBy = "user")
   private List<Comment> comments;
 
-  @OneToMany(mappedBy = "users", targetEntity = Task.class)
+  @OneToMany(mappedBy = "user")
   private List<Task> tasks;
 
-  @OneToMany(mappedBy = "users", targetEntity = TimeLog.class)
+  @OneToMany(mappedBy = "user")
   private List<TimeLog> timeLogs;
 
   @Override

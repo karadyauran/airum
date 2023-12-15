@@ -1,9 +1,6 @@
 package com.karadyauran.agile.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,6 +32,14 @@ public class TimeLog {
 
   @Column(name = "tl_log_date")
   private LocalDate logDate;
+
+  @ManyToOne
+  @JoinColumn(name = "tl_task_id", insertable = false, updatable = false)
+  private Task task;
+
+  @ManyToOne
+  @JoinColumn(name = "tl_user_id", insertable = false, updatable = false)
+  private User user;
 
   @Override
   public boolean equals(Object o) {

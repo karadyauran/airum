@@ -45,19 +45,21 @@ public class Task {
   @Column(name = "t_assigned_to_id")
   private UUID assignedToId;
 
-  @ManyToOne(targetEntity = Project.class)
+  @ManyToOne
+  @JoinColumn(name = "t_project_id", insertable = false, updatable = false)
   private Project project;
 
-  @OneToOne(targetEntity = User.class)
+  @ManyToOne
+  @JoinColumn(name = "t_assigned_to_id", insertable = false, updatable = false)
   private User assignedTo;
 
-  @OneToMany(mappedBy = "task", targetEntity = Comment.class)
+  @OneToMany(mappedBy = "task")
   private List<Comment> taskComments;
 
-  @OneToMany(mappedBy = "task", targetEntity = Attachment.class)
+  @OneToMany(mappedBy = "task")
   private List<Attachment> attachments;
 
-  @OneToMany(mappedBy = "task", targetEntity = TimeLog.class)
+  @OneToMany(mappedBy = "task")
   private List<TimeLog> timeLogs;
 
   @Override

@@ -20,7 +20,7 @@ public class ProjectMember {
   @Column(name = "pm_project_member_id")
   private UUID projectMemberId;
 
-  @Column(name = "pm_user_id")
+  @Column(name = "pm_user_id", insertable = false, updatable = false)
   private UUID userId;
 
   @Column(name = "pm_role_id")

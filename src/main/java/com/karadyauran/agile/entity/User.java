@@ -47,7 +47,7 @@ public class User {
   @OneToMany(mappedBy = "user")
   private List<Comment> comments;
 
-  @OneToMany(mappedBy = "user")
+  @OneToMany(mappedBy = "assignedTo")
   private List<Task> tasks;
 
   @OneToMany(mappedBy = "user")

@@ -38,9 +38,6 @@ public class User {
   @OneToMany(mappedBy = "sender")
   private List<Notification> sentNotifications;
 
-  @OneToMany(mappedBy = "receiver")
-  private List<Notification> receivedNotifications;
-
   @OneToMany(mappedBy = "user")
   private List<ProjectMember> listOfAssignedProjects;
 

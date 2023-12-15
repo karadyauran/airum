@@ -40,10 +40,6 @@ public class Notification {
   @JoinColumn(name = "n_sender_id", insertable = false, updatable = false)
   private User sender;
 
-  @ManyToOne
-  @JoinColumn(name = "n_receiver_id", insertable = false, updatable = false)
-  private User receiver;
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

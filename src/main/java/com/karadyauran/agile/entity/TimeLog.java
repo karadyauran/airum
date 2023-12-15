@@ -1,5 +1,6 @@
 package com.karadyauran.agile.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,16 +10,36 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity
+@Table(name = "time_log")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class TimeLog {
+  @Id
+  @Column(name = "tl_time_log_id")
   private UUID timeLogId;
+
+  @Column(name = "tl_task_id")
   private UUID taskId;
+
+  @Column(name = "tl_user_id")
   private UUID userId;
+
+  @Column(name = "tl_minute_spent")
   private int minuteSpent;
+
+  @Column(name = "tl_log_date")
   private LocalDate logDate;
+
+  @ManyToOne
+  @JoinColumn(name = "tl_task_id", insertable = false, updatable = false)
+  private Task task;
+
+  @ManyToOne
+  @JoinColumn(name = "tl_user_id", insertable = false, updatable = false)
+  private User user;
 
   @Override
   public boolean equals(Object o) {

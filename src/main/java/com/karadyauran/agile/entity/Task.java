@@ -1,6 +1,7 @@
 package com.karadyauran.agile.entity;
 
 import com.karadyauran.agile.entity.enums.TaskStatus;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,27 +13,53 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-
+@Entity
+@Table(name = "tasks")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Task {
+  @Id
+  @Column(name = "t_task_id")
   private UUID taskId;
+
+  @Column(name = "t_title")
   private String title;
+
+  @Column(name = "t_description")
   private String description;
+
+  @Column(name = "t_status")
   private TaskStatus status;
+
+  @Column(name = "t_created_at")
   private LocalDate createdAt;
+
+  @Column(name = "t_due_date")
   private Date dueDate;
 
+  @Column(name = "t_project_id")
   private UUID projectId;
+
+  @Column(name = "t_assigned_to_id")
   private UUID assignedToId;
 
+  @ManyToOne
+  @JoinColumn(name = "t_project_id", insertable = false, updatable = false)
   private Project project;
+
+  @ManyToOne
+  @JoinColumn(name = "t_assigned_to_id", insertable = false, updatable = false)
   private User assignedTo;
 
+  @OneToMany(mappedBy = "task")
   private List<Comment> taskComments;
+
+  @OneToMany(mappedBy = "task")
   private List<Attachment> attachments;
+
+  @OneToMany(mappedBy = "task")
   private List<TimeLog> timeLogs;
 
   @Override

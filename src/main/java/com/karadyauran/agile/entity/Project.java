@@ -56,7 +56,7 @@ public class Project {
 
   @Override
   public String toString() {
-    return String.format("Project: %s, %s, %s, %s",
+    return String.format("Project: %s, %s, %s",
             projectId, projectName, createdAt);
   }
 }

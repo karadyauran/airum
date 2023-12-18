@@ -11,6 +11,7 @@ This Agile Project Management Tool is designed to facilitate project tracking an
 - [Usage](#usage)
 - [Features](#features)
 - [Contributing](#contributing)
+- [System Architecture](#system-architecture)
 - [Contact](#contact)
 
 ## Project Goal
@@ -69,6 +70,36 @@ Contributions are what make the open source community such an amazing place to l
 3. Commit your Changes (git commit -m 'Add some AmazingFeature')
 4. Push to the Branch (git push origin feature/AmazingFeature)
 5. Open a Pull Request
+
+## System Architecture
+
+#### Architecture Overview
+
+The Agile system is built on a client-server model, where the backend is implemented in Java using Spring Framework and the frontend is implemented on one of the modern JavaScript frameworks (e.g. React, Angular or Vue.js). The system provides interaction between the client and the server through a RESTful API.
+
+#### System components
+1. backend (Server Part):
+- Based on Spring Boot for easy customization and deployment.
+- Spring Security is used for authentication and authorization.
+- Spring Data JPA for interacting with the database.
+
+2.	Frontend (Client Part) [To be developed in the future]
+
+3. Database:
+- Using SQL database (MySQL) to store data about users, projects, tasks and other entities.
+- The database schema is designed to support relationships between the various elements of the system.
+
+4.	API (Application Programming Interface):
+- RESTful API to enable communication between client and server.
+- JSON is used for the data exchange format.
+- API documentation (e.g. using Swagger) to simplify development and integration.
+
+5. Deployment Model
+- Use of containerization (Docker) to facilitate deployment.
+- Ability to deploy in the cloud or on local servers.
+
+6. Security
+- Backup and restore data to ensure data integrity and availability.
 
 ## Contact
 

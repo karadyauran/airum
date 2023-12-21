@@ -18,6 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Notification {
   @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
   @Column(name = "n_notification_id")
   private UUID notificationId;
 

@@ -17,6 +17,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Role {
   @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
   @Column(name = "r_role_id")
   private UUID roleId;
 
@@ -45,6 +46,6 @@ public class Role {
 
   @Override
   public String toString() {
-    return roleName.toString();
+    return roleName;
   }
 }

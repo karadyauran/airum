@@ -15,8 +15,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-
   @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
   @Column(name = "u_user_id")
   private UUID userId;
 

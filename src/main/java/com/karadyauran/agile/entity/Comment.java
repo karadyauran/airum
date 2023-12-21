@@ -18,6 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Comment {
   @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
   @Column(name = "c_comment_id")
   private UUID commentId;
 

@@ -17,6 +17,7 @@ import java.util.*;
 @NoArgsConstructor
 public class Project {
   @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
   @Column(name = "p_project_id")
   private UUID projectId;
 

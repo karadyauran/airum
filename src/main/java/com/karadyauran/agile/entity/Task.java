@@ -21,6 +21,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Task {
   @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
   @Column(name = "t_task_id")
   private UUID taskId;
 

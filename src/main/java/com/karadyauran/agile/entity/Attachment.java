@@ -18,6 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Attachment {
   @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
   @Column(name = "a_attachment_id")
   private UUID attachmentId;
 

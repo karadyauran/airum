@@ -18,6 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class TimeLog {
   @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
   @Column(name = "tl_time_log_id")
   private UUID timeLogId;
 

@@ -31,6 +31,7 @@ public class Task {
   private String description;
 
   @Column(name = "t_status")
+  @Enumerated(EnumType.STRING)
   private TaskStatus status;
 
   @Column(name = "t_created_at")

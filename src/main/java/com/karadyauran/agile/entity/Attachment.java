@@ -28,6 +28,7 @@ public class Attachment {
   private String fileName;
 
   @Column(name = "a_file_format")
+  @Enumerated(EnumType.STRING)
   private FileFormat fileFormat;
 
   @Column(name = "a_file_path")

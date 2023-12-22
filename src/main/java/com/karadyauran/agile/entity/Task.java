@@ -19,66 +19,70 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Task {
-  @Id
-  @GeneratedValue(strategy = GenerationType.UUID)
-  @Column(name = "t_task_id")
-  private UUID taskId;
+public class Task
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "t_task_id")
+    private UUID taskId;
 
-  @Column(name = "t_title")
-  private String title;
+    @Column(name = "t_title")
+    private String title;
 
-  @Column(name = "t_description")
-  private String description;
+    @Column(name = "t_description")
+    private String description;
 
-  @Column(name = "t_status")
-  @Enumerated(EnumType.STRING)
-  private TaskStatus status;
+    @Column(name = "t_status")
+    @Enumerated(EnumType.STRING)
+    private TaskStatus status;
 
-  @Column(name = "t_created_at")
-  private LocalDate createdAt;
+    @Column(name = "t_created_at")
+    private LocalDate createdAt;
 
-  @Column(name = "t_due_date")
-  private Date dueDate;
+    @Column(name = "t_due_date")
+    private Date dueDate;
 
-  @Column(name = "t_project_id")
-  private UUID projectId;
+    @Column(name = "t_project_id")
+    private UUID projectId;
 
-  @Column(name = "t_assigned_to_id")
-  private UUID assignedToId;
+    @Column(name = "t_assigned_to_id")
+    private UUID assignedToId;
 
-  @ManyToOne
-  @JoinColumn(name = "t_project_id", insertable = false, updatable = false)
-  private Project project;
+    @ManyToOne
+    @JoinColumn(name = "t_project_id", insertable = false, updatable = false)
+    private Project project;
 
-  @ManyToOne
-  @JoinColumn(name = "t_assigned_to_id", insertable = false, updatable = false)
-  private User assignedTo;
+    @ManyToOne
+    @JoinColumn(name = "t_assigned_to_id", insertable = false, updatable = false)
+    private User assignedTo;
 
-  @OneToMany(mappedBy = "task")
-  private List<Comment> taskComments;
+    @OneToMany(mappedBy = "task")
+    private List<Comment> taskComments;
 
-  @OneToMany(mappedBy = "task")
-  private List<Attachment> attachments;
+    @OneToMany(mappedBy = "task")
+    private List<Attachment> attachments;
 
-  @OneToMany(mappedBy = "task")
-  private List<TimeLog> timeLogs;
+    @OneToMany(mappedBy = "task")
+    private List<TimeLog> timeLogs;
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Task task)) return false;
-    return Objects.equals(taskId, task.taskId);
-  }
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (!(o instanceof Task task)) return false;
+        return Objects.equals(taskId, task.taskId);
+    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(taskId);
-  }
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(taskId);
+    }
 
-  @Override
-  public String toString() {
-    return String.format("Task: %s, %s",
-            title, status);
-  }
+    @Override
+    public String toString()
+    {
+        return String.format("Task: %s, %s",
+                title, status);
+    }
 }

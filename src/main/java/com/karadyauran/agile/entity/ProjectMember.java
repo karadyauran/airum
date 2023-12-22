@@ -15,42 +15,46 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProjectMember {
-  @Id
-  @GeneratedValue(strategy = GenerationType.UUID)
-  @Column(name = "pm_project_member_id")
-  private UUID projectMemberId;
+public class ProjectMember
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "pm_project_member_id")
+    private UUID projectMemberId;
 
-  @Column(name = "pm_user_id", insertable = false, updatable = false)
-  private UUID userId;
+    @Column(name = "pm_user_id", insertable = false, updatable = false)
+    private UUID userId;
 
-  @Column(name = "pm_role_id")
-  private UUID roleId;
+    @Column(name = "pm_role_id")
+    private UUID roleId;
 
-  @ManyToOne
-  @JoinColumn(name = "pm_project_id")
-  private Project project;
+    @ManyToOne
+    @JoinColumn(name = "pm_project_id")
+    private Project project;
 
-  @ManyToOne
-  @JoinColumn(name = "pm_user_id")
-  private User user;
+    @ManyToOne
+    @JoinColumn(name = "pm_user_id")
+    private User user;
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ProjectMember that = (ProjectMember) o;
-    return Objects.equals(projectMemberId, that.projectMemberId);
-  }
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProjectMember that = (ProjectMember) o;
+        return Objects.equals(projectMemberId, that.projectMemberId);
+    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(projectMemberId);
-  }
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(projectMemberId);
+    }
 
-  @Override
-  public String toString() {
-    return String.format("ProjectMember: %s",
-            userId);
-  }
+    @Override
+    public String toString()
+    {
+        return String.format("ProjectMember: %s",
+                userId);
+    }
 }

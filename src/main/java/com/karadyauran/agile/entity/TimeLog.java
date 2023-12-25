@@ -36,11 +36,11 @@ public class TimeLog
     private LocalDate logDate;
 
     @ManyToOne
-    @JoinColumn(name = "tl_task_id", insertable = false, updatable = false)
+    @JoinColumn(name = "tl_task_id", referencedColumnName = "t_task_id", insertable = false, updatable = false)
     private Task task;
 
     @ManyToOne
-    @JoinColumn(name = "tl_user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "tl_user_id", referencedColumnName = "u_user_id", insertable = false, updatable = false)
     private User user;
 
     @Override

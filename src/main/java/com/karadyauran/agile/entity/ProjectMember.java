@@ -29,11 +29,11 @@ public class ProjectMember
     private UUID roleId;
 
     @ManyToOne
-    @JoinColumn(name = "pm_project_id")
+    @JoinColumn(name = "pm_project_id", referencedColumnName = "p_project_id")
     private Project project;
 
     @ManyToOne
-    @JoinColumn(name = "pm_user_id")
+    @JoinColumn(name = "pm_user_id", referencedColumnName = "u_user_id")
     private User user;
 
     @Override

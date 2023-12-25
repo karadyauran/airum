@@ -39,7 +39,7 @@ public class Notification
     private boolean isRead;
 
     @ManyToOne
-    @JoinColumn(name = "n_sender_id", insertable = false, updatable = false)
+    @JoinColumn(name = "n_sender_id", referencedColumnName = "u_user_id", insertable = false, updatable = false)
     private User sender;
 
     @Override

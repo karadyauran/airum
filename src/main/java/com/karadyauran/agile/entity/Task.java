@@ -49,11 +49,11 @@ public class Task
     private UUID assignedToId;
 
     @ManyToOne
-    @JoinColumn(name = "t_project_id", insertable = false, updatable = false)
+    @JoinColumn(name = "t_project_id", referencedColumnName = "p_project_id", insertable = false, updatable = false)
     private Project project;
 
     @ManyToOne
-    @JoinColumn(name = "t_assigned_to_id", insertable = false, updatable = false)
+    @JoinColumn(name = "t_assigned_to_id", referencedColumnName = "u_user_id", insertable = false, updatable = false)
     private User assignedTo;
 
     @OneToMany(mappedBy = "task")

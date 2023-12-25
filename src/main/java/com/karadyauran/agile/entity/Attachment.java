@@ -37,7 +37,7 @@ public class Attachment
     private String filePath;
 
     @ManyToOne
-    @JoinColumn(name = "a_task_id", insertable = false, updatable = false)
+    @JoinColumn(name = "a_task_id", referencedColumnName = "t_task_id",insertable = false, updatable = false)
     private Task task;
 
     @Override

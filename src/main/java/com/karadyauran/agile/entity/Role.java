@@ -29,7 +29,7 @@ public class Role
     private String description;
 
     @OneToOne
-    @JoinColumn(name = "r_role_id") // Adjust the column name as needed
+    @JoinColumn(name = "r_role_id", referencedColumnName = "pm_project_member_id") // Adjust the column name as needed
     private ProjectMember projectMember;
 
     @Override

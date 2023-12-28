@@ -47,7 +47,7 @@
             </not>
         </preConditions>
         <createTable tableName="project_members">
-            <column name="pm_project_id" type="varchar(60)">
+            <column name="pm_project_member_id" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
             <column name="pm_user_id" type="varchar(60)">

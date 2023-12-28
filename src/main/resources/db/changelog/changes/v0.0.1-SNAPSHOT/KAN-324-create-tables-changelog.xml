@@ -193,9 +193,6 @@
             <column name="ta_user_id" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
-            <column name="ta_attachment" type="varchar(255)">
-                <constraints nullable="false"/>
-            </column>
             <column name="ta_attachment_name" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>

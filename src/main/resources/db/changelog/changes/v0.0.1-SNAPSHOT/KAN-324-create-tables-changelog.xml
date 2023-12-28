@@ -221,7 +221,7 @@
             <column name="n_receiver_id" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
-            <column name="n_notification" type="text">
+            <column name="n_notification_message" type="text">
                 <constraints nullable="false"/>
             </column>
             <column name="n_created_at" type="timestamp">

@@ -1,18 +1,33 @@
-# Agile (Project Management System)
+# Agile Project Management Tool
+
+This Agile Project Management Tool is designed to facilitate project tracking and management, offering features like task assignments, project timelines, and collaboration tools.
+
+## Table of Contents
+- [Project Goal](#project-goal)
+- [Scope](#scope)
+- [Core Functions](#core-functions)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Contributing](#contributing)
+- [System Architecture](#system-architecture)
+- [Contact](#contact)
+
 ## Project Goal
 
-The goal of the Agile project is to develop a comprehensive project management system focused on flexibility, 
-efficiency, and ease of team collaboration. The system is designed for organizations and teams of all 
+The goal of the Agile project is to develop a comprehensive project management system focused on flexibility,
+efficiency, and ease of team collaboration. The system is designed for organizations and teams of all
 sizes that need a tool to plan, track and manage projects and tasks in real time.
 
 ## Scope
 
-The Agile system is designed as a web-based application that supports multiple users 
-with different access levels and roles in a project. It provides functionality 
-to create and manage projects, assign tasks, track progress, communicate between 
+The Agile system is designed as a web-based application that supports multiple users
+with different access levels and roles in a project. It provides functionality
+to create and manage projects, assign tasks, track progress, communicate between
 participants and analyze performance.
 
-The system will be useful in various business areas including IT, construction, 
+The system will be useful in various business areas including IT, construction,
 education, marketing and many other areas where centralized project and task management is important.
 
 ## Core Functions
@@ -25,8 +40,36 @@ education, marketing and many other areas where centralized project and task man
 
 ## Technologies
 
-The project is implemented using Java and Spring Framework for backend and SQL for database management. 
+The project is implemented using Java and Spring Framework for backend and SQL for database management.
 One of the modern JavaScript frameworks (React, Angular or Vue) will be used for the frontend.
+
+## Installation
+
+To get a local copy up and running, follow these simple steps:
+
+```bash
+git clone https://github.com/karadyauran/Agile.git
+cd Agile
+# later
+```
+
+## Usage
+
+After installation, run the application:
+
+```bash
+# later
+```
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+1. Fork the Project
+2. Create your Feature Branch (git checkout -b feature/AmazingFeature)
+3. Commit your Changes (git commit -m 'Add some AmazingFeature')
+4. Push to the Branch (git push origin feature/AmazingFeature)
+5. Open a Pull Request
 
 ## System Architecture
 
@@ -58,20 +101,8 @@ The Agile system is built on a client-server model, where the backend is impleme
 6. Security
 - Backup and restore data to ensure data integrity and availability.
 
-## Database Model and Structure
+## Contact
 
-#### Database Model Overview
+Oleksandr Karadiaur - karadiaur.oleksandr@gmail.com
 
-The Agile system uses a relational database to store and manage all data related to projects, tasks, users and other entities. The database structure is designed to ensure efficient data storage and optimal performance.
-
-#### Description of Tables
-The database consists of several main tables including:
-1. *User*: Stores information about the users of the system.
-2. *Project*: Contains data about projects.
-3. *Task*: Reflects the tasks assigned to projects.
-4. *Comment*: Contains user comments on tasks.
-5. *Role*: Defines the roles in the project. 
-6. *ProjectMember*: Manage project members and their roles. 
-7. *Attachment*: Storing attachments to tasks. 
-8. *TimeLog*: Record the time spent on tasks. 9.
-9. *Notification*: User notifications.
+Project Link: https://github.com/karadyauran/Agile

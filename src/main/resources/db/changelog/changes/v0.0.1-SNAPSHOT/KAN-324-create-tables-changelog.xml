@@ -62,9 +62,6 @@
             <column name="pm_updated_at" type="timestamp">
                 <constraints nullable="false"/>
             </column>
-            <column name="pm_deleted_at" type="timestamp">
-                <constraints nullable="true"/>
-            </column>
         </createTable>
     </changeSet>
 

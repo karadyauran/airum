@@ -23,10 +23,10 @@ public class Notification
     @Column(name = "n_notification_id")
     private UUID notificationId;
 
-    @Column(name = "n_sender_id")
+    @Column(name = "n_sender_id", insertable = false, updatable = false)
     private UUID senderId;
 
-    @Column(name = "n_receiver_id")
+    @Column(name = "n_receiver_id", insertable = false, updatable = false)
     private UUID receiverId;
 
     @Column(name = "n_notification_message")

@@ -48,7 +48,7 @@ public class User
     @OneToMany(mappedBy = "createdBy")
     private List<Task> createdTasks;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "commentUser")
     private List<Comment> taskComments;
 
     @OneToMany(mappedBy = "sender")

@@ -25,13 +25,13 @@ public class Task
     @Column(name = "t_task_id")
     private UUID taskId;
 
-    @Column(name = "t_project_id")
+    @Column(name = "t_assigned_to_id", insertable = false, updatable = false)
     private UUID projectId;
 
-    @Column(name = "t_assigned_to_id")
+    @Column(name = "t_assigned_to_id", insertable = false, updatable = false)
     private UUID assignedToId;
 
-    @Column(name = "t_created_by_id")
+    @Column(name = "t_created_by_id", insertable = false, updatable = false)
     private UUID createdById;
 
     @Column(name = "t_title")

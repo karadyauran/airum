@@ -22,7 +22,7 @@ public class Project
     @Column(name = "p_project_id")
     private UUID projectId;
 
-    @Column(name = "p_owner_id")
+    @Column(name = "p_owner_id", insertable = false, updatable = false)
     private UUID ownerId;
 
     @Column(name = "p_project_name")
@@ -36,9 +36,6 @@ public class Project
 
     @Column(name = "p_updated_at")
     private LocalDate updatedAt;
-
-    @OneToMany(mappedBy = "project")
-    private List<ProjectMember> projectMembers = new ArrayList<>();
 
     @OneToMany(mappedBy = "project")
     private List<Task> tasks;

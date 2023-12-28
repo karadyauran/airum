@@ -23,10 +23,10 @@ public class Comment
     @Column(name = "tc_comment_id")
     private UUID commentId;
 
-    @Column(name = "tc_task_id")
+    @Column(name = "tc_task_id", insertable = false, updatable = false)
     private UUID taskId;
 
-    @Column(name = "tc_user_id")
+    @Column(name = "tc_user_id", insertable = false, updatable = false)
     private UUID userId;
 
     @Column(name = "tc_comment")
@@ -41,7 +41,7 @@ public class Comment
 
     @ManyToOne
     @JoinColumn(name = "tc_user_id", referencedColumnName = "u_user_id")
-    private User user;
+    private User commentUser;
 
     @Override
     public boolean equals(Object o)

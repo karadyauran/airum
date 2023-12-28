@@ -23,10 +23,10 @@ public class Attachment
     @Column(name = "ta_attachment_id")
     private UUID attachmentId;
 
-    @Column(name = "ta_task_id")
+    @Column(name = "ta_task_id", insertable = false, updatable = false)
     private UUID taskId;
 
-    @Column(name = "ta_user_id")
+    @Column(name = "ta_user_id", insertable = false, updatable = false)
     private UUID userId;
 
     @Column(name = "ta_attachment_name")

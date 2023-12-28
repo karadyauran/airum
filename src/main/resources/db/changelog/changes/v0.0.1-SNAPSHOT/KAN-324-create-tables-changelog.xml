@@ -346,7 +346,7 @@
     </preConditions>
     <addForeignKeyConstraint constraintName="fk_owner_id_user_id"
                              baseTableName="projects" baseColumnNames="p_owner_id"
-                             referencedTableName="user" referencedColumnNames="u_user_id"/>
+                             referencedTableName="users" referencedColumnNames="u_user_id"/>
     </changeSet>
 
 </databaseChangeLog>

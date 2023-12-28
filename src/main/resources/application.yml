@@ -7,4 +7,4 @@ spring:
     password: 12345678
 
   liquibase:
-    change-log: classpath:db/changelog/db.changelog-master.yaml
+    change-log: classpath:db/changelog/changes/changelog-master.xml

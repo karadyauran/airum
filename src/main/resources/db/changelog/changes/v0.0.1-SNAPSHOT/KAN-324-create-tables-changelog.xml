@@ -48,7 +48,7 @@
         </preConditions>
         <createTable tableName="project_members">
             <column name="pm_project_member_id" type="varchar(60)">
-                <constraints nullable="false"/>
+                <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="pm_user_id" type="varchar(60)">
                 <constraints nullable="false"/>
@@ -241,9 +241,11 @@
                 <foreignKeyConstraintExists foreignKeyName="fk_project_members_role_id"/>
             </not>
         </preConditions>
-        <addForeignKeyConstraint constraintName="fk_project_members_project_id"
-                                 baseTableName="project_members" baseColumnNames="pm_project_id"
-                                 referencedTableName="projects" referencedColumnNames="p_owner_id"/>
+
+        <!-- TODO fix creating foreign key -->
+        <!--<addForeignKeyConstraint constraintName="fk_project_members_owner_id"
+                                 baseTableName="project_members" baseColumnNames="pm_project_member_id"
+                                 referencedTableName="projects" referencedColumnNames="p_owner_id"/>-->
 
         <addForeignKeyConstraint constraintName="fk_project_members_user_id"
                                  baseTableName="project_members" baseColumnNames="pm_user_id"
@@ -334,6 +336,17 @@
                                  baseTableName="task_attachments" baseColumnNames="ta_user_id"
                                  referencedTableName="users" referencedColumnNames="u_user_id"
                                  onDelete="CASCADE" onUpdate="CASCADE"/>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="add foreign keys to projects">
+    <preConditions onFail="CONTINUE" onFailMessage="Foreign keys exists">
+        <not>
+            <foreignKeyConstraintExists foreignKeyName="fk_owner_id_user_id"/>
+        </not>
+    </preConditions>
+    <addForeignKeyConstraint constraintName="fk_owner_id_user_id"
+                             baseTableName="projects" baseColumnNames="p_owner_id"
+                             referencedTableName="user" referencedColumnNames="u_user_id"/>
     </changeSet>
 
 </databaseChangeLog>

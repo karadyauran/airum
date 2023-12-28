@@ -21,8 +21,14 @@ public class User
     @Column(name = "u_user_id")
     private UUID userId;
 
-    @Column(name = "u_user_name")
+    @Column(name = "u_username")
     private String username;
+
+    @Column(name = "u_name")
+    private String name;
+
+    @Column(name = "u_surname")
+    private String surname;
 
     @Column(name = "u_email")
     private String email;
@@ -33,23 +39,26 @@ public class User
     @Column(name = "u_created_at")
     private LocalDate createdAt;
 
-    @Column(name = "u_last_login")
-    private LocalDate lastLogin;
-
-    @OneToMany(mappedBy = "sender")
-    private List<Notification> sentNotifications;
-
     @OneToMany(mappedBy = "user")
-    private List<ProjectMember> listOfAssignedProjects;
-
-    @OneToMany(mappedBy = "user")
-    private List<Comment> comments;
+    List<ProjectMember> projectMembers;
 
     @OneToMany(mappedBy = "assignedTo")
-    private List<Task> tasks;
+    private List<Task> assignedTasks;
+
+    @OneToMany(mappedBy = "createdBy")
+    private List<Task> createdTasks;
 
     @OneToMany(mappedBy = "user")
-    private List<TimeLog> timeLogs;
+    private List<Comment> taskComments;
+
+    @OneToMany(mappedBy = "sender")
+    private List<Notification> sendNotifications;
+
+    @OneToMany(mappedBy = "receiver")
+    private List<Notification> receiveNotifications;
+
+    @OneToMany(mappedBy = "user")
+    private List<Attachment> attachments;
 
     @Override
     public boolean equals(Object o)
@@ -69,7 +78,7 @@ public class User
     @Override
     public String toString()
     {
-        return String.format("User: %s, %s, %s, %s",
-                userId, username, createdAt, tasks);
+        return String.format("User: %s, %s, %s",
+                userId, username, createdAt);
     }
 }

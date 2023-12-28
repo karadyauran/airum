@@ -28,8 +28,7 @@ public class Role
     @Column(name = "r_role_description")
     private String description;
 
-    @OneToOne
-    @JoinColumn(name = "r_role_id", referencedColumnName = "pm_project_member_id") // Adjust the column name as needed
+    @OneToOne(mappedBy = "role")
     private ProjectMember projectMember;
 
     @Override

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -28,13 +29,23 @@ public class ProjectMember
     @Column(name = "pm_role_id")
     private UUID roleId;
 
+    @Column(name = "pm_created_at")
+    private LocalDate createdAt;
+
+    @Column(name = "pm_updated_at")
+    private LocalDate updatedAt;
+
     @ManyToOne
-    @JoinColumn(name = "pm_project_id", referencedColumnName = "p_project_id")
+    @JoinColumn(name = "pm_project_member_id", referencedColumnName = "p_owner_id")
     private Project project;
 
     @ManyToOne
     @JoinColumn(name = "pm_user_id", referencedColumnName = "u_user_id")
     private User user;
+
+    @OneToOne
+    @JoinColumn(name = "pm_role_id", referencedColumnName = "r_role_id")
+    private Role role;
 
     @Override
     public boolean equals(Object o)

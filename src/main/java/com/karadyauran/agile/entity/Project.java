@@ -22,11 +22,11 @@ public class Project
     @Column(name = "p_project_id")
     private UUID projectId;
 
-    @Column(name = "p_project_name")
-    private String projectName;
-
     @Column(name = "p_owner_id")
     private UUID ownerId;
+
+    @Column(name = "p_project_name")
+    private String projectName;
 
     @Column(name = "p_description")
     private String description;
@@ -34,11 +34,11 @@ public class Project
     @Column(name = "p_created_at")
     private LocalDate createdAt;
 
-    @Column(name = "p_deadline")
-    private Date deadline;
+    @Column(name = "p_updated_at")
+    private LocalDate updatedAt;
 
     @OneToMany(mappedBy = "project")
-    private Set<ProjectMember> projectMembers;
+    private List<ProjectMember> projectMembers = new ArrayList<>();
 
     @OneToMany(mappedBy = "project")
     private List<Task> tasks;

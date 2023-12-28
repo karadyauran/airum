@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "comments")
+@Table(name = "task_comments")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,27 +20,27 @@ public class Comment
 {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "c_comment_id")
+    @Column(name = "tc_comment_id")
     private UUID commentId;
 
-    @Column(name = "c_task_id")
+    @Column(name = "tc_task_id")
     private UUID taskId;
 
-    @Column(name = "c_user_id")
+    @Column(name = "tc_user_id")
     private UUID userId;
 
-    @Column(name = "c_comment")
+    @Column(name = "tc_comment")
     private String text;
 
-    @Column(name = "c_created_at")
+    @Column(name = "tc_created_at")
     private LocalDate createdAt;
 
     @ManyToOne
-    @JoinColumn(name = "c_task_id", referencedColumnName = "t_task_id",insertable = false, updatable = false)
+    @JoinColumn(name = "tc_task_id", referencedColumnName = "t_task_id")
     private Task task;
 
     @ManyToOne
-    @JoinColumn(name = "c_user_id", referencedColumnName = "u_user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "tc_user_id", referencedColumnName = "u_user_id")
     private User user;
 
     @Override

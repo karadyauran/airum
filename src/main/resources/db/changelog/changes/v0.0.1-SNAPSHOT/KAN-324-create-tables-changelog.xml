@@ -37,9 +37,6 @@
             <column name="u_created_at" type="timestamp">
                 <constraints nullable="false"/>
             </column>
-            <column name="u_updated_at" type="timestamp">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
     </changeSet>
 

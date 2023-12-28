@@ -36,10 +36,6 @@ public class ProjectMember
     private LocalDate updatedAt;
 
     @ManyToOne
-    @JoinColumn(name = "pm_project_member_id", referencedColumnName = "p_owner_id")
-    private Project project;
-
-    @ManyToOne
     @JoinColumn(name = "pm_user_id", referencedColumnName = "u_user_id")
     private User user;
 

@@ -60,6 +60,9 @@ public class User
     @OneToMany(mappedBy = "user")
     private List<Attachment> attachments;
 
+    @OneToMany(mappedBy = "owner")
+    private List<Project> ownedProjects;
+
     @Override
     public boolean equals(Object o)
     {

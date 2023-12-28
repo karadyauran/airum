@@ -242,11 +242,6 @@
             </not>
         </preConditions>
 
-        <!-- TODO fix creating foreign key -->
-        <!--<addForeignKeyConstraint constraintName="fk_project_members_owner_id"
-                                 baseTableName="project_members" baseColumnNames="pm_project_member_id"
-                                 referencedTableName="projects" referencedColumnNames="p_owner_id"/>-->
-
         <addForeignKeyConstraint constraintName="fk_project_members_user_id"
                                  baseTableName="project_members" baseColumnNames="pm_user_id"
                                  referencedTableName="users" referencedColumnNames="u_user_id"/>

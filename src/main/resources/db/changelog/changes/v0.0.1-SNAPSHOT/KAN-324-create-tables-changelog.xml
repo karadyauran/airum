@@ -56,10 +56,10 @@
             <column name="pm_role_id" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
-            <column name="pm_created_at" type="timestamp">
+            <column name="pm_created_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="pm_updated_at" type="timestamp">
+            <column name="pm_updated_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -84,10 +84,10 @@
             <column name="p_description" type="text">
                 <constraints nullable="false"/>
             </column>
-            <column name="p_created_at" type="timestamp">
+            <column name="p_created_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="p_updated_at" type="timestamp">
+            <column name="p_updated_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -140,7 +140,7 @@
             <column name="t_status" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
-            <column name="t_created_at" type="timestamp">
+            <column name="t_created_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
             <column name="t_due_to" type="timestamp">
@@ -168,7 +168,7 @@
             <column name="tc_comment" type="text">
                 <constraints nullable="false"/>
             </column>
-            <column name="tc_created_at" type="timestamp">
+            <column name="tc_created_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -199,7 +199,7 @@
             <column name="ta_attachment_path" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="ta_created_at" type="timestamp">
+            <column name="ta_created_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -224,10 +224,43 @@
             <column name="n_notification_message" type="text">
                 <constraints nullable="false"/>
             </column>
-            <column name="n_created_at" type="timestamp">
+            <column name="n_created_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
         </createTable>
+    </changeSet>
+
+    <!-- Set default values for created_at/updated_at columns -->
+    <changeSet author="karadyauran" id="add_default_value_to_u_created_at">
+        <sql>ALTER TABLE users MODIFY COLUMN u_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="add_default_value_to_tc_created_at">
+        <sql>ALTER TABLE task_comments MODIFY COLUMN tc_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="add_default_value_to_ta_created_at">
+        <sql>ALTER TABLE task_attachments MODIFY COLUMN ta_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="add_default_value_to_n_created_at">
+        <sql>ALTER TABLE notifications MODIFY COLUMN n_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="add_default_value_to_p_created_at">
+        <sql>ALTER TABLE projects MODIFY COLUMN p_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="add_default_value_to_p_updated_at">
+        <sql>ALTER TABLE projects MODIFY COLUMN p_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="add_default_value_to_pm_created_at">
+        <sql>ALTER TABLE project_members MODIFY COLUMN pm_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="add_default_value_to_pm_updated_at">
+        <sql>ALTER TABLE project_members MODIFY COLUMN pm_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
     </changeSet>
 
     <!-- Add foreign key constraints to existing tables -->

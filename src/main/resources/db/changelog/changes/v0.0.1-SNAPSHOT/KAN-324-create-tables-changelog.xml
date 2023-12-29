@@ -260,6 +260,10 @@
         <sql>ALTER TABLE project_members MODIFY COLUMN pm_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
     </changeSet>
 
+    <changeSet author="karadyauran" id="add_default_value_to_t_created_at">
+        <sql>ALTER TABLE tasks MODIFY COLUMN t_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
+    </changeSet>
+
     <!-- Add foreign key constraints to existing tables -->
 
     <!-- Foreign key constraints are added to project_members table -->

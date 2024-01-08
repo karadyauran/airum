@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -26,6 +25,15 @@ public class Task
     @Column(name = "t_task_id")
     private UUID taskId;
 
+    @Column(name = "t_assigned_to_id", insertable = false, updatable = false)
+    private UUID projectId;
+
+    @Column(name = "t_assigned_to_id", insertable = false, updatable = false)
+    private UUID assignedToId;
+
+    @Column(name = "t_created_by_id", insertable = false, updatable = false)
+    private UUID createdById;
+
     @Column(name = "t_title")
     private String title;
 
@@ -39,31 +47,26 @@ public class Task
     @Column(name = "t_created_at")
     private LocalDate createdAt;
 
-    @Column(name = "t_due_date")
-    private Date dueDate;
-
-    @Column(name = "t_project_id")
-    private UUID projectId;
-
-    @Column(name = "t_assigned_to_id")
-    private UUID assignedToId;
+    @Column(name = "t_due_to")
+    private LocalDate dueDate;
 
     @ManyToOne
-    @JoinColumn(name = "t_project_id", insertable = false, updatable = false)
+    @JoinColumn(name = "t_project_id", referencedColumnName = "p_project_id")
     private Project project;
 
     @ManyToOne
-    @JoinColumn(name = "t_assigned_to_id", insertable = false, updatable = false)
+    @JoinColumn(name = "t_assigned_to_id", referencedColumnName = "u_user_id")
     private User assignedTo;
+
+    @ManyToOne
+    @JoinColumn(name = "t_created_by_id", referencedColumnName = "u_user_id")
+    private User createdBy;
 
     @OneToMany(mappedBy = "task")
     private List<Comment> taskComments;
 
     @OneToMany(mappedBy = "task")
     private List<Attachment> attachments;
-
-    @OneToMany(mappedBy = "task")
-    private List<TimeLog> timeLogs;
 
     @Override
     public boolean equals(Object o)

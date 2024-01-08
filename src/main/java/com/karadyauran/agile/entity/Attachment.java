@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "attachments")
+@Table(name = "task_attachments")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,25 +20,32 @@ public class Attachment
 {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "a_attachment_id")
+    @Column(name = "ta_attachment_id")
     private UUID attachmentId;
 
-    @Column(name = "a_task_id")
+    @Column(name = "ta_task_id", insertable = false, updatable = false)
     private UUID taskId;
 
-    @Column(name = "a_file_name")
-    private String fileName;
+    @Column(name = "ta_user_id", insertable = false, updatable = false)
+    private UUID userId;
 
-    @Column(name = "a_file_format")
+    @Column(name = "ta_attachment_name")
+    private String attachmentName;
+
+    @Column(name = "ta_attachment_type")
     @Enumerated(EnumType.STRING)
-    private FileFormat fileFormat;
+    private FileFormat attachmentType;
 
-    @Column(name = "a_file_path")
-    private String filePath;
+    @Column(name = "ta_attachment_path")
+    private String attachmentPath;
 
     @ManyToOne
-    @JoinColumn(name = "a_task_id", insertable = false, updatable = false)
+    @JoinColumn(name = "ta_task_id", referencedColumnName = "t_task_id")
     private Task task;
+
+    @ManyToOne
+    @JoinColumn(name = "ta_user_id", referencedColumnName = "u_user_id")
+    private User user;
 
     @Override
     public boolean equals(Object o)
@@ -59,6 +66,6 @@ public class Attachment
     public String toString()
     {
         return String.format("Attachment: %s, %s",
-                taskId, fileName);
+                taskId, attachmentName);
     }
 }

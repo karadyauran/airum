@@ -1,5 +1,6 @@
 package com.karadyauran.agile.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,10 +37,12 @@ public class Notification
     private LocalDate createdAt;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "n_sender_id", referencedColumnName = "u_user_id")
     private User sender;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "n_receiver_id", referencedColumnName = "u_user_id")
     private User receiver;
 

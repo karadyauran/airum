@@ -1,5 +1,6 @@
 package com.karadyauran.agile.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,6 +37,7 @@ public class ProjectMember
     private LocalDate updatedAt;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "pm_user_id", referencedColumnName = "u_user_id")
     private User user;
 

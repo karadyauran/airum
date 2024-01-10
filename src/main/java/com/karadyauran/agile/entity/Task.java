@@ -1,5 +1,6 @@
 package com.karadyauran.agile.entity;
 
+import com.fasterxml.jackson.annotation.*;
 import com.karadyauran.agile.entity.enums.TaskStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -51,20 +52,25 @@ public class Task
     private LocalDate dueDate;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "t_project_id", referencedColumnName = "p_project_id")
     private Project project;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "t_assigned_to_id", referencedColumnName = "u_user_id")
     private User assignedTo;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "t_created_by_id", referencedColumnName = "u_user_id")
     private User createdBy;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "task")
     private List<Comment> taskComments;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "task")
     private List<Attachment> attachments;
 

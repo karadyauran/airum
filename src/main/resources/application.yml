@@ -3,15 +3,9 @@ spring:
     banner-mode: off
 
   datasource:
-    # 5432
     url: jdbc:postgresql://localhost/agile
     username: agile
     password: 123123
 
   liquibase:
     change-log: classpath:db/changelog/changelog-master.xml
-
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: none

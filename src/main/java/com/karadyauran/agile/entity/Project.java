@@ -1,5 +1,6 @@
 package com.karadyauran.agile.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,6 +39,7 @@ public class Project
     private LocalDate updatedAt;
 
     @OneToMany(mappedBy = "project")
+    @JsonManagedReference
     private List<Task> tasks;
 
     @ManyToOne

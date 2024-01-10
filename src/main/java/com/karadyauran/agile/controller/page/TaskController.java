@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/task")
@@ -18,5 +20,10 @@ public class TaskController
     @GetMapping("/{id}")
     public Task getTaskById(@PathVariable("id") String taskId) {
         return taskService.getTaskById(taskId);
+    }
+
+    @GetMapping("/all")
+    public List<Task> getAllTasks() {
+        return taskService.getAllTasks();
     }
 }

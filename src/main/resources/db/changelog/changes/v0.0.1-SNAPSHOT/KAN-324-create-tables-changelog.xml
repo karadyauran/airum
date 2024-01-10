@@ -52,13 +52,9 @@
             </column>
             <column name="pm_user_id" type="uuid">
                 <constraints nullable="false"/>
-<!--                <constraints foreignKeyName="fk_project_members_user_id" references="users(u_user_id)"-->
-<!--                             unique="true" nullable="false"/>-->
             </column>
             <column name="pm_role_id" type="uuid">
                 <constraints nullable="false"/>
-<!--                <constraints foreignKeyName="fk_project_members_user_id" references="roles(r_role_id)"-->
-<!--                             unique="true" nullable="false"/>-->
             </column>
             <column name="pm_created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
@@ -191,7 +187,7 @@
             <column name="ta_task_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
-            <column name="ta_user_id" type="varchar(60)">
+            <column name="ta_user_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
             <column name="ta_attachment_name" type="varchar(255)">
@@ -233,5 +229,118 @@
             </column>
         </createTable>
     </changeSet>
+
+    <!-- Foreign key constraints are added to project_members table -->
+    <changeSet author="karadyauran" id="add foreign keys to project_members">
+        <preConditions onFail="CONTINUE" onFailMessage="Foreign keys exists">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_project_members_project_id"/>
+                <foreignKeyConstraintExists foreignKeyName="fk_project_members_user_id"/>
+                <foreignKeyConstraintExists foreignKeyName="fk_project_members_role_id"/>
+            </not>
+        </preConditions>
+
+        <addForeignKeyConstraint constraintName="fk_project_members_user_id"
+                                 baseTableName="project_members" baseColumnNames="pm_user_id"
+                                 referencedTableName="users" referencedColumnNames="u_user_id"/>
+
+        <addForeignKeyConstraint constraintName="fk_project_members_role_id"
+                                 baseTableName="project_members" baseColumnNames="pm_role_id"
+                                 referencedTableName="roles" referencedColumnNames="r_role_id"/>
+    </changeSet>
+
+    <!-- Foreign key constraints are added to tasks table -->
+    <changeSet author="karadyauran" id="add foreign keys to tasks">
+        <preConditions onFail="CONTINUE" onFailMessage="Foreign keys exists">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_tasks_project_id"/>
+                <foreignKeyConstraintExists foreignKeyName="fk_tasks_assigned_to_id"/>
+                <foreignKeyConstraintExists foreignKeyName="fk_tasks_created_by_id"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="fk_tasks_project_id"
+                                 baseTableName="tasks" baseColumnNames="t_project_id"
+                                 referencedTableName="projects" referencedColumnNames="p_project_id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+
+        <addForeignKeyConstraint constraintName="fk_tasks_assigned_to_id"
+                                 baseTableName="tasks" baseColumnNames="t_assigned_to_id"
+                                 referencedTableName="users" referencedColumnNames="u_user_id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+
+        <addForeignKeyConstraint constraintName="fk_tasks_created_by_id"
+                                 baseTableName="tasks" baseColumnNames="t_created_by_id"
+                                 referencedTableName="users" referencedColumnNames="u_user_id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+    </changeSet>
+
+    <!-- Foreign key constraints are added to task_comments table -->
+    <changeSet author="karadyauran" id="add foreign keys to task_comments">
+        <preConditions onFail="CONTINUE" onFailMessage="Foreign keys exists">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_task_comments_task_id"/>
+                <foreignKeyConstraintExists foreignKeyName="fk_task_comments_user_id"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="fk_task_comments_task_id"
+                                 baseTableName="task_comments" baseColumnNames="tc_task_id"
+                                 referencedTableName="tasks" referencedColumnNames="t_task_id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+
+        <addForeignKeyConstraint constraintName="fk_task_comments_user_id"
+                                 baseTableName="task_comments" baseColumnNames="tc_user_id"
+                                 referencedTableName="users" referencedColumnNames="u_user_id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+    </changeSet>
+
+    <!-- Foreign key constraints are added to notifications table -->
+    <changeSet author="karadyauran" id="add foreign keys to notifications">
+        <preConditions onFail="CONTINUE" onFailMessage="Foreign keys exists">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_notifications_sender_id"/>
+                <foreignKeyConstraintExists foreignKeyName="fk_notifications_receiver_id"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="fk_notifications_sender_id"
+                                 baseTableName="notifications" baseColumnNames="n_sender_id"
+                                 referencedTableName="users" referencedColumnNames="u_user_id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+
+        <addForeignKeyConstraint constraintName="fk_notifications_receiver_id"
+                                 baseTableName="notifications" baseColumnNames="n_receiver_id"
+                                 referencedTableName="users" referencedColumnNames="u_user_id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+    </changeSet>
+
+    <!-- Foreign key constraints are added to task_attachments table -->
+    <changeSet author="karadyauran" id="add foreign keys to task_attachments">
+        <preConditions onFail="CONTINUE" onFailMessage="Foreign keys exists">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_task_attachments_task_id"/>
+                <foreignKeyConstraintExists foreignKeyName="fk_task_attachments_user_id"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="fk_task_attachments_task_id"
+                                 baseTableName="task_attachments" baseColumnNames="ta_task_id"
+                                 referencedTableName="tasks" referencedColumnNames="t_task_id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+
+        <addForeignKeyConstraint constraintName="fk_task_attachments_user_id"
+                                 baseTableName="task_attachments" baseColumnNames="ta_user_id"
+                                 referencedTableName="users" referencedColumnNames="u_user_id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="add foreign keys to projects">
+        <preConditions onFail="CONTINUE" onFailMessage="Foreign keys exists">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_owner_id_user_id"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="fk_owner_id_user_id"
+                                 baseTableName="projects" baseColumnNames="p_owner_id"
+                                 referencedTableName="users" referencedColumnNames="u_user_id"/>
+    </changeSet>
+
 
 </databaseChangeLog>

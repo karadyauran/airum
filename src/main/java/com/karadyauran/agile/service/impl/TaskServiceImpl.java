@@ -6,6 +6,7 @@ import com.karadyauran.agile.service.interf.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -17,6 +18,12 @@ public class TaskServiceImpl implements TaskService
     @Override
     public Task getTaskById(String taskId)
     {
-        return taskRepository.getTaskByTaskId(UUID.fromString(taskId));
+        return taskRepository.findByTaskId(UUID.fromString(taskId));
+    }
+
+    @Override
+    public List<Task> getAllTasks()
+    {
+        return taskRepository.getAllTasks();
     }
 }

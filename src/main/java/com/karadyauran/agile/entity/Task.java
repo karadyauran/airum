@@ -1,14 +1,11 @@
 package com.karadyauran.agile.entity;
 
-import com.karadyauran.agile.converter.UUIDAttributeConverter;
 import com.karadyauran.agile.entity.enums.TaskStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GeneratedColumn;
-import org.hibernate.annotations.Type;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -28,7 +25,7 @@ public class Task
     @Column(name = "t_task_id")
     private UUID taskId;
 
-    @Column(name = "t_assigned_to_id", insertable = false, updatable = false)
+    @Column(name = "t_project_id", insertable = false, updatable = false)
     private UUID projectId;
 
     @Column(name = "t_assigned_to_id", insertable = false, updatable = false)

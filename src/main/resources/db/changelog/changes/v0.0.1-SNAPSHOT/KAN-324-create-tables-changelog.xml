@@ -13,7 +13,7 @@
             </not>
         </preConditions>
         <createTable tableName="users">
-            <column name="u_user_id" type="uuid">
+            <column name="u_user_id" type="varchar(60)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="u_username" type="varchar(100)">
@@ -44,13 +44,13 @@
             </not>
         </preConditions>
         <createTable tableName="project_members">
-            <column name="pm_project_member_id" type="uuid">
+            <column name="pm_project_member_id" type="varchar(60)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="pm_user_id" type="uuid">
+            <column name="pm_user_id" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
-            <column name="pm_role_id" type="uuid">
+            <column name="pm_role_id" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
             <column name="pm_created_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
@@ -69,10 +69,10 @@
             </not>
         </preConditions>
         <createTable tableName="projects">
-            <column name="p_project_id" type="uuid">
+            <column name="p_project_id" type="varchar(60)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="p_owner_id" type="uuid">
+            <column name="p_owner_id" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
             <column name="p_project_name" type="varchar(255)">
@@ -97,7 +97,7 @@
             </not>
         </preConditions>
         <createTable tableName="roles">
-            <column name="r_role_id" type="uuid">
+            <column name="r_role_id" type="varchar(60)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="r_role_name" type="varchar(60)">
@@ -116,16 +116,16 @@
             </not>
         </preConditions>
         <createTable tableName="tasks">
-            <column name="t_task_id" type="uuid">
+            <column name="t_task_id" type="varchar(60)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="t_project_id" type="uuid">
+            <column name="t_project_id" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
-            <column name="t_assigned_to_id" type="uuid">
+            <column name="t_assigned_to_id" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
-            <column name="t_created_by_id" type="uuid">
+            <column name="t_created_by_id" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
             <column name="t_title" type="varchar(255)">
@@ -153,13 +153,13 @@
             </not>
         </preConditions>
         <createTable tableName="task_comments">
-            <column name="tc_comment_id" type="uuid">
+            <column name="tc_comment_id" type="varchar(60)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="tc_task_id" type="uuid">
+            <column name="tc_task_id" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
-            <column name="tc_user_id" type="uuid">
+            <column name="tc_user_id" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
             <column name="tc_comment" type="text">
@@ -178,13 +178,13 @@
             </not>
         </preConditions>
         <createTable tableName="task_attachments">
-            <column name="ta_attachment_id" type="uuid">
+            <column name="ta_attachment_id" type="varchar(60)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="ta_task_id" type="uuid">
+            <column name="ta_task_id" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
-            <column name="ta_user_id" type="uuid">
+            <column name="ta_user_id" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
             <column name="ta_attachment_name" type="varchar(255)">
@@ -209,13 +209,13 @@
             </not>
         </preConditions>
         <createTable tableName="notifications">
-            <column name="n_notification_id" type="uuid">
+            <column name="n_notification_id" type="varchar(60)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="n_sender_id" type="uuid">
+            <column name="n_sender_id" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
-            <column name="n_receiver_id" type="uuid">
+            <column name="n_receiver_id" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
             <column name="n_notification_message" type="text">
@@ -368,14 +368,14 @@
     </changeSet>
 
     <changeSet author="karadyauran" id="add foreign keys to projects">
-    <preConditions onFail="CONTINUE" onFailMessage="Foreign keys exists">
-        <not>
-            <foreignKeyConstraintExists foreignKeyName="fk_owner_id_user_id"/>
-        </not>
-    </preConditions>
-    <addForeignKeyConstraint constraintName="fk_owner_id_user_id"
-                             baseTableName="projects" baseColumnNames="p_owner_id"
-                             referencedTableName="users" referencedColumnNames="u_user_id"/>
+        <preConditions onFail="CONTINUE" onFailMessage="Foreign keys exists">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_owner_id_user_id"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="fk_owner_id_user_id"
+                                 baseTableName="projects" baseColumnNames="p_owner_id"
+                                 referencedTableName="users" referencedColumnNames="u_user_id"/>
     </changeSet>
 
 </databaseChangeLog>

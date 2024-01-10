@@ -12,11 +12,11 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService
 {
-
     private final TaskRepository taskRepository;
+
     @Override
-    public Task getTaskById(UUID taskId)
+    public Task getTaskById(String taskId)
     {
-        return taskRepository.findByTaskId(taskId);
+        return taskRepository.getTaskByTaskId(UUID.fromString(taskId));
     }
 }

@@ -1,5 +1,6 @@
 package com.karadyauran.agile.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,8 +29,8 @@ public class Role
     @Column(name = "r_role_description")
     private String description;
 
-    @OneToOne
-    @JoinColumn(name = "r_role_id") // Adjust the column name as needed
+    @JsonIgnore
+    @OneToOne(mappedBy = "role")
     private ProjectMember projectMember;
 
     @Override

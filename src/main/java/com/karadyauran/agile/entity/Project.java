@@ -1,5 +1,6 @@
 package com.karadyauran.agile.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,15 +19,15 @@ import java.util.*;
 public class Project
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "p_project_id")
     private UUID projectId;
 
+    @Column(name = "p_owner_id", insertable = false, updatable = false)
+    private UUID ownerId;
+
     @Column(name = "p_project_name")
     private String projectName;
-
-    @Column(name = "p_owner_id")
-    private UUID ownerId;
 
     @Column(name = "p_description")
     private String description;
@@ -34,14 +35,16 @@ public class Project
     @Column(name = "p_created_at")
     private LocalDate createdAt;
 
-    @Column(name = "p_deadline")
-    private Date deadline;
+    @Column(name = "p_updated_at")
+    private LocalDate updatedAt;
 
     @OneToMany(mappedBy = "project")
-    private Set<ProjectMember> projectMembers;
-
-    @OneToMany(mappedBy = "project")
+    @JsonManagedReference
     private List<Task> tasks;
+
+    @ManyToOne
+    @JoinColumn(name = "p_owner_id", referencedColumnName = "u_user_id")
+    private User owner;
 
     @Override
     public boolean equals(Object o)

@@ -1,5 +1,6 @@
 package com.karadyauran.agile.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,24 +24,27 @@ public class Notification
     @Column(name = "n_notification_id")
     private UUID notificationId;
 
-    @Column(name = "n_sender_id")
+    @Column(name = "n_sender_id", insertable = false, updatable = false)
     private UUID senderId;
 
-    @Column(name = "n_receiver_id")
+    @Column(name = "n_receiver_id", insertable = false, updatable = false)
     private UUID receiverId;
 
-    @Column(name = "n_message")
+    @Column(name = "n_notification_message")
     private String message;
 
     @Column(name = "n_created_at")
     private LocalDate createdAt;
 
-    @Column(name = "n_is_read")
-    private boolean isRead;
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "n_sender_id", referencedColumnName = "u_user_id")
+    private User sender;
 
     @ManyToOne
-    @JoinColumn(name = "n_sender_id", insertable = false, updatable = false)
-    private User sender;
+    @JsonBackReference
+    @JoinColumn(name = "n_receiver_id", referencedColumnName = "u_user_id")
+    private User receiver;
 
     @Override
     public boolean equals(Object o)

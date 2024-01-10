@@ -1,5 +1,6 @@
 package com.karadyauran.agile.entity;
 
+import com.karadyauran.agile.converter.UUIDAttributeConverter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +19,7 @@ import java.util.*;
 public class Project
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "p_project_id")
     private UUID projectId;
 

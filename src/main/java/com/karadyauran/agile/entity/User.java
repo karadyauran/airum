@@ -1,5 +1,6 @@
 package com.karadyauran.agile.entity;
 
+import com.karadyauran.agile.converter.UUIDAttributeConverter;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,7 +18,7 @@ import java.util.UUID;
 public class User
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "u_user_id")
     private UUID userId;
 

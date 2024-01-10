@@ -1,11 +1,14 @@
 package com.karadyauran.agile.entity;
 
+import com.karadyauran.agile.converter.UUIDAttributeConverter;
 import com.karadyauran.agile.entity.enums.TaskStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GeneratedColumn;
+import org.hibernate.annotations.Type;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,7 +24,7 @@ import java.util.UUID;
 public class Task
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "t_task_id")
     private UUID taskId;
 

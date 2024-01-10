@@ -15,8 +15,8 @@ public class TaskServiceImpl implements TaskService
 
     private final TaskRepository taskRepository;
     @Override
-    public Task getTaskById(String id)
+    public Task getTaskById(UUID taskId)
     {
-        return taskRepository.getTaskByTaskId(UUID.fromString(id));
+        return taskRepository.findByTaskId(taskId);
     }
 }

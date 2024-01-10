@@ -1,5 +1,6 @@
 package com.karadyauran.agile.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,7 +18,7 @@ import java.util.UUID;
 public class User
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "u_user_id")
     private UUID userId;
 
@@ -39,27 +40,35 @@ public class User
     @Column(name = "u_created_at")
     private LocalDate createdAt;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "user")
     List<ProjectMember> projectMembers;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "assignedTo")
     private List<Task> assignedTasks;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "createdBy")
     private List<Task> createdTasks;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "commentUser")
     private List<Comment> taskComments;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "sender")
     private List<Notification> sendNotifications;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "receiver")
     private List<Notification> receiveNotifications;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "user")
     private List<Attachment> attachments;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "owner")
     private List<Project> ownedProjects;
 

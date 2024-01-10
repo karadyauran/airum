@@ -1,5 +1,6 @@
 package com.karadyauran.agile.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +19,7 @@ import java.util.*;
 public class Project
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "p_project_id")
     private UUID projectId;
 
@@ -38,6 +39,7 @@ public class Project
     private LocalDate updatedAt;
 
     @OneToMany(mappedBy = "project")
+    @JsonManagedReference
     private List<Task> tasks;
 
     @ManyToOne

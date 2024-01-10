@@ -5,6 +5,9 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
+<!--    <constraints foreignKeyName="order_id" references="credit_orders(id)"
+                             unique="true" nullable="false"/>-->
+
     <!-- create tables -->
     <changeSet author="karadyauran" id="create users table">
         <preConditions onFail="CONTINUE" onFailMessage="Table users already exists">
@@ -13,7 +16,7 @@
             </not>
         </preConditions>
         <createTable tableName="users">
-            <column name="u_user_id" type="varchar(60)">
+            <column name="u_user_id" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="u_username" type="varchar(100)">
@@ -31,7 +34,7 @@
             <column name="u_password_hash" type="varchar(200)">
                 <constraints nullable="false"/>
             </column>
-            <column name="u_created_at" type="timestamp">
+            <column name="u_created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -44,19 +47,19 @@
             </not>
         </preConditions>
         <createTable tableName="project_members">
-            <column name="pm_project_member_id" type="varchar(60)">
+            <column name="pm_project_member_id" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="pm_user_id" type="varchar(60)">
+            <column name="pm_user_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
-            <column name="pm_role_id" type="varchar(60)">
+            <column name="pm_role_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
-            <column name="pm_created_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
+            <column name="pm_created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="pm_updated_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
+            <column name="pm_updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -69,10 +72,10 @@
             </not>
         </preConditions>
         <createTable tableName="projects">
-            <column name="p_project_id" type="varchar(60)">
+            <column name="p_project_id" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="p_owner_id" type="varchar(60)">
+            <column name="p_owner_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
             <column name="p_project_name" type="varchar(255)">
@@ -81,10 +84,10 @@
             <column name="p_description" type="text">
                 <constraints nullable="false"/>
             </column>
-            <column name="p_created_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
+            <column name="p_created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="p_updated_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
+            <column name="p_updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -97,7 +100,7 @@
             </not>
         </preConditions>
         <createTable tableName="roles">
-            <column name="r_role_id" type="varchar(60)">
+            <column name="r_role_id" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="r_role_name" type="varchar(60)">
@@ -116,16 +119,16 @@
             </not>
         </preConditions>
         <createTable tableName="tasks">
-            <column name="t_task_id" type="varchar(60)">
+            <column name="t_task_id" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="t_project_id" type="varchar(60)">
+            <column name="t_project_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
-            <column name="t_assigned_to_id" type="varchar(60)">
+            <column name="t_assigned_to_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
-            <column name="t_created_by_id" type="varchar(60)">
+            <column name="t_created_by_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
             <column name="t_title" type="varchar(255)">
@@ -137,7 +140,7 @@
             <column name="t_status" type="varchar(60)">
                 <constraints nullable="false"/>
             </column>
-            <column name="t_created_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
+            <column name="t_created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
             <column name="t_due_to" type="timestamp">
@@ -153,19 +156,19 @@
             </not>
         </preConditions>
         <createTable tableName="task_comments">
-            <column name="tc_comment_id" type="varchar(60)">
+            <column name="tc_comment_id" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="tc_task_id" type="varchar(60)">
+            <column name="tc_task_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
-            <column name="tc_user_id" type="varchar(60)">
+            <column name="tc_user_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
             <column name="tc_comment" type="text">
                 <constraints nullable="false"/>
             </column>
-            <column name="tc_created_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
+            <column name="tc_created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -178,13 +181,13 @@
             </not>
         </preConditions>
         <createTable tableName="task_attachments">
-            <column name="ta_attachment_id" type="varchar(60)">
+            <column name="ta_attachment_id" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="ta_task_id" type="varchar(60)">
+            <column name="ta_task_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
-            <column name="ta_user_id" type="varchar(60)">
+            <column name="ta_user_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
             <column name="ta_attachment_name" type="varchar(255)">
@@ -196,7 +199,7 @@
             <column name="ta_attachment_path" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="ta_created_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
+            <column name="ta_created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -209,62 +212,23 @@
             </not>
         </preConditions>
         <createTable tableName="notifications">
-            <column name="n_notification_id" type="varchar(60)">
+            <column name="n_notification_id" type="uuid">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="n_sender_id" type="varchar(60)">
+            <column name="n_sender_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
-            <column name="n_receiver_id" type="varchar(60)">
+            <column name="n_receiver_id" type="uuid">
                 <constraints nullable="false"/>
             </column>
             <column name="n_notification_message" type="text">
                 <constraints nullable="false"/>
             </column>
-            <column name="n_created_at" type="timestamp" valueComputed="CURRENT_TIMESTAMP">
+            <column name="n_created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-
-    <!-- Set default values for created_at/updated_at columns -->
-    <changeSet author="karadyauran" id="add_default_value_to_u_created_at">
-        <sql>ALTER TABLE users MODIFY COLUMN u_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
-    </changeSet>
-
-    <changeSet author="karadyauran" id="add_default_value_to_tc_created_at">
-        <sql>ALTER TABLE task_comments MODIFY COLUMN tc_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
-    </changeSet>
-
-    <changeSet author="karadyauran" id="add_default_value_to_ta_created_at">
-        <sql>ALTER TABLE task_attachments MODIFY COLUMN ta_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
-    </changeSet>
-
-    <changeSet author="karadyauran" id="add_default_value_to_n_created_at">
-        <sql>ALTER TABLE notifications MODIFY COLUMN n_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
-    </changeSet>
-
-    <changeSet author="karadyauran" id="add_default_value_to_p_created_at">
-        <sql>ALTER TABLE projects MODIFY COLUMN p_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
-    </changeSet>
-
-    <changeSet author="karadyauran" id="add_default_value_to_p_updated_at">
-        <sql>ALTER TABLE projects MODIFY COLUMN p_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
-    </changeSet>
-
-    <changeSet author="karadyauran" id="add_default_value_to_pm_created_at">
-        <sql>ALTER TABLE project_members MODIFY COLUMN pm_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
-    </changeSet>
-
-    <changeSet author="karadyauran" id="add_default_value_to_pm_updated_at">
-        <sql>ALTER TABLE project_members MODIFY COLUMN pm_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
-    </changeSet>
-
-    <changeSet author="karadyauran" id="add_default_value_to_t_created_at">
-        <sql>ALTER TABLE tasks MODIFY COLUMN t_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;</sql>
-    </changeSet>
-
-    <!-- Add foreign key constraints to existing tables -->
 
     <!-- Foreign key constraints are added to project_members table -->
     <changeSet author="karadyauran" id="add foreign keys to project_members">
@@ -368,14 +332,15 @@
     </changeSet>
 
     <changeSet author="karadyauran" id="add foreign keys to projects">
-    <preConditions onFail="CONTINUE" onFailMessage="Foreign keys exists">
-        <not>
-            <foreignKeyConstraintExists foreignKeyName="fk_owner_id_user_id"/>
-        </not>
-    </preConditions>
-    <addForeignKeyConstraint constraintName="fk_owner_id_user_id"
-                             baseTableName="projects" baseColumnNames="p_owner_id"
-                             referencedTableName="users" referencedColumnNames="u_user_id"/>
+        <preConditions onFail="CONTINUE" onFailMessage="Foreign keys exists">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_owner_id_user_id"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint constraintName="fk_owner_id_user_id"
+                                 baseTableName="projects" baseColumnNames="p_owner_id"
+                                 referencedTableName="users" referencedColumnNames="u_user_id"/>
     </changeSet>
+
 
 </databaseChangeLog>

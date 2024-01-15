@@ -46,7 +46,6 @@ public class Attachment
     private Task task;
 
     @ManyToOne
-    @JsonBackReference("attachmentUserReference")
     @JoinColumn(name = "ta_user_id", referencedColumnName = "u_user_id")
     private User user;
 

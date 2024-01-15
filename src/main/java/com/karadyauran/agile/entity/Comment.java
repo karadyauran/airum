@@ -42,7 +42,6 @@ public class Comment
     private Task task;
 
     @ManyToOne
-    @JsonBackReference("commentCommentUserReference")
     @JoinColumn(name = "tc_user_id", referencedColumnName = "u_user_id")
     private User commentUser;
 

@@ -33,4 +33,10 @@ public class TaskServiceImpl implements TaskService
     {
         return taskRepository.getAllTasks();
     }
+
+    @Override
+    public Task createTask(Task task)
+    {
+        return taskRepository.save(task);
+    }
 }

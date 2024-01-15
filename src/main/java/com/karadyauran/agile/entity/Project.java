@@ -1,5 +1,6 @@
 package com.karadyauran.agile.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -44,7 +45,6 @@ public class Project
 
     @ManyToOne
     @JoinColumn(name = "p_owner_id", referencedColumnName = "u_user_id")
-    @JsonManagedReference("projectOwnerReference")
     private User owner;
 
     @Override

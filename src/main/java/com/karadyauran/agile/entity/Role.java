@@ -29,7 +29,6 @@ public class Role
     @Column(name = "r_role_description")
     private String description;
 
-    @JsonIgnore
     @OneToOne(mappedBy = "role")
     private ProjectMember projectMember;
 

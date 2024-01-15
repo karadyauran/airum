@@ -52,25 +52,26 @@ public class Task
     private LocalDate dueDate;
 
     @ManyToOne
-    @JsonManagedReference("taskProjectReference")
-    @JoinColumn(name = "t_project_id", referencedColumnName = "p_project_id")
+    @JsonBackReference("projectTasksReference")
+    @JoinColumn(name = "t_project_id", referencedColumnName = "p_project_id", insertable = false, updatable = false)
     private Project project;
 
     @ManyToOne
-    @JsonManagedReference("taskAssignedToReference")
-    @JoinColumn(name = "t_assigned_to_id", referencedColumnName = "u_user_id")
+    @JsonBackReference("taskAssignedToReference")
+    @JoinColumn(name = "t_assigned_to_id", referencedColumnName = "u_user_id", insertable = false, updatable = false)
     private User assignedTo;
 
     @ManyToOne
     @JsonBackReference("taskCreatedTasksReference")
-    @JoinColumn(name = "t_created_by_id", referencedColumnName = "u_user_id")
+    @JoinColumn(name = "t_created_by_id", referencedColumnName = "u_user_id", insertable = false, updatable = false)
     private User createdBy;
 
     @OneToMany(mappedBy = "task")
+    @JsonManagedReference("commentTaskReference")
     private List<Comment> taskComments;
 
-    @JsonBackReference("taskTaskReference")
     @OneToMany(mappedBy = "task")
+    @JsonManagedReference("attachmentTaskReference")
     private List<Attachment> attachments;
 
     @Override

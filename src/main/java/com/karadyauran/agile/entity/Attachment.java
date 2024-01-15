@@ -2,7 +2,18 @@ package com.karadyauran.agile.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.karadyauran.agile.entity.enums.FileFormat;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Column;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

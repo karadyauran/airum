@@ -1,13 +1,25 @@
 package com.karadyauran.agile.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
-import lombok.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Column;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.FetchType;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.UUID;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Table(name = "users")
@@ -90,7 +102,6 @@ public class User
     @Override
     public String toString()
     {
-        return String.format("User: %s, %s, %s",
-                userId, username, createdAt);
+        return String.format("User: %s, %s, %s", userId, username, createdAt);
     }
 }

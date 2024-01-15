@@ -126,7 +126,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="t_assigned_to_id" type="uuid">
-                <constraints nullable="false"/>
+                <constraints nullable="true"/>
             </column>
             <column name="t_created_by_id" type="uuid">
                 <constraints nullable="false"/>

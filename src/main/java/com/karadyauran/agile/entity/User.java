@@ -40,35 +40,35 @@ public class User
     @Column(name = "u_created_at")
     private LocalDate createdAt;
 
-    @JsonBackReference
+    @JsonBackReference("userProjectMembersReference")
     @OneToMany(mappedBy = "user")
     List<ProjectMember> projectMembers;
 
-    @JsonBackReference
+    @JsonBackReference("userAssignedTasksReference")
     @OneToMany(mappedBy = "assignedTo")
     private List<Task> assignedTasks;
 
-    @JsonBackReference
+    @JsonBackReference("userCreatedTasksReference")
     @OneToMany(mappedBy = "createdBy")
     private List<Task> createdTasks;
 
-    @JsonBackReference
+    @JsonBackReference("userTaskCommentsReference")
     @OneToMany(mappedBy = "commentUser")
     private List<Comment> taskComments;
 
-    @JsonBackReference
+    @JsonBackReference("userSendNotificationsReference")
     @OneToMany(mappedBy = "sender")
     private List<Notification> sendNotifications;
 
-    @JsonBackReference
+    @JsonBackReference("userReceiveNotificationsReference")
     @OneToMany(mappedBy = "receiver")
     private List<Notification> receiveNotifications;
 
-    @JsonBackReference
+    @JsonBackReference("userAttachmentsReference")
     @OneToMany(mappedBy = "user")
     private List<Attachment> attachments;
 
-    @JsonBackReference
+    @JsonBackReference("userOwnedProjectsReference")
     @OneToMany(mappedBy = "owner")
     private List<Project> ownedProjects;
 

@@ -37,7 +37,7 @@ public class ProjectMember
     private LocalDate updatedAt;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("projectMemberUserReference")
     @JoinColumn(name = "pm_user_id", referencedColumnName = "u_user_id")
     private User user;
 

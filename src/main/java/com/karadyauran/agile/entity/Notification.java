@@ -37,12 +37,12 @@ public class Notification
     private LocalDate createdAt;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("notificationSenderReference")
     @JoinColumn(name = "n_sender_id", referencedColumnName = "u_user_id")
     private User sender;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("notificationReceiverReference")
     @JoinColumn(name = "n_receiver_id", referencedColumnName = "u_user_id")
     private User receiver;
 

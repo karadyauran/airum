@@ -31,4 +31,10 @@ public class TaskController
     {
         return taskService.getAllTasks();
     }
+
+    @PostMapping("/create")
+    public Task create(@RequestBody Task task)
+    {
+        return taskService.createTask(task);
+    }
 }

@@ -39,11 +39,12 @@ public class Project
     private LocalDate updatedAt;
 
     @OneToMany(mappedBy = "project")
-    @JsonManagedReference
+    @JsonManagedReference("projectTasksReference")
     private List<Task> tasks;
 
     @ManyToOne
     @JoinColumn(name = "p_owner_id", referencedColumnName = "u_user_id")
+    @JsonManagedReference("projectOwnerReference")
     private User owner;
 
     @Override

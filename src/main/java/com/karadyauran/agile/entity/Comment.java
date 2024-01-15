@@ -37,12 +37,12 @@ public class Comment
     private LocalDate createdAt;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("commentTaskReference")
     @JoinColumn(name = "tc_task_id", referencedColumnName = "t_task_id")
     private Task task;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("commentCommentUserReference")
     @JoinColumn(name = "tc_user_id", referencedColumnName = "u_user_id")
     private User commentUser;
 

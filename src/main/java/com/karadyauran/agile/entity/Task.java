@@ -52,24 +52,24 @@ public class Task
     private LocalDate dueDate;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonManagedReference("taskProjectReference")
     @JoinColumn(name = "t_project_id", referencedColumnName = "p_project_id")
     private Project project;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonManagedReference("taskAssignedToReference")
     @JoinColumn(name = "t_assigned_to_id", referencedColumnName = "u_user_id")
     private User assignedTo;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("taskCreatedTasksReference")
     @JoinColumn(name = "t_created_by_id", referencedColumnName = "u_user_id")
     private User createdBy;
 
     @OneToMany(mappedBy = "task")
     private List<Comment> taskComments;
 
-    @JsonBackReference
+    @JsonBackReference("taskTaskReference")
     @OneToMany(mappedBy = "task")
     private List<Attachment> attachments;
 

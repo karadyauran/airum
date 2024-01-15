@@ -1,6 +1,7 @@
 package com.karadyauran.agile.service.impl;
 
 import com.karadyauran.agile.entity.Task;
+import com.karadyauran.agile.entity.enums.TaskStatus;
 import com.karadyauran.agile.repository.TaskRepository;
 import com.karadyauran.agile.service.interf.TaskService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,11 @@ public class TaskServiceImpl implements TaskService
     public Task getTaskById(String taskId)
     {
         return taskRepository.findByTaskId(UUID.fromString(taskId));
+    }
+
+    @Override
+    public List<Task> getTasksByStatus(String status) {
+        return taskRepository.findTaskByStatus(TaskStatus.valueOf(status));
     }
 
     @Override

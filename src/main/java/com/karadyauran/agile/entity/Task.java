@@ -66,7 +66,6 @@ public class Task
     @JoinColumn(name = "t_created_by_id", referencedColumnName = "u_user_id")
     private User createdBy;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "task")
     private List<Comment> taskComments;
 

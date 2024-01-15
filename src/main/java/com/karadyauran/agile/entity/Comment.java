@@ -1,7 +1,16 @@
 package com.karadyauran.agile.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,12 +46,12 @@ public class Comment
     private LocalDate createdAt;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("commentTaskReference")
     @JoinColumn(name = "tc_task_id", referencedColumnName = "t_task_id")
     private Task task;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference("commentUserReference")
     @JoinColumn(name = "tc_user_id", referencedColumnName = "u_user_id")
     private User commentUser;
 

@@ -6,6 +6,7 @@ import com.karadyauran.agile.repository.TaskRepository;
 import com.karadyauran.agile.service.interf.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,7 +24,8 @@ public class TaskServiceImpl implements TaskService
     }
 
     @Override
-    public List<Task> getTasksByStatus(String status) {
+    public List<Task> getTasksByStatus(String status)
+    {
         return taskRepository.findTaskByStatus(TaskStatus.valueOf(status));
     }
 
@@ -31,5 +33,12 @@ public class TaskServiceImpl implements TaskService
     public List<Task> getAllTasks()
     {
         return taskRepository.getAllTasks();
+    }
+
+    @Override
+    @Transactional
+    public Task createTask(Task task)
+    {
+        return taskRepository.save(task);
     }
 }

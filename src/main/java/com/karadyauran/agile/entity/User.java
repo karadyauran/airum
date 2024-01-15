@@ -1,13 +1,25 @@
 package com.karadyauran.agile.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Column;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.FetchType;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.UUID;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Table(name = "users")
@@ -40,36 +52,36 @@ public class User
     @Column(name = "u_created_at")
     private LocalDate createdAt;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference("projectMemberUserReference")
     List<ProjectMember> projectMembers;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "assignedTo")
+    @OneToMany(mappedBy = "assignedTo", fetch = FetchType.LAZY)
+    @JsonManagedReference("taskAssignedToReference")
     private List<Task> assignedTasks;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "createdBy")
+    @OneToMany(mappedBy = "createdBy", fetch = FetchType.LAZY)
+    @JsonManagedReference("taskCreatedTasksReference")
     private List<Task> createdTasks;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "commentUser")
+    @JsonManagedReference("commentUserReference")
     private List<Comment> taskComments;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "sender")
+    @JsonManagedReference("notificationSenderReference")
     private List<Notification> sendNotifications;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "receiver")
+    @JsonManagedReference("notificationReceiverReference")
     private List<Notification> receiveNotifications;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference("attachmentUserReference")
     private List<Attachment> attachments;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "owner")
+    @JsonManagedReference("projectOwnerReference")
     private List<Project> ownedProjects;
 
     @Override
@@ -90,7 +102,6 @@ public class User
     @Override
     public String toString()
     {
-        return String.format("User: %s, %s, %s",
-                userId, username, createdAt);
+        return String.format("User: %s, %s, %s", userId, username, createdAt);
     }
 }

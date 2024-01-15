@@ -1,17 +1,32 @@
 package com.karadyauran.agile.entity;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import com.karadyauran.agile.entity.enums.TaskStatus;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Column;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.CascadeType;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.UUID;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Table(name = "tasks")
@@ -26,13 +41,13 @@ public class Task
     @Column(name = "t_task_id")
     private UUID taskId;
 
-    @Column(name = "t_project_id", insertable = false, updatable = false)
+    @Column(name = "t_project_id")
     private UUID projectId;
 
-    @Column(name = "t_assigned_to_id", insertable = false, updatable = false)
+    @Column(name = "t_assigned_to_id")
     private UUID assignedToId;
 
-    @Column(name = "t_created_by_id", insertable = false, updatable = false)
+    @Column(name = "t_created_by_id")
     private UUID createdById;
 
     @Column(name = "t_title")
@@ -51,26 +66,27 @@ public class Task
     @Column(name = "t_due_to")
     private LocalDate dueDate;
 
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "t_project_id", referencedColumnName = "p_project_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference("projectTasksReference")
+    @JoinColumn(name = "t_project_id", referencedColumnName = "p_project_id", insertable = false, updatable = false)
     private Project project;
 
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "t_assigned_to_id", referencedColumnName = "u_user_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference("taskAssignedToReference")
+    @JoinColumn(name = "t_assigned_to_id", referencedColumnName = "u_user_id", insertable = false, updatable = false)
     private User assignedTo;
 
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "t_created_by_id", referencedColumnName = "u_user_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonBackReference("taskCreatedTasksReference")
+    @JoinColumn(name = "t_created_by_id", referencedColumnName = "u_user_id", insertable = false, updatable = false)
     private User createdBy;
 
-    @OneToMany(mappedBy = "task")
+    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
+    @JsonManagedReference("commentTaskReference")
     private List<Comment> taskComments;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "task")
+    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
+    @JsonManagedReference("attachmentTaskReference")
     private List<Attachment> attachments;
 
     @Override

@@ -3,7 +3,13 @@ package com.karadyauran.agile.controller.page;
 import com.karadyauran.agile.entity.Task;
 import com.karadyauran.agile.service.interf.TaskService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 import java.util.List;
 
@@ -15,17 +21,26 @@ public class TaskController
     private final TaskService taskService;
 
     @GetMapping("/id={id}")
-    public Task getTaskById(@PathVariable String id) {
+    public Task getTaskById(@PathVariable String id)
+    {
         return taskService.getTaskById(id);
     }
 
     @GetMapping("/status={status}")
-    public List<Task> getTasksByStatus(@PathVariable String status) {
+    public List<Task> getTasksByStatus(@PathVariable String status)
+    {
         return taskService.getTasksByStatus(status);
     }
 
     @GetMapping("/all")
-    public List<Task> getAllTasks() {
+    public List<Task> getAllTasks()
+    {
         return taskService.getAllTasks();
+    }
+
+    @PostMapping("/create")
+    public Task create(@RequestBody Task task)
+    {
+        return taskService.createTask(task);
     }
 }

@@ -1,24 +1,23 @@
 package com.karadyauran.agile.controller.page;
 
-import com.karadyauran.agile.entity.Role;
-import com.karadyauran.agile.service.interf.RoleService;
+import com.karadyauran.agile.entity.Comment;
+import com.karadyauran.agile.service.interf.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
+@RequestMapping("/api/comment/")
 @RequiredArgsConstructor
-@RequestMapping("/api/role")
-public class RoleController
+public class CommentController
 {
-    private final RoleService roleService;
+    private final CommentService commentService;
 
     @GetMapping("/id={id}")
-    public Role getTaskById(@PathVariable("id") String taskId)
+    public Comment getCommentById(@PathVariable String id)
     {
-        return roleService.getRoleById(taskId);
+        return commentService.getCommentById(id);
     }
 }

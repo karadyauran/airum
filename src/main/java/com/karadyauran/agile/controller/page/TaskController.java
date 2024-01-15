@@ -15,17 +15,20 @@ public class TaskController
     private final TaskService taskService;
 
     @GetMapping("/id={id}")
-    public Task getTaskById(@PathVariable String id) {
+    public Task getTaskById(@PathVariable String id)
+    {
         return taskService.getTaskById(id);
     }
 
     @GetMapping("/status={status}")
-    public List<Task> getTasksByStatus(@PathVariable String status) {
+    public List<Task> getTasksByStatus(@PathVariable String status)
+    {
         return taskService.getTasksByStatus(status);
     }
 
     @GetMapping("/all")
-    public List<Task> getAllTasks() {
+    public List<Task> getAllTasks()
+    {
         return taskService.getAllTasks();
     }
 }

@@ -17,7 +17,8 @@ public class RoleController
     private final RoleService roleService;
 
     @GetMapping("/{id}")
-    public Role getTaskById(@PathVariable("id") String taskId) {
+    public Role getTaskById(@PathVariable("id") String taskId)
+    {
         return roleService.getRoleById(taskId);
     }
 }

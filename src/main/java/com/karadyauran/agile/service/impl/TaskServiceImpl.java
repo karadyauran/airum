@@ -23,7 +23,8 @@ public class TaskServiceImpl implements TaskService
     }
 
     @Override
-    public List<Task> getTasksByStatus(String status) {
+    public List<Task> getTasksByStatus(String status)
+    {
         return taskRepository.findTaskByStatus(TaskStatus.valueOf(status));
     }
 

@@ -1,6 +1,6 @@
 package com.karadyauran.agile.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -39,11 +39,12 @@ public class Project
     @Column(name = "p_updated_at")
     private LocalDate updatedAt;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
     @JsonManagedReference("projectTasksReference")
     private List<Task> tasks;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     @JoinColumn(name = "p_owner_id", referencedColumnName = "u_user_id")
     private User owner;
 

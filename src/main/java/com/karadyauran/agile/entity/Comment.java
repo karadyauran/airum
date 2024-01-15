@@ -1,6 +1,7 @@
 package com.karadyauran.agile.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,6 +43,7 @@ public class Comment
     private Task task;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "tc_user_id", referencedColumnName = "u_user_id")
     private User commentUser;
 

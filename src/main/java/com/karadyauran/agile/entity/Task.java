@@ -26,13 +26,13 @@ public class Task
     @Column(name = "t_task_id")
     private UUID taskId;
 
-    @Column(name = "t_project_id", insertable = false, updatable = false)
+    @Column(name = "t_project_id")
     private UUID projectId;
 
-    @Column(name = "t_assigned_to_id", insertable = false, updatable = false)
+    @Column(name = "t_assigned_to_id")
     private UUID assignedToId;
 
-    @Column(name = "t_created_by_id", insertable = false, updatable = false)
+    @Column(name = "t_created_by_id")
     private UUID createdById;
 
     @Column(name = "t_title")
@@ -51,26 +51,26 @@ public class Task
     @Column(name = "t_due_to")
     private LocalDate dueDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonBackReference("projectTasksReference")
     @JoinColumn(name = "t_project_id", referencedColumnName = "p_project_id", insertable = false, updatable = false)
     private Project project;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonBackReference("taskAssignedToReference")
     @JoinColumn(name = "t_assigned_to_id", referencedColumnName = "u_user_id", insertable = false, updatable = false)
     private User assignedTo;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonBackReference("taskCreatedTasksReference")
     @JoinColumn(name = "t_created_by_id", referencedColumnName = "u_user_id", insertable = false, updatable = false)
     private User createdBy;
 
-    @OneToMany(mappedBy = "task")
+    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
     @JsonManagedReference("commentTaskReference")
     private List<Comment> taskComments;
 
-    @OneToMany(mappedBy = "task")
+    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
     @JsonManagedReference("attachmentTaskReference")
     private List<Attachment> attachments;
 

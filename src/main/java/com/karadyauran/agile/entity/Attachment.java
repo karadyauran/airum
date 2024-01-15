@@ -1,6 +1,7 @@
 package com.karadyauran.agile.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.karadyauran.agile.entity.enums.FileFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -46,6 +47,7 @@ public class Attachment
     private Task task;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "ta_user_id", referencedColumnName = "u_user_id")
     private User user;
 

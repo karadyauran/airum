@@ -10,6 +10,6 @@ spring:
   liquibase:
     change-log: classpath:db/changelog/changelog-master.xml
 
-logging:
-  level:
-    org.springframework: DEBUG
+#logging:
+#  level:
+#    org.springframework: DEBUG

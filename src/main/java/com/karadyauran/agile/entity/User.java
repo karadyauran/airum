@@ -44,11 +44,11 @@ public class User
     @OneToMany(mappedBy = "user")
     List<ProjectMember> projectMembers;
 
-    @OneToMany(mappedBy = "assignedTo")
+    @OneToMany(mappedBy = "assignedTo", fetch = FetchType.LAZY)
     @JsonManagedReference("taskAssignedToReference")
     private List<Task> assignedTasks;
 
-    @OneToMany(mappedBy = "createdBy")
+    @OneToMany(mappedBy = "createdBy", fetch = FetchType.LAZY)
     private List<Task> createdTasks;
 
     @OneToMany(mappedBy = "commentUser")

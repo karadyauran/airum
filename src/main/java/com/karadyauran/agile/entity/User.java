@@ -41,6 +41,7 @@ public class User
     private LocalDate createdAt;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference("projectMemberUserReference")
     List<ProjectMember> projectMembers;
 
     @OneToMany(mappedBy = "assignedTo", fetch = FetchType.LAZY)
@@ -48,21 +49,27 @@ public class User
     private List<Task> assignedTasks;
 
     @OneToMany(mappedBy = "createdBy", fetch = FetchType.LAZY)
+    @JsonManagedReference("taskCreatedTasksReference")
     private List<Task> createdTasks;
 
     @OneToMany(mappedBy = "commentUser")
+    @JsonManagedReference("commentUserReference")
     private List<Comment> taskComments;
 
     @OneToMany(mappedBy = "sender")
+    @JsonManagedReference("notificationSenderReference")
     private List<Notification> sendNotifications;
 
     @OneToMany(mappedBy = "receiver")
+    @JsonManagedReference("notificationReceiverReference")
     private List<Notification> receiveNotifications;
 
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference("attachmentUserReference")
     private List<Attachment> attachments;
 
     @OneToMany(mappedBy = "owner")
+    @JsonManagedReference("projectOwnerReference")
     private List<Project> ownedProjects;
 
     @Override

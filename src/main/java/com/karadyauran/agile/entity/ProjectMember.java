@@ -43,7 +43,6 @@ public class ProjectMember
     private User user;
 
     @OneToOne
-    @JsonIgnore
     @JoinColumn(name = "pm_role_id", referencedColumnName = "r_role_id")
     private Role role;
 

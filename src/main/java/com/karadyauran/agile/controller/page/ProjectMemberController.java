@@ -1,24 +1,23 @@
 package com.karadyauran.agile.controller.page;
 
-import com.karadyauran.agile.entity.Role;
-import com.karadyauran.agile.service.interf.RoleService;
+import com.karadyauran.agile.entity.ProjectMember;
+import com.karadyauran.agile.service.interf.ProjectMemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
+@RequestMapping("/api/project-member")
 @RequiredArgsConstructor
-@RequestMapping("/api/role")
-public class RoleController
+public class ProjectMemberController
 {
-    private final RoleService roleService;
+    private final ProjectMemberService projectMemberService;
 
     @GetMapping("/id={id}")
-    public Role getTaskById(@PathVariable("id") String taskId)
+    public ProjectMember getProjectMemberById(@PathVariable String id)
     {
-        return roleService.getRoleById(taskId);
+        return projectMemberService.getProjectMemberById(id);
     }
 }

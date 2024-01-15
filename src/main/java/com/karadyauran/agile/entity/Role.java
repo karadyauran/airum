@@ -29,9 +29,6 @@ public class Role
     @Column(name = "r_role_description")
     private String description;
 
-    @OneToOne(mappedBy = "role")
-    private ProjectMember projectMember;
-
     @Override
     public boolean equals(Object o)
     {

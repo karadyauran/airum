@@ -242,11 +242,13 @@
 
         <addForeignKeyConstraint constraintName="fk_project_members_user_id"
                                  baseTableName="project_members" baseColumnNames="pm_user_id"
-                                 referencedTableName="users" referencedColumnNames="u_user_id"/>
+                                 referencedTableName="users" referencedColumnNames="u_user_id"
+                                 onDelete="CASCADE"/>
 
         <addForeignKeyConstraint constraintName="fk_project_members_role_id"
                                  baseTableName="project_members" baseColumnNames="pm_role_id"
-                                 referencedTableName="roles" referencedColumnNames="r_role_id"/>
+                                 referencedTableName="roles" referencedColumnNames="r_role_id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
     </changeSet>
 
     <!-- Foreign key constraints are added to tasks table -->
@@ -339,7 +341,8 @@
         </preConditions>
         <addForeignKeyConstraint constraintName="fk_owner_id_user_id"
                                  baseTableName="projects" baseColumnNames="p_owner_id"
-                                 referencedTableName="users" referencedColumnNames="u_user_id"/>
+                                 referencedTableName="users" referencedColumnNames="u_user_id"
+                                 onDelete="CASCADE" onUpdate="CASCADE"/>
     </changeSet>
 
 

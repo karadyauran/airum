@@ -1,5 +1,6 @@
 package com.karadyauran.agile.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
@@ -10,6 +11,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.CascadeType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +29,7 @@ import java.util.Objects;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User
 {
     @Id
@@ -52,35 +55,35 @@ public class User
     @Column(name = "u_created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference("projectMemberUserReference")
     private List<ProjectMember> projectMembers;
 
-    @OneToMany(mappedBy = "assignedTo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "assignedTo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference("taskAssignedToReference")
     private List<Task> assignedTasks;
 
-    @OneToMany(mappedBy = "createdBy", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "createdBy", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference("taskCreatedTasksReference")
     private List<Task> createdTasks;
 
-    @OneToMany(mappedBy = "commentUser")
+    @OneToMany(mappedBy = "commentUser", cascade = CascadeType.ALL)
     @JsonManagedReference("commentUserReference")
     private List<Comment> taskComments;
 
-    @OneToMany(mappedBy = "sender")
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
     @JsonManagedReference("notificationSenderReference")
     private List<Notification> sendNotifications;
 
-    @OneToMany(mappedBy = "receiver")
+    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
     @JsonManagedReference("notificationReceiverReference")
     private List<Notification> receiveNotifications;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference("attachmentUserReference")
     private List<Attachment> attachments;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference("projectOwnerReference")
     private List<Project> ownedProjects;
 

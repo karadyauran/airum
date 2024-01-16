@@ -17,7 +17,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 import java.util.Objects;
 
@@ -42,10 +42,10 @@ public class ProjectMember
     private UUID roleId;
 
     @Column(name = "pm_created_at")
-    private LocalDate createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "pm_updated_at")
-    private LocalDate updatedAt;
+    private LocalDateTime updatedAt;
 
     @ManyToOne
     @JsonBackReference("projectMemberUserReference")

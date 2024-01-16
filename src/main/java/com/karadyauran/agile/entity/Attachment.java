@@ -19,6 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -50,6 +51,9 @@ public class Attachment
 
     @Column(name = "ta_attachment_path")
     private String attachmentPath;
+
+    @Column(name = "ta_created_at")
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @ManyToOne
     @JsonBackReference("attachmentTaskReference")

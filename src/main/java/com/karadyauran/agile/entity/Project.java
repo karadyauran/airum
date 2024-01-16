@@ -19,7 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 import java.util.List;
 import java.util.Objects;
@@ -47,10 +47,10 @@ public class Project
     private String description;
 
     @Column(name = "p_created_at")
-    private LocalDate createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "p_updated_at")
-    private LocalDate updatedAt;
+    private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
     @JsonManagedReference("projectTasksReference")

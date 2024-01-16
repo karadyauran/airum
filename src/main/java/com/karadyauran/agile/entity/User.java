@@ -16,7 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 import java.util.List;
 import java.util.Objects;
@@ -50,11 +50,11 @@ public class User
     private String passwordHash;
 
     @Column(name = "u_created_at")
-    private LocalDate createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @OneToMany(mappedBy = "user")
     @JsonManagedReference("projectMemberUserReference")
-    List<ProjectMember> projectMembers;
+    private List<ProjectMember> projectMembers;
 
     @OneToMany(mappedBy = "assignedTo", fetch = FetchType.LAZY)
     @JsonManagedReference("taskAssignedToReference")

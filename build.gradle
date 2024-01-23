@@ -28,6 +28,7 @@ ext {
     jbcryptVersion = '0.4'
     mapstuctVersion = '1.5.5.Final'
     mapstuctProcessorVersion = '1.5.5.Final'
+    springDocVersion = '2.2.0'
 }
 
 dependencies {
@@ -39,6 +40,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springDocVersion}"
 
     // PostgreSQL Database Dependencies
     implementation group: 'org.postgresql', name: 'postgresql', version: postgreVersion

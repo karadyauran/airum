@@ -1,6 +1,8 @@
 package com.karadyauran.agile.service.impl;
 
+import com.karadyauran.agile.dto.UserDto;
 import com.karadyauran.agile.entity.User;
+import com.karadyauran.agile.mapper.UserMapper;
 import com.karadyauran.agile.repository.UserRepository;
 import com.karadyauran.agile.service.interf.UserService;
 import jakarta.transaction.Transactional;
@@ -15,11 +17,12 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService
 {
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     @Override
-    public User getUserById(String userId)
+    public UserDto getUserById(String userId)
     {
-        return userRepository.findUserByUserId(UUID.fromString(userId));
+        return userMapper.toDto(userRepository.findUserByUserId(UUID.fromString(userId)));
     }
 
     @Override

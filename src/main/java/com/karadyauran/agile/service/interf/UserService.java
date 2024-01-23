@@ -1,12 +1,13 @@
 package com.karadyauran.agile.service.interf;
 
+import com.karadyauran.agile.dto.UserDto;
 import com.karadyauran.agile.entity.User;
 
 import java.util.List;
 
 public interface UserService
 {
-    User getUserById(String id);
+    UserDto getUserById(String id);
 
     List<User> findAll();
 

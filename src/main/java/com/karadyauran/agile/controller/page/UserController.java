@@ -1,5 +1,6 @@
 package com.karadyauran.agile.controller.page;
 
+import com.karadyauran.agile.dto.UserDto;
 import com.karadyauran.agile.entity.User;
 import com.karadyauran.agile.service.interf.UserService;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +15,8 @@ public class UserController
 {
     private final UserService userService;
 
-    @GetMapping("/id={id}")
-    public User getUserById(@PathVariable String id)
+    @GetMapping("/")
+    public UserDto getUserById(@RequestParam String id)
     {
         return userService.getUserById(id);
     }

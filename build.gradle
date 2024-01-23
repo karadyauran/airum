@@ -27,9 +27,14 @@ ext {
     nycodeVersion = '2.3.0'
     jbcryptVersion = '0.4'
     mapstuctVersion = '1.5.5.Final'
+    mapstuctProcessorVersion = '1.5.5.Final'
 }
 
 dependencies {
+    // Lombok for Simplifying Java Code
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
     // Spring Boot Core Dependencies
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -50,10 +55,7 @@ dependencies {
 
     // Mapper
     implementation group: 'org.mapstruct', name: 'mapstruct', version: mapstuctVersion
-
-    // Lombok for Simplifying Java Code
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: mapstuctProcessorVersion
 }
 
 tasks.named('test') {

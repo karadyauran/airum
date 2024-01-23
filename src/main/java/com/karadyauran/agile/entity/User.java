@@ -9,6 +9,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Column;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.CascadeType;
@@ -86,6 +89,14 @@ public class User
     @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference("projectOwnerReference")
     private List<Project> ownedProjects;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_project",
+            joinColumns = @JoinColumn(name = "up_user_id"),
+            inverseJoinColumns = @JoinColumn(name = "up_project_id")
+    )
+    private List<Project> projects;
 
     @Override
     public boolean equals(Object o)

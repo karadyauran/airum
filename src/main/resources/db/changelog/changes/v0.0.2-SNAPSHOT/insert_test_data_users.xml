@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="karadyauran" id="insert_1">
+        <insert tableName="users">
+            <column name="u_user_id" value="c23ebbb0-4d47-42b3-982b-0b963d917a25"/>
+            <column name="u_username" value="milton.pfeffer"/>
+            <column name="u_name" value="Milton"/>
+            <column name="u_surname" value="Pfeffer"/>
+            <column name="u_email" value="milton.pfeffer@yahoo.com"/>
+            <column name="u_password_hash" value="$2a$10$7vqEc2dA.HYfLr9YSQFv1uPn89zb43HgyR9DYmoq0uCDVeM9cOGqq"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="insert_2">
+        <insert tableName="users">
+            <column name="u_user_id" value="7dc91392-0dce-45e8-b3a8-c4e711b2f45f"/>
+            <column name="u_username" value="gerald.hyatt"/>
+            <column name="u_name" value="Gerald"/>
+            <column name="u_surname" value="Hyatt"/>
+            <column name="u_email" value="gerald.hyatt@yahoo.com"/>
+            <column name="u_password_hash" value="$2a$10$3Lr3sp3OcUEErzSjwtezaeW16OsK83./6JrN66qexpbgGIIJF8mEO"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="insert_3">
+        <insert tableName="users">
+            <column name="u_user_id" value="14b75de4-c006-445a-b131-7ffa477d7665"/>
+            <column name="u_username" value="avery.pfeffer"/>
+            <column name="u_name" value="Avery"/>
+            <column name="u_surname" value="Pfeffer"/>
+            <column name="u_email" value="avery.pfeffer@yahoo.com"/>
+            <column name="u_password_hash" value="$2a$10$hEy85MmWmo1rKR.IHS36y.qYQgFIMqrcWY26lQegqlFdvge7RLmjO"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="insert_4">
+        <insert tableName="users">
+            <column name="u_user_id" value="96993edc-7ccc-46f4-90ba-926930be623d"/>
+            <column name="u_username" value="travis.mohr"/>
+            <column name="u_name" value="Travis"/>
+            <column name="u_surname" value="Mohr"/>
+            <column name="u_email" value="travis.mohr@gmail.com"/>
+            <column name="u_password_hash" value="$2a$10$B0aU1Jcyq7BmGFyVW/Z3G.GaVYjBj3Ua8.5xPkK8eMuLHdq8De0WO"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="insert_5">
+        <insert tableName="users">
+            <column name="u_user_id" value="e3ea02ff-2e76-49be-8598-18f2495a8946"/>
+            <column name="u_username" value="gabriel.okeefe"/>
+            <column name="u_name" value="Gabriel"/>
+            <column name="u_surname" value="Okeefe"/>
+            <column name="u_email" value="gabriel.okeefe@gmail.com"/>
+            <column name="u_password_hash" value="$2a$10$ZEXr.8MjeRqPoYrFFGuf7ugSuHaFRybg4wW8k/DiMUOS/p7pMklIe"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="insert_6">
+        <insert tableName="users">
+            <column name="u_user_id" value="7e2e9be8-e0e1-4ed3-981c-499cf04d2066"/>
+            <column name="u_username" value="porfirio.kris"/>
+            <column name="u_name" value="Kris"/>
+            <column name="u_surname" value="Porfirio"/>
+            <column name="u_email" value="porfirio.kris@yahoo.com"/>
+            <column name="u_password_hash" value="$2a$10$3Lr3sp3OcUEErzSjwtezaeW16OsK83./6JrN66qexpbgGIIJF8mEO"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

@@ -9,6 +9,6 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <include file="/db/changelog/changes/v0.0.1-SNAPSHOT/v.0.0.1-master.xml"/>
+    <include file="/db/changelog/changes/v0.0.2-SNAPSHOT/v.0.0.2-master.xml"/>
 
 </databaseChangeLog>

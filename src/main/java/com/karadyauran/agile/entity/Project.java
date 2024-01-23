@@ -1,20 +1,11 @@
 package com.karadyauran.agile.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.CascadeType;
+import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -63,6 +54,10 @@ public class Project
     @JsonBackReference("projectOwnerReference")
     @JoinColumn(name = "p_owner_id", referencedColumnName = "u_user_id")
     private User owner;
+
+    @ManyToMany(mappedBy = "projects")
+    @JsonIgnore
+    private List<User> users;
 
     @Override
     public boolean equals(Object o)

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="karadyauran" id="insert_1">
+        <insert tableName="task_comments">
+            <column name="tc_comment_id" value="13390a5a-8afa-4646-a919-3fa30f14384e"/>
+            <column name="tc_task_id" value="86036cd8-4fbc-4dab-8f74-ec4cc82df6a4"/>
+            <column name="tc_user_id" value="14b75de4-c006-445a-b131-7ffa477d7665"/>
+            <column name="tc_comment" value="Good!"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

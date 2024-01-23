@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="karadyauran" id="insert_1">
+        <insert tableName="user_project">
+            <column name="up_user_id" value="c23ebbb0-4d47-42b3-982b-0b963d917a25"/>
+            <column name="up_project_id" value="34c5773b-0a9b-40c3-988e-e8f3a530c8c5"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="insert_2">
+        <insert tableName="user_project">
+            <column name="up_user_id" value="7dc91392-0dce-45e8-b3a8-c4e711b2f45f"/>
+            <column name="up_project_id" value="34c5773b-0a9b-40c3-988e-e8f3a530c8c5"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="insert_3">
+        <insert tableName="user_project">
+            <column name="up_user_id" value="c23ebbb0-4d47-42b3-982b-0b963d917a25"/>
+            <column name="up_project_id" value="34c5773b-0a9b-40c3-988e-e8f3a530c8c5"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="insert_4">
+        <insert tableName="user_project">
+            <column name="up_user_id" value="14b75de4-c006-445a-b131-7ffa477d7665"/>
+            <column name="up_project_id" value="34c5773b-0a9b-40c3-988e-e8f3a530c8c5"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="insert_5">
+        <insert tableName="user_project">
+            <column name="up_user_id" value="7dc91392-0dce-45e8-b3a8-c4e711b2f45f"/>
+            <column name="up_project_id" value="34c5773b-0a9b-40c3-988e-e8f3a530c8c5"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="insert_6">
+        <insert tableName="user_project">
+            <column name="up_user_id" value="14b75de4-c006-445a-b131-7ffa477d7665"/>
+            <column name="up_project_id" value="8ec8eaf0-b1de-4f4b-8715-64b2959bffd2"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="insert_7">
+        <insert tableName="user_project">
+            <column name="up_user_id" value="e3ea02ff-2e76-49be-8598-18f2495a8946"/>
+            <column name="up_project_id" value="8ec8eaf0-b1de-4f4b-8715-64b2959bffd2"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="karadyauran" id="insert_8">
+        <insert tableName="user_project">
+            <column name="up_user_id" value="96993edc-7ccc-46f4-90ba-926930be623d"/>
+            <column name="up_project_id" value="8ec8eaf0-b1de-4f4b-8715-64b2959bffd2"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

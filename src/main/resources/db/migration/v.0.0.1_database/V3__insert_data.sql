@@ -19,8 +19,7 @@ values ('6ab5ad83-f1c5-45e0-9ca3-601ed5f9b748', 'Consultant'),
        ('0d4c75c5-58c8-45de-825a-01fb996c155f', 'Assistant'),
        ('b319a4a1-d3a8-48cd-935b-774b73aea027', 'Engineer'),
        ('9dce419e-8f35-4c96-83bf-37db3f9390e8', 'Associate'),
-       ('aad42db1-8fcb-43be-9404-9598e1787a61', 'Agent'),
-       ('c1a4f0a2-4f22-4cf4-91ec-60a9b126f8c4', 'Assistant');
+       ('aad42db1-8fcb-43be-9404-9598e1787a61', 'Agent');
 
 -- PROJECT_MEMBERS
 insert into project_members (id, user_id, role_id)
@@ -33,9 +32,7 @@ values ('716343a4-2a7e-4ccc-87f3-b558b76a2554', '14b75de4-c006-445a-b131-7ffa477
        ('c412acaf-7a0a-44c6-bb95-276d7f0044be', '96993edc-7ccc-46f4-90ba-926930be623d',
         'aad42db1-8fcb-43be-9404-9598e1787a61'),
        ('d80923ed-f80a-42f0-a323-a54c10436bf4', 'c23ebbb0-4d47-42b3-982b-0b963d917a25',
-        'b319a4a1-d3a8-48cd-935b-774b73aea027'),
-       ('76170f78-5704-4ae9-8665-3fb2d09e4112', 'e3ea02ff-2e76-49be-8598-18f2495a8946',
-        'c1a4f0a2-4f22-4cf4-91ec-60a9b126f8c4');
+        'b319a4a1-d3a8-48cd-935b-774b73aea027');
 
 -- PROJECTS
 insert into projects (id, user_id, name, description)

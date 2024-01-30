@@ -12,7 +12,7 @@ create table users
 create table roles
 (
     id   uuid primary key,
-    name varchar(20)
+    name varchar(20) unique
 );
 
 create table notifications

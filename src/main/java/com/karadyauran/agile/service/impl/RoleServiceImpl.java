@@ -1,6 +1,7 @@
 package com.karadyauran.agile.service.impl;
 
 import com.karadyauran.agile.entity.Role;
+import com.karadyauran.agile.error.RoleIsAlreadyExists;
 import com.karadyauran.agile.error.RoleWasNotFoundException;
 import com.karadyauran.agile.error.message.ErrorMessage;
 import com.karadyauran.agile.repository.RoleRepository;
@@ -33,7 +34,7 @@ public class RoleServiceImpl implements RoleService
     {
         var name = role.getName();
 
-        if (!checkRoleByName(name))
+        if (checkRoleByName(name))
         {
             return repository.findByName(name).orElse(null);
         }
@@ -42,17 +43,32 @@ public class RoleServiceImpl implements RoleService
         return repository.findByName(name).orElse(null);
     }
 
-    // TODO: finish these methods
     @Override
     public Role change(UUID id, String name)
     {
-        return null;
+        if (checkRoleById(id))
+        {
+            throw new RoleWasNotFoundException(ErrorMessage.ROLE_WAS_NOT_FOUND);
+        }
+
+        if (checkRoleByName(name))
+        {
+            throw new RoleIsAlreadyExists(ErrorMessage.ROLE_IS_ALREADY_EXISTS);
+        }
+
+        repository.changeName(id, name);
+        return repository.findById(id).orElse(null);
     }
 
     @Override
     public void delete(UUID id)
     {
+        if (checkRoleById(id))
+        {
+            throw new RoleWasNotFoundException(ErrorMessage.ROLE_WAS_NOT_FOUND);
+        }
 
+        repository.deleteById(id);
     }
 
     private boolean checkRoleById(UUID id)
@@ -62,6 +78,6 @@ public class RoleServiceImpl implements RoleService
 
     private boolean checkRoleByName(String name)
     {
-        return repository.findByName(name).orElse(null) == null;
+        return repository.findByName(name).orElse(null) != null;
     }
 }

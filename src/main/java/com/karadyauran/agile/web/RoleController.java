@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,24 +24,31 @@ public class RoleController implements RoleApi
     @Override
     public ResponseEntity<Role> getRoleById(UUID id)
     {
-        return null;
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(service.getRole(id));
     }
 
     @Override
     public ResponseEntity<Role> create(Role role)
     {
-        return null;
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(service.create(role));
     }
 
     @Override
     public ResponseEntity<Role> change(UUID id, String name)
     {
-        return null;
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(service.change(id, name));
     }
 
     @Override
-    public void delete(UUID id)
+    public ResponseEntity<Void> delete(UUID id)
     {
-
+        service.delete(id);
+        return ResponseEntity.ok().build();
     }
 }

@@ -18,5 +18,5 @@ public interface RoleApi
     ResponseEntity<Role> change(@RequestParam UUID id, @RequestParam String name);
 
     @DeleteMapping("delete/{id}")
-    void delete(@PathVariable UUID id);
+    ResponseEntity<Void> delete(@PathVariable UUID id);
 }

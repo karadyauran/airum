@@ -1,0 +1,9 @@
+drop table if exists attachments;
+drop table if exists comments;
+drop table if exists project_members;
+drop table if exists notifications;
+drop table if exists user_projects;
+drop table if exists tasks;
+drop table if exists projects;
+drop table if exists roles;
+drop table if exists users;

@@ -56,6 +56,7 @@ create table tasks
     status      varchar(30) default 'IN_PROGRESS',
     assigned_to uuid references users (id) not null,
     created_by  uuid references users (id) not null,
+    due_to      date,
     created_at  timestamp   default now()
 );
 

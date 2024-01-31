@@ -12,33 +12,33 @@ create table users
 create table notifications
 (
     id         uuid primary key,
-    sender     uuid references users (id) on delete cascade not null,
-    receiver   uuid references users (id) on delete cascade not null,
-    message    text                                         not null,
+    sender     uuid references users (id) on delete cascade on update cascade not null,
+    receiver   uuid references users (id) on delete cascade on update cascade not null,
+    message    text                                                           not null,
     created_at timestamp default now()
 );
 
 create table projects
 (
     id          uuid primary key,
-    user_id     uuid references users (id) on delete cascade not null,
-    name        varchar(60)                                  not null,
-    description text                                         not null,
+    user_id     uuid references users (id) on delete cascade on update cascade not null,
+    name        varchar(60)                                                    not null,
+    description text                                                           not null,
     created_at  timestamp default now()
 );
 
 create table roles
 (
     id         uuid primary key,
-    name       varchar(20)                                     not null,
-    project_id uuid references projects (id) on delete cascade not null
+    name       varchar(20)                                                       not null,
+    project_id uuid references projects (id) on delete cascade on update cascade not null
 );
 
 create table project_members
 (
     id         uuid primary key,
-    user_id    uuid references users (id) on delete cascade not null,
-    role_id    uuid references roles (id) on delete cascade,
+    user_id    uuid references users (id) on delete cascade on update cascade not null,
+    role_id    uuid references roles (id) on delete cascade on update cascade,
     created_at timestamp default now()
 );
 
@@ -51,12 +51,12 @@ create table user_projects
 create table tasks
 (
     id          uuid primary key,
-    project_id  uuid references projects (id) on delete cascade,
-    title       varchar(60)                                  not null,
-    description text                                         not null,
+    project_id  uuid references projects (id) on delete cascade on update cascade,
+    title       varchar(60)                                                    not null,
+    description text                                                           not null,
     status      varchar(30) default 'IN_PROGRESS',
-    assigned_to uuid references users (id) on delete cascade not null,
-    created_by  uuid references users (id) on delete cascade not null,
+    assigned_to uuid references users (id) on delete cascade on update cascade not null,
+    created_by  uuid references users (id) on delete cascade on update cascade not null,
     due_to      date,
     created_at  timestamp   default now()
 );
@@ -64,18 +64,18 @@ create table tasks
 create table attachments
 (
     id      uuid primary key,
-    name    varchar(30)                                  not null,
-    path    varchar(200)                                 not null,
-    task    uuid references tasks (id) on delete cascade not null,
-    user_id uuid references users (id) on delete cascade not null
+    name    varchar(30)                                                    not null,
+    path    varchar(200)                                                   not null,
+    task    uuid references tasks (id) on delete cascade on update cascade not null,
+    user_id uuid references users (id) on delete cascade on update cascade not null
 );
 
 create table comments
 (
     id         uuid primary key,
-    task       uuid references tasks (id) on delete cascade not null,
-    user_id    uuid references users (id) on delete cascade not null,
-    comment    text                                         not null,
+    task       uuid references tasks (id) on delete cascade on update cascade not null,
+    user_id    uuid references users (id) on delete cascade on update cascade not null,
+    comment    text                                                           not null,
     created_at timestamp default now()
 );
 

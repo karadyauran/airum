@@ -1,9 +1,7 @@
 package com.karadyauran.agile.mapper;
 
-import com.karadyauran.agile.dto.NotificationDto;
 import com.karadyauran.agile.dto.ProjectDto;
 import com.karadyauran.agile.dto.UserDto;
-import com.karadyauran.agile.entity.Notification;
 import com.karadyauran.agile.entity.Project;
 import com.karadyauran.agile.entity.User;
 import com.karadyauran.agile.repository.UserRepository;

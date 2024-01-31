@@ -14,7 +14,7 @@ values ('c23ebbb0-4d47-42b3-982b-0b963d917a25', 'milton.pfeffer', 'Milton', 'Pfe
         '$2a$10$3Lr3sp3OcUEErzSjwtezaeW16OsK83./6JrN66qexpbgGIIJF8mEO');
 
 -- PROJECTS
-insert into projects (id, user_id, name, description)
+insert into projects (id, creator_id, name, description)
 values ('34c5773b-0a9b-40c3-988e-e8f3a530c8c5', 'e3ea02ff-2e76-49be-8598-18f2495a8946', 'Walsh-Pfeffer',
         'Tempora possimus ab ut voluptates aspernatur repellendus voluptatem deleniti quaerat ipsam.'),
        ('8ec8eaf0-b1de-4f4b-8715-64b2959bffd2', '14b75de4-c006-445a-b131-7ffa477d7665', 'Deckow-Johnson',

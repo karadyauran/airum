@@ -11,17 +11,17 @@ create table users
 
 create table notifications
 (
-    id         uuid primary key,
-    sender     uuid references users (id) on delete cascade on update cascade not null,
-    receiver   uuid references users (id) on delete cascade on update cascade not null,
-    message    text                                                           not null,
-    created_at timestamp default now()
+    id       uuid primary key,
+    sender   uuid references users (id) on delete cascade on update cascade not null,
+    receiver uuid references users (id) on delete cascade on update cascade not null,
+    message  text                                                           not null,
+    sent_at  timestamp default now()
 );
 
 create table projects
 (
     id          uuid primary key,
-    user_id     uuid references users (id) on delete cascade on update cascade not null,
+    creator_id  uuid references users (id) on delete cascade not null,
     name        varchar(60)                                                    not null,
     description text                                                           not null,
     created_at  timestamp default now()

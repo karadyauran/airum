@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService
             throw new UserWasNotFoundException(ErrorMessage.USER_WAS_NOT_FOUND);
         }
 
-        if (!checkUserByUsername(username))
+        if (checkUserByUsername(username))
         {
             throw new UsernameIsAlreadyExists(ErrorMessage.USERNAME_IS_ALREADY_EXISTS);
         }
@@ -154,7 +154,7 @@ public class UserServiceImpl implements UserService
     {
         log.debug("Saving new user {}", dto.getUsername());
 
-        if (!checkUserByUsername(dto.getUsername()))
+        if (checkUserByUsername(dto.getUsername()))
         {
             throw new UsernameIsAlreadyExists(ErrorMessage.USERNAME_IS_ALREADY_EXISTS);
         }
@@ -171,7 +171,7 @@ public class UserServiceImpl implements UserService
 
     private boolean checkUserByUsername(String username)
     {
-        return repository.findByUsername(username).orElse(null) == null;
+        return repository.findByUsername(username).orElse(null) != null;
     }
 
     private boolean checkUserByEmail(String email)

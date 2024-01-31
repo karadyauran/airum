@@ -21,6 +21,7 @@ public interface ProjectMapper
             @Mapping(target = "description", source = "description"),
             @Mapping(target = "creator", expression = "java(mapSender(project.getCreatorId(), repository, userMapper))"),
             @Mapping(target = "users", source = "users"),
+            @Mapping(target = "tasks", source = "tasks"),
             @Mapping(target = "createdAt", source = "createdAt")
     })
     ProjectDto toDto(

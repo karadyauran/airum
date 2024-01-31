@@ -34,7 +34,7 @@ public class RoleServiceImpl implements RoleService
     @Override
     public List<Role> getAllRolesForProject(UUID projectId)
     {
-        // TODO: verify project id
+        // verify project id
         return repository.findByProjectId(projectId);
     }
 

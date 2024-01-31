@@ -12,6 +12,5 @@ public class UserShortDto
 {
     String id;
     String username;
-    // TODO: fix nullable
     Role role;
 }

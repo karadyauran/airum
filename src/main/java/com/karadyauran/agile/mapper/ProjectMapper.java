@@ -20,6 +20,7 @@ public interface ProjectMapper
             @Mapping(target = "name", source = "name"),
             @Mapping(target = "description", source = "description"),
             @Mapping(target = "creator", expression = "java(mapSender(project.getCreatorId(), repository, userMapper))"),
+            @Mapping(target = "users", source = "users"),
             @Mapping(target = "createdAt", source = "createdAt")
     })
     ProjectDto toDto(

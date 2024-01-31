@@ -22,8 +22,8 @@ create table projects
 (
     id          uuid primary key,
     creator_id  uuid references users (id) on delete cascade not null,
-    name        varchar(60)                                                    not null,
-    description text                                                           not null,
+    name        varchar(60)                                  not null,
+    description text                                         not null,
     created_at  timestamp default now()
 );
 
@@ -34,18 +34,11 @@ create table roles
     project_id uuid references projects (id) on delete cascade on update cascade not null
 );
 
-create table project_members
-(
-    id         uuid primary key,
-    user_id    uuid references users (id) on delete cascade on update cascade not null,
-    role_id    uuid references roles (id) on delete cascade on update cascade,
-    created_at timestamp default now()
-);
-
 create table user_projects
 (
-    user_id    uuid not null,
-    project_id uuid not null
+    user_id    uuid references users (id) on delete cascade on update cascade    not null,
+    project_id uuid references projects (id) on delete cascade on update cascade not null,
+    role_id    uuid references roles (id) on delete cascade on update cascade    not null
 );
 
 create table tasks

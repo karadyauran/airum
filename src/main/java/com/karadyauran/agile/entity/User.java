@@ -53,6 +53,14 @@ public class User
     )
     List<Project> projects;
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_projects",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    List<Role> roles;
+
     @Override
     public boolean equals(Object o)
     {

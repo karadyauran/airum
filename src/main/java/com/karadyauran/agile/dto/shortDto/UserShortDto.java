@@ -1,5 +1,6 @@
 package com.karadyauran.agile.dto.shortDto;
 
+import com.karadyauran.agile.entity.Role;
 import lombok.*;
 
 @Getter
@@ -11,7 +12,6 @@ public class UserShortDto
 {
     String id;
     String username;
-    String firstname;
-    String surname;
-    String email;
+    // TODO: fix nullable
+    Role role;
 }

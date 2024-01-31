@@ -26,7 +26,8 @@ public class NotificationServiceImpl implements NotificationService
 {
     NotificationRepository notificationRepository;
     UserRepository userRepository;
-    NotificationMapper mapper;
+
+    NotificationMapper notificationMapper;
     UserMapper userMapper;
 
     @Override
@@ -37,7 +38,7 @@ public class NotificationServiceImpl implements NotificationService
             throw  new UserWasNotFoundException(ErrorMessage.USER_WAS_NOT_FOUND);
         }
 
-        return mapper.toDtoList(
+        return notificationMapper.toDtoList(
                 notificationRepository
                         .findAllByIds(user1, user2),
                 userRepository,
@@ -57,7 +58,7 @@ public class NotificationServiceImpl implements NotificationService
         }
 
         notificationRepository.save(notification);
-        return mapper.toDto(notification, userRepository, userMapper);
+        return notificationMapper.toDto(notification, userRepository, userMapper);
     }
 
     private boolean checkUser(UUID id)

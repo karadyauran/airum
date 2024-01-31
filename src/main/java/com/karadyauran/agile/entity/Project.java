@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -36,6 +37,9 @@ public class Project
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     Timestamp createdAt;
+
+    @ManyToMany(mappedBy = "projects")
+    List<User> users;
 
     @Override
     public boolean equals(Object o)

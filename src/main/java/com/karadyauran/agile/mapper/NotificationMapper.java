@@ -20,7 +20,7 @@ public interface NotificationMapper
     @Mappings({
             @Mapping(target = "message", source = "message"),
             @Mapping(target = "sender", expression = "java(mapSender(notification.getSender(), repository, userMapper))"),
-            @Mapping(target = "createdAt", source = "createdAt")
+            @Mapping(target = "sentAt", source = "sentAt")
     })
     NotificationDto toDto(
             Notification notification,

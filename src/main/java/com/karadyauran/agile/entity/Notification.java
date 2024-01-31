@@ -35,8 +35,8 @@ public class Notification
     String message;
 
     @CreationTimestamp
-    @Column(name = "created_at", updatable = false)
-    Timestamp createdAt;
+    @Column(name = "sent_at", updatable = false)
+    Timestamp sentAt;
 
     @Override
     public boolean equals(Object o)

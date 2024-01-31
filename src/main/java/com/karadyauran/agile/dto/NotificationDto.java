@@ -18,5 +18,5 @@ public class NotificationDto
 {
    String message;
    UserDto sender;
-   Timestamp createdAt;
+   Timestamp sentAt;
 }

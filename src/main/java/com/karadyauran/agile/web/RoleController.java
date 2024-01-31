@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -27,6 +28,14 @@ public class RoleController implements RoleApi
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(service.getRole(id));
+    }
+
+    @Override
+    public ResponseEntity<List<Role>> getRolesForProject(UUID project)
+    {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(service.getAllRolesForProject(project));
     }
 
     @Override

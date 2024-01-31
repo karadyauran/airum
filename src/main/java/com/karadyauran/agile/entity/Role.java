@@ -8,8 +8,10 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -27,6 +29,9 @@ public class Role
 
     @Column(name = "name")
     String name;
+
+    @Column(name = "project_id")
+    UUID projectId;
 
     @Override
     public boolean equals(Object o)

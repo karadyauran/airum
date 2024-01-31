@@ -13,13 +13,20 @@ values ('c23ebbb0-4d47-42b3-982b-0b963d917a25', 'milton.pfeffer', 'Milton', 'Pfe
        ('7e2e9be8-e0e1-4ed3-981c-499cf04d2066', 'porfirio.kris', 'Kris', 'Porfirio', 'porfirio.kris@yahoo.com',
         '$2a$10$3Lr3sp3OcUEErzSjwtezaeW16OsK83./6JrN66qexpbgGIIJF8mEO');
 
+-- PROJECTS
+insert into projects (id, user_id, name, description)
+values ('34c5773b-0a9b-40c3-988e-e8f3a530c8c5', 'e3ea02ff-2e76-49be-8598-18f2495a8946', 'Walsh-Pfeffer',
+        'Tempora possimus ab ut voluptates aspernatur repellendus voluptatem deleniti quaerat ipsam.'),
+       ('8ec8eaf0-b1de-4f4b-8715-64b2959bffd2', '14b75de4-c006-445a-b131-7ffa477d7665', 'Deckow-Johnson',
+        'Hic ratione blanditiis rerum distinctio ea sed tenetur illo ab dolor eaque.');
+
 -- ROLES
-insert into roles (id, name)
-values ('6ab5ad83-f1c5-45e0-9ca3-601ed5f9b748', 'Consultant'),
-       ('0d4c75c5-58c8-45de-825a-01fb996c155f', 'Assistant'),
-       ('b319a4a1-d3a8-48cd-935b-774b73aea027', 'Engineer'),
-       ('9dce419e-8f35-4c96-83bf-37db3f9390e8', 'Associate'),
-       ('aad42db1-8fcb-43be-9404-9598e1787a61', 'Agent');
+insert into roles (id, name, project_id)
+values ('6ab5ad83-f1c5-45e0-9ca3-601ed5f9b748', 'Consultant', '34c5773b-0a9b-40c3-988e-e8f3a530c8c5'),
+       ('0d4c75c5-58c8-45de-825a-01fb996c155f', 'Assistant', '34c5773b-0a9b-40c3-988e-e8f3a530c8c5'),
+       ('b319a4a1-d3a8-48cd-935b-774b73aea027', 'Engineer', '8ec8eaf0-b1de-4f4b-8715-64b2959bffd2'),
+       ('9dce419e-8f35-4c96-83bf-37db3f9390e8', 'Associate', '8ec8eaf0-b1de-4f4b-8715-64b2959bffd2'),
+       ('aad42db1-8fcb-43be-9404-9598e1787a61', 'Agent', '8ec8eaf0-b1de-4f4b-8715-64b2959bffd2');
 
 -- PROJECT_MEMBERS
 insert into project_members (id, user_id, role_id)
@@ -33,13 +40,6 @@ values ('716343a4-2a7e-4ccc-87f3-b558b76a2554', '14b75de4-c006-445a-b131-7ffa477
         'aad42db1-8fcb-43be-9404-9598e1787a61'),
        ('d80923ed-f80a-42f0-a323-a54c10436bf4', 'c23ebbb0-4d47-42b3-982b-0b963d917a25',
         'b319a4a1-d3a8-48cd-935b-774b73aea027');
-
--- PROJECTS
-insert into projects (id, user_id, name, description)
-values ('34c5773b-0a9b-40c3-988e-e8f3a530c8c5', 'e3ea02ff-2e76-49be-8598-18f2495a8946', 'Walsh-Pfeffer',
-        'Tempora possimus ab ut voluptates aspernatur repellendus voluptatem deleniti quaerat ipsam.'),
-       ('8ec8eaf0-b1de-4f4b-8715-64b2959bffd2', '14b75de4-c006-445a-b131-7ffa477d7665', 'Deckow-Johnson',
-        'Hic ratione blanditiis rerum distinctio ea sed tenetur illo ab dolor eaque.');
 
 -- USER_PROJECT
 insert into user_projects (user_id, project_id)

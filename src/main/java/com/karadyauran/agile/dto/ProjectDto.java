@@ -1,7 +1,6 @@
 package com.karadyauran.agile.dto;
 
 import com.karadyauran.agile.dto.shortDto.UserShortDto;
-import com.karadyauran.agile.entity.Task;
 import lombok.*;
 
 import java.sql.Timestamp;
@@ -15,10 +14,10 @@ import java.util.List;
 public class ProjectDto
 {
     String id;
-    UserDto creator;
+    // UserShortDto creator;
     String name;
     String description;
-    List<UserShortDto> users;
-    List<Task> tasks;
+    // List<UserShortDto> users;
+    // List<TaskDto> tasks;
     Timestamp createdAt;
 }

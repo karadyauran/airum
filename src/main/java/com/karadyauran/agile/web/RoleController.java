@@ -1,7 +1,9 @@
 package com.karadyauran.agile.web;
 
 import com.karadyauran.agile.api.RoleApi;
+import com.karadyauran.agile.dto.RoleDto;
 import com.karadyauran.agile.entity.Role;
+import com.karadyauran.agile.mapper.RoleMapper;
 import com.karadyauran.agile.service.interf.RoleService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +25,7 @@ public class RoleController implements RoleApi
     RoleService service;
 
     @Override
-    public ResponseEntity<Role> getRoleById(UUID id)
+    public ResponseEntity<RoleDto> getRoleById(UUID id)
     {
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -31,7 +33,7 @@ public class RoleController implements RoleApi
     }
 
     @Override
-    public ResponseEntity<List<Role>> getRolesForProject(UUID project)
+    public ResponseEntity<List<RoleDto>> getRolesForProject(UUID project)
     {
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -39,7 +41,7 @@ public class RoleController implements RoleApi
     }
 
     @Override
-    public ResponseEntity<Role> create(Role role)
+    public ResponseEntity<RoleDto> create(RoleDto role)
     {
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -47,7 +49,7 @@ public class RoleController implements RoleApi
     }
 
     @Override
-    public ResponseEntity<Role> change(UUID id, String name)
+    public ResponseEntity<RoleDto> change(UUID id, String name)
     {
         return ResponseEntity
                 .status(HttpStatus.OK)

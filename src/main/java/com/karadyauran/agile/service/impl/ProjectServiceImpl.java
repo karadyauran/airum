@@ -6,15 +6,14 @@ import com.karadyauran.agile.entity.Project;
 import com.karadyauran.agile.error.ProjectWasNotFoundException;
 import com.karadyauran.agile.error.message.ErrorMessage;
 import com.karadyauran.agile.mapper.ProjectMapper;
-import com.karadyauran.agile.mapper.UserMapper;
 import com.karadyauran.agile.repository.ProjectRepository;
-import com.karadyauran.agile.repository.UserRepository;
 import com.karadyauran.agile.service.interf.ProjectService;
 import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,40 +25,33 @@ import java.util.UUID;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class ProjectServiceImpl implements ProjectService
 {
-    ProjectRepository projectRepository;
-    UserRepository userRepository;
+    ProjectRepository repository;
 
-    ProjectMapper projectMapper;
-    UserMapper userMapper;
+    @Qualifier("projectMapper")
+    ProjectMapper mapper;
 
     @Override
     public ProjectDto getProject(UUID id)
     {
-        return projectMapper.toDto(
-                projectRepository.findById(id)
-                        .orElseThrow(() -> new ProjectWasNotFoundException(ErrorMessage.PROJECT_WAS_NOT_FOUND)),
-                userRepository,
-                userMapper
+        return mapper.toDto(
+                repository.findById(id)
+                        .orElseThrow(() -> new ProjectWasNotFoundException(ErrorMessage.PROJECT_WAS_NOT_FOUND))
         );
     }
 
     @Override
     public List<ProjectDto> getProjectByName(String name)
     {
-        return projectMapper.toDtoList(
-                projectRepository.findAllByName(name),
-                userRepository,
-                userMapper
+        return mapper.toDtoList(
+                repository.findAllByName(name)
         );
     }
 
     @Override
     public List<ProjectDto> getUserProjects(UUID creatorId)
     {
-        return projectMapper.toDtoList(
-                projectRepository.findAllByCreatorId(creatorId),
-                userRepository,
-                userMapper
+        return mapper.toDtoList(
+                repository.findAllByCreatorId(creatorId)
         );
     }
 
@@ -71,11 +63,9 @@ public class ProjectServiceImpl implements ProjectService
             throw new ProjectWasNotFoundException(ErrorMessage.PROJECT_WAS_NOT_FOUND);
         }
 
-        projectRepository.changeName(id, newName);
-        return projectMapper.toDto(
-                projectRepository.findById(id).orElse(null),
-                userRepository,
-                userMapper
+        repository.changeName(id, newName);
+        return mapper.toDto(
+                repository.findById(id).orElse(null)
         );
     }
 
@@ -87,11 +77,9 @@ public class ProjectServiceImpl implements ProjectService
             throw new ProjectWasNotFoundException(ErrorMessage.PROJECT_WAS_NOT_FOUND);
         }
 
-        projectRepository.changeDescription(id, newDescription);
-        return projectMapper.toDto(
-                projectRepository.findById(id).orElse(null),
-                userRepository,
-                userMapper
+        repository.changeDescription(id, newDescription);
+        return mapper.toDto(
+                repository.findById(id).orElse(null)
         );
     }
 
@@ -103,23 +91,17 @@ public class ProjectServiceImpl implements ProjectService
             throw new ProjectWasNotFoundException(ErrorMessage.PROJECT_WAS_NOT_FOUND);
         }
 
-        projectRepository.changeOwner(id, newOwner);
-        return projectMapper.toDto(
-                projectRepository.findById(id).orElse(null),
-                userRepository,
-                userMapper
+        repository.changeOwner(id, newOwner);
+        return mapper.toDto(
+                repository.findById(id).orElse(null)
         );
     }
 
     @Override
     public ProjectDto create(Project project)
     {
-        projectRepository.save(project);
-        return projectMapper.toDto(
-                project,
-                userRepository,
-                userMapper
-        );
+        repository.save(project);
+        return mapper.toDto(project);
     }
 
     @Override
@@ -129,11 +111,11 @@ public class ProjectServiceImpl implements ProjectService
             throw new ProjectWasNotFoundException(ErrorMessage.PROJECT_WAS_NOT_FOUND);
         }
 
-        projectRepository.deleteById(id);
+        repository.deleteById(id);
     }
 
     private boolean checkProject(UUID id)
     {
-        return projectRepository.findById(id).orElse(null) == null;
+        return repository.findById(id).orElse(null) == null;
     }
 }

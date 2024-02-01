@@ -7,8 +7,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TaskDto
+public class RoleDto
 {
-    String title;
-    String description;
+    String name;
 }

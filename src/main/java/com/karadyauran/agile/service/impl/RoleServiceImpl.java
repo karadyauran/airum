@@ -1,9 +1,10 @@
 package com.karadyauran.agile.service.impl;
 
-import com.karadyauran.agile.entity.Role;
+import com.karadyauran.agile.dto.RoleDto;
 import com.karadyauran.agile.error.RoleIsAlreadyExists;
 import com.karadyauran.agile.error.RoleWasNotFoundException;
 import com.karadyauran.agile.error.message.ErrorMessage;
+import com.karadyauran.agile.mapper.RoleMapper;
 import com.karadyauran.agile.repository.RoleRepository;
 import com.karadyauran.agile.service.interf.RoleService;
 import jakarta.transaction.Transactional;
@@ -23,32 +24,37 @@ import java.util.UUID;
 public class RoleServiceImpl implements RoleService
 {
     RoleRepository repository;
+    RoleMapper mapper;
 
     @Override
-    public Role getRole(UUID id)
+    public RoleDto getRole(UUID id)
     {
-        return repository.findById(id)
-                .orElseThrow(() -> new RoleWasNotFoundException(ErrorMessage.ROLE_WAS_NOT_FOUND));
+        return mapper.toDto(
+                repository.findById(id)
+                        .orElseThrow(() -> new RoleWasNotFoundException(ErrorMessage.ROLE_WAS_NOT_FOUND))
+        );
     }
 
     @Override
-    public List<Role> getAllRolesForProject(UUID projectId)
+    public List<RoleDto> getAllRolesForProject(UUID projectId)
     {
         // verify project id
-        return repository.findByProjectId(projectId);
+        return mapper.toDtoList(
+                repository.findByProjectId(projectId)
+        );
     }
 
     @Override
-    public Role create(Role role)
+    public RoleDto create(RoleDto role)
     {
-        repository.save(role);
-        var name = role.getName();
-        return repository.findByName(name).orElse(null);
+        var entity = mapper.toEntity(role);
+        repository.save(entity);
+        return role;
     }
 
     @Override
     @Transactional
-    public Role change(UUID id, String name)
+    public RoleDto change(UUID id, String name)
     {
         if (checkRoleById(id))
         {
@@ -61,7 +67,9 @@ public class RoleServiceImpl implements RoleService
         }
 
         repository.changeName(id, name);
-        return repository.findById(id).orElse(null);
+        return mapper.toDto(
+                repository.findById(id).orElse(null)
+        );
     }
 
     @Override

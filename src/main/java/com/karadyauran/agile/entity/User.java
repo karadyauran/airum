@@ -53,12 +53,7 @@ public class User
     )
     List<Project> projects;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_projects",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
+    @ManyToMany(mappedBy = "users")
     List<Role> roles;
 
     @Override

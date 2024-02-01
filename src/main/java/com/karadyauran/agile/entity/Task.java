@@ -11,7 +11,6 @@ import org.hibernate.annotations.UuidGenerator;
 
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -28,7 +27,7 @@ public class Task
     UUID id;
 
     @Column(name = "project_id")
-    UUID project_id;
+    UUID projectId;
 
     @Column(name = "title")
     String title;

@@ -20,4 +20,7 @@ public interface RoleRepository extends JpaRepository<Role, UUID>
     @Modifying
     @Query("update Role r set r.name = :name where r.id = :id")
     void changeName(UUID id, String name);
+
+    @Query("select r from Role r where r.id = :roleId and r.projectId = :projectId")
+    Role findByUserIdAndProjectId(UUID roleId, UUID projectId);
 }

@@ -1,15 +1,14 @@
 package com.karadyauran.agile.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -31,6 +30,14 @@ public class Role
     @Column(name = "project_id")
     UUID projectId;
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_projects",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    List<User> users;
+
     @Override
     public boolean equals(Object o)
     {
@@ -49,6 +56,11 @@ public class Role
     @Override
     public String toString()
     {
-        return name;
+        return String.format(
+                "\n[ROLE]\n%s\n%s\n%s\n",
+                projectId,
+                name,
+                users
+        );
     }
 }

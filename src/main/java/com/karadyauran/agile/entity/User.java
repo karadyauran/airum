@@ -56,6 +56,9 @@ public class User
     @ManyToMany(mappedBy = "users")
     List<Role> roles;
 
+    @OneToMany(mappedBy = "assignedToUser")
+    List<Task> tasks;
+
     @Override
     public boolean equals(Object o)
     {

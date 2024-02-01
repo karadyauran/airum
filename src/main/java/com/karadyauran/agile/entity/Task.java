@@ -56,6 +56,10 @@ public class Task
     @JoinColumn(name = "project_id", insertable = false, updatable = false)
     Project project;
 
+    @ManyToOne
+    @JoinColumn(name = "assigned_to", insertable = false, updatable = false)
+    User assignedToUser;
+
     @Override
     public boolean equals(Object o)
     {

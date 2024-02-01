@@ -1,10 +1,8 @@
 package com.karadyauran.agile.dto;
 
-import com.karadyauran.agile.dto.shortDto.UserShortDto;
 import lombok.*;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 @Getter
 @Setter

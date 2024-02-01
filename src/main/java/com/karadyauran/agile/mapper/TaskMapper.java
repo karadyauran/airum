@@ -6,8 +6,6 @@ import com.karadyauran.agile.entity.Task;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import java.util.List;
-
 @Mapper(componentModel = "spring")
 public interface TaskMapper
 {

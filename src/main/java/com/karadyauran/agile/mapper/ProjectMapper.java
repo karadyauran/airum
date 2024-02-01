@@ -1,7 +1,6 @@
 package com.karadyauran.agile.mapper;
 
 import com.karadyauran.agile.dto.ProjectDto;
-import com.karadyauran.agile.dto.shortDto.ProjectShortDto;
 import com.karadyauran.agile.entity.Project;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -23,8 +22,5 @@ public interface ProjectMapper
     ProjectDto toDto(Project project);
 
     List<ProjectDto> toDtoList(List<Project> projects);
-
-    // PROJECT SHORT DTO
-    ProjectShortDto toShortDto(Project project);
 }
 

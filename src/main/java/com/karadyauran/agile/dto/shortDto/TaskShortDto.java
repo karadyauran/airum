@@ -2,6 +2,8 @@ package com.karadyauran.agile.dto.shortDto;
 
 import lombok.*;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @Builder
@@ -10,6 +12,6 @@ import lombok.*;
 public class TaskShortDto
 {
     String title;
-    String description;
     UserShortDto assignedTo;
+    Date dueTo;
 }

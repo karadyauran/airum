@@ -57,7 +57,6 @@ public class UserController implements UserApi
     @Override
     public ResponseEntity<UserDto> changeFirstname(UUID id, String firstname)
     {
-        System.out.println(id);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(service.changeFirstname(id, firstname));
@@ -89,7 +88,6 @@ public class UserController implements UserApi
     @Override
     public ResponseEntity<UserDto> create(UserDto dto)
     {
-        System.out.println(dto);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(service.create(dto));

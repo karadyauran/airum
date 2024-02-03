@@ -15,5 +15,6 @@ public class TaskDto
     String title;
     String description;
     UserShortDto assignedTo;
+    UserShortDto createdBy;
     Date dueTo;
 }

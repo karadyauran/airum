@@ -1,11 +1,9 @@
 package com.karadyauran.agile.api;
 
 import com.karadyauran.agile.dto.TaskDto;
+import com.karadyauran.agile.entity.Task;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -36,4 +34,7 @@ public interface TaskApi
 
     @DeleteMapping("task/delete")
     ResponseEntity<Void> delete(@RequestParam UUID id);
+
+    @PostMapping("task/create")
+    ResponseEntity<TaskDto> create(@RequestBody Task task);
 }

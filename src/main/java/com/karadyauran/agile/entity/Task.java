@@ -60,6 +60,10 @@ public class Task
     @JoinColumn(name = "assigned_to", insertable = false, updatable = false)
     User assignedToUser;
 
+    @ManyToOne
+    @JoinColumn(name = "created_by", insertable = false, updatable = false)
+    User createdByUser;
+
     @Override
     public boolean equals(Object o)
     {

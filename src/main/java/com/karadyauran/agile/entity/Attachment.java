@@ -8,8 +8,10 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -36,6 +38,10 @@ public class Attachment
 
     @Column(name = "user_id")
     UUID userId;
+
+    @CreationTimestamp
+    @Column(name = "attached_at", updatable = false)
+    Timestamp attachedAt;
 
     @Override
     public boolean equals(Object o)

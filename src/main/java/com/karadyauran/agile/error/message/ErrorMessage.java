@@ -13,4 +13,7 @@ public class ErrorMessage
 
     // PROJECT
     public static final String PROJECT_WAS_NOT_FOUND = "PROJECT was not found!";
+
+    // TASK
+    public static final String TASK_WAS_NOT_FOUND = "TASK was not found!";
 }

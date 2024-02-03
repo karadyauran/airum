@@ -13,7 +13,6 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +25,6 @@ import java.util.UUID;
 public class ProjectServiceImpl implements ProjectService
 {
     ProjectRepository repository;
-
-    @Qualifier("projectMapper")
     ProjectMapper mapper;
 
     @Override
@@ -59,7 +56,8 @@ public class ProjectServiceImpl implements ProjectService
     @Transactional
     public ProjectDto changeName(UUID id, String newName)
     {
-        if (checkProject(id)) {
+        if (checkProject(id))
+        {
             throw new ProjectWasNotFoundException(ErrorMessage.PROJECT_WAS_NOT_FOUND);
         }
 
@@ -73,7 +71,8 @@ public class ProjectServiceImpl implements ProjectService
     @Transactional
     public ProjectDto changeDescription(UUID id, String newDescription)
     {
-        if (checkProject(id)) {
+        if (checkProject(id))
+        {
             throw new ProjectWasNotFoundException(ErrorMessage.PROJECT_WAS_NOT_FOUND);
         }
 
@@ -87,7 +86,8 @@ public class ProjectServiceImpl implements ProjectService
     @Transactional
     public ProjectDto handleProject(UUID id, UUID newOwner)
     {
-        if (checkProject(id)) {
+        if (checkProject(id))
+        {
             throw new ProjectWasNotFoundException(ErrorMessage.PROJECT_WAS_NOT_FOUND);
         }
 
@@ -107,7 +107,8 @@ public class ProjectServiceImpl implements ProjectService
     @Override
     public void delete(UUID id)
     {
-        if (checkProject(id)) {
+        if (checkProject(id))
+        {
             throw new ProjectWasNotFoundException(ErrorMessage.PROJECT_WAS_NOT_FOUND);
         }
 

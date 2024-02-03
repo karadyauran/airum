@@ -44,12 +44,12 @@ create table user_projects
 create table tasks
 (
     id          uuid primary key,
-    project_id  uuid references projects (id) on delete cascade on update cascade,
-    title       varchar(60)                                                    not null,
-    description text                                                           not null,
+    project_id  uuid references projects (id) on delete cascade on update cascade not null,
+    title       varchar(60)                                                       not null,
+    description text                                                              not null,
     status      varchar(30) default 'IN_PROGRESS',
-    assigned_to uuid references users (id) on delete cascade on update cascade not null,
-    created_by  uuid references users (id) on delete cascade on update cascade not null,
+    assigned_to uuid references users (id) on delete cascade on update cascade    not null,
+    created_by  uuid references users (id) on delete cascade on update cascade    not null,
     due_to      date,
     created_at  timestamp   default now()
 );
@@ -60,13 +60,14 @@ create table attachments
     name    varchar(30)                                                    not null,
     path    varchar(200)                                                   not null,
     task_id uuid references tasks (id) on delete cascade on update cascade not null,
-    user_id uuid references users (id) on delete cascade on update cascade not null
+    user_id uuid references users (id) on delete cascade on update cascade not null,
+    attached_at timestamp default now()
 );
 
 create table comments
 (
     id         uuid primary key,
-    task       uuid references tasks (id) on delete cascade on update cascade not null,
+    task_id    uuid references tasks (id) on delete cascade on update cascade not null,
     user_id    uuid references users (id) on delete cascade on update cascade not null,
     comment    text                                                           not null,
     created_at timestamp default now()

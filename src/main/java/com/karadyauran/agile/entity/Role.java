@@ -1,6 +1,5 @@
 package com.karadyauran.agile.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -8,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.UuidGenerator;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -30,13 +28,13 @@ public class Role
     @Column(name = "project_id")
     UUID projectId;
 
-    @ManyToMany
+    @ManyToOne
     @JoinTable(
             name = "user_projects",
             joinColumns = @JoinColumn(name = "role_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    List<User> users;
+    User user;
 
     @Override
     public boolean equals(Object o)
@@ -60,7 +58,7 @@ public class Role
                 "\n[ROLE]\n%s\n%s\n%s\n",
                 projectId,
                 name,
-                users
+                user
         );
     }
 }

@@ -53,7 +53,7 @@ public class User
     )
     List<Project> projects;
 
-    @ManyToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "user")
     List<Role> roles;
 
     @OneToMany(mappedBy = "assignedToUser")

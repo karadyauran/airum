@@ -5,7 +5,6 @@ import com.karadyauran.agile.entity.Notification;
 import com.karadyauran.agile.error.UserWasNotFoundException;
 import com.karadyauran.agile.error.message.ErrorMessage;
 import com.karadyauran.agile.mapper.NotificationMapper;
-import com.karadyauran.agile.mapper.UserMapper;
 import com.karadyauran.agile.repository.NotificationRepository;
 import com.karadyauran.agile.repository.UserRepository;
 import com.karadyauran.agile.service.interf.NotificationService;
@@ -28,14 +27,13 @@ public class NotificationServiceImpl implements NotificationService
     UserRepository userRepository;
 
     NotificationMapper notificationMapper;
-    UserMapper userMapper;
 
     @Override
     public List<NotificationDto> getNotifications(UUID user1, UUID user2)
     {
         if (userIsNotExists(user1) || userIsNotExists(user2))
         {
-            throw  new UserWasNotFoundException(ErrorMessage.USER_WAS_NOT_FOUND);
+            throw new UserWasNotFoundException(ErrorMessage.USER_WAS_NOT_FOUND);
         }
 
         return notificationMapper.toDtoList(
@@ -52,7 +50,7 @@ public class NotificationServiceImpl implements NotificationService
 
         if (userIsNotExists(receiver) || userIsNotExists(sender))
         {
-            throw  new UserWasNotFoundException(ErrorMessage.USER_WAS_NOT_FOUND);
+            throw new UserWasNotFoundException(ErrorMessage.USER_WAS_NOT_FOUND);
         }
 
         notificationRepository.save(notification);

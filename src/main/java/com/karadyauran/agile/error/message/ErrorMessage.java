@@ -16,4 +16,7 @@ public class ErrorMessage
 
     // TASK
     public static final String TASK_WAS_NOT_FOUND = "TASK was not found!";
+
+    // COMMENT
+    public static final String COMMENT_WAS_NOT_FOUND = "COMMENT was not found!";
 }

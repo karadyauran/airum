@@ -62,6 +62,9 @@ public class User
     @OneToMany(mappedBy = "user")
     List<Comment> comments;
 
+    @OneToMany(mappedBy = "senderUser")
+    List<Notification> sent;
+
     @Override
     public boolean equals(Object o)
     {

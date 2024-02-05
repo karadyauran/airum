@@ -1,9 +1,6 @@
 package com.karadyauran.agile.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +36,10 @@ public class Notification
     @CreationTimestamp
     @Column(name = "sent_at", updatable = false)
     Timestamp sentAt;
+
+    @ManyToOne
+    @JoinColumn(name = "sender", updatable = false, insertable = false)
+    User senderUser;
 
     @Override
     public boolean equals(Object o)

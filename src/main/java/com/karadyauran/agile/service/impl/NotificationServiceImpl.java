@@ -40,9 +40,7 @@ public class NotificationServiceImpl implements NotificationService
 
         return notificationMapper.toDtoList(
                 notificationRepository
-                        .findAllByIds(user1, user2),
-                userRepository,
-                userMapper
+                        .findAllByIds(user1, user2)
         );
     }
 
@@ -58,7 +56,7 @@ public class NotificationServiceImpl implements NotificationService
         }
 
         notificationRepository.save(notification);
-        return notificationMapper.toDto(notification, userRepository, userMapper);
+        return notificationMapper.toDto(notification);
     }
 
     private boolean checkUser(UUID id)

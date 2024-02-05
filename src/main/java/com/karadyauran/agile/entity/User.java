@@ -1,76 +1,69 @@
 package com.karadyauran.agile.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UuidGenerator;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+
+@Data
 @Entity
 @Table(name = "users")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class User
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "u_user_id")
-    private UUID userId;
+    @UuidGenerator
+    @Column(name = "id")
+    UUID id;
 
-    @Column(name = "u_username")
-    private String username;
+    @Column(name = "username")
+    String username;
 
-    @Column(name = "u_name")
-    private String name;
+    @Column(name = "firstname")
+    String firstname;
 
-    @Column(name = "u_surname")
-    private String surname;
+    @Column(name = "surname")
+    String surname;
 
-    @Column(name = "u_email")
-    private String email;
+    @Column(name = "email")
+    String email;
 
-    @Column(name = "u_password_hash")
-    private String passwordHash;
+    @Column(name = "password")
+    String password;
 
-    @Column(name = "u_created_at")
-    private LocalDate createdAt;
+    @CreationTimestamp
+    @Column(name = "registered_at", updatable = false)
+    Timestamp registeredAt;
 
-    @JsonBackReference
+    @ManyToMany
+    @JoinTable(
+            name = "user_projects",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id")
+    )
+    List<Project> projects;
+
     @OneToMany(mappedBy = "user")
-    List<ProjectMember> projectMembers;
+    List<Role> roles;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "assignedTo")
-    private List<Task> assignedTasks;
+    @OneToMany(mappedBy = "assignedToUser")
+    List<Task> tasks;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "createdBy")
-    private List<Task> createdTasks;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "commentUser")
-    private List<Comment> taskComments;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "sender")
-    private List<Notification> sendNotifications;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "receiver")
-    private List<Notification> receiveNotifications;
-
-    @JsonBackReference
     @OneToMany(mappedBy = "user")
-    private List<Attachment> attachments;
+    List<Comment> comments;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "owner")
-    private List<Project> ownedProjects;
+    @OneToMany(mappedBy = "senderUser")
+    List<Notification> sent;
 
     @Override
     public boolean equals(Object o)
@@ -78,19 +71,24 @@ public class User
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userId == user.userId;
+        return Objects.equals(id, user.id)
+                && Objects.equals(username, user.username);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(userId);
+        return Objects.hash(id, username);
     }
 
     @Override
     public String toString()
     {
-        return String.format("User: %s, %s, %s",
-                userId, username, createdAt);
+        return String.format(
+                "username: %s\nfirstname: %s\nsurname: %s\n",
+                this.username,
+                this.firstname,
+                this.surname
+        );
     }
 }

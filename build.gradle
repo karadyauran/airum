@@ -21,18 +21,42 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    postgreVersion = '42.7.1'
+    nycodeVersion = '2.3.0'
+    jbcryptVersion = '0.4'
+    mapstuctVersion = '1.5.5.Final'
+    mapstuctProcessorVersion = '1.5.5.Final'
+    springDocVersion = '2.2.0'
+}
+
 dependencies {
-    implementation group: 'com.mysql', name: 'mysql-connector-j', version: '8.2.0'
+    // Lombok for Simplifying Java Code
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Spring Boot Core Dependencies
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation group: 'org.liquibase', name: 'liquibase-core', version: '4.25.1'
-    implementation 'de.nycode:bcrypt:2.3.0'
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springDocVersion}"
+
+    // PostgreSQL Database Dependencies
+    implementation group: 'org.postgresql', name: 'postgresql', version: postgreVersion
+
+    // Flyway for Database Version Control
+    implementation 'org.flywaydb:flyway-core'
+
+    // Password Hashing Dependencies
+    implementation "de.nycode:bcrypt:${nycodeVersion}"
+    implementation "org.mindrot:jbcrypt:${jbcryptVersion}"
+
+    // Testing Dependencies
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    implementation "org.mindrot:jbcrypt:0.4"
-    implementation group: 'org.postgresql', name: 'postgresql', version: '42.7.1'
+
+    // Mapper
+    implementation group: 'org.mapstruct', name: 'mapstruct', version: mapstuctVersion
+    annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: mapstuctProcessorVersion
 }
 
 tasks.named('test') {

@@ -1,97 +1,92 @@
 package com.karadyauran.agile.entity;
 
-import com.fasterxml.jackson.annotation.*;
 import com.karadyauran.agile.entity.enums.TaskStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UuidGenerator;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
+@Data
 @Entity
 @Table(name = "tasks")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Task
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "t_task_id")
-    private UUID taskId;
+    @UuidGenerator
+    @Column(name = "id")
+    UUID id;
 
-    @Column(name = "t_project_id", insertable = false, updatable = false)
-    private UUID projectId;
+    @Column(name = "project_id")
+    UUID projectId;
 
-    @Column(name = "t_assigned_to_id", insertable = false, updatable = false)
-    private UUID assignedToId;
+    @Column(name = "title")
+    String title;
 
-    @Column(name = "t_created_by_id", insertable = false, updatable = false)
-    private UUID createdById;
+    @Column(name = "description")
+    String description;
 
-    @Column(name = "t_title")
-    private String title;
-
-    @Column(name = "t_description")
-    private String description;
-
-    @Column(name = "t_status")
+    @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private TaskStatus status;
+    TaskStatus status;
 
-    @Column(name = "t_created_at")
-    private LocalDate createdAt;
+    @Column(name = "assigned_to")
+    UUID assignedTo;
 
-    @Column(name = "t_due_to")
-    private LocalDate dueDate;
+    @Column(name = "created_by", updatable = false)
+    UUID createdBy;
 
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "t_project_id", referencedColumnName = "p_project_id")
-    private Project project;
+    @Column(name = "due_to")
+    Date dueTo;
 
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "t_assigned_to_id", referencedColumnName = "u_user_id")
-    private User assignedTo;
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    Timestamp createdAt;
 
     @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "t_created_by_id", referencedColumnName = "u_user_id")
-    private User createdBy;
+    @JoinColumn(name = "project_id", insertable = false, updatable = false)
+    Project project;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "task")
-    private List<Comment> taskComments;
+    @ManyToOne
+    @JoinColumn(name = "assigned_to", insertable = false, updatable = false)
+    User assignedToUser;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "task")
-    private List<Attachment> attachments;
+    @ManyToOne
+    @JoinColumn(name = "created_by", insertable = false, updatable = false)
+    User createdByUser;
 
     @Override
     public boolean equals(Object o)
     {
         if (this == o) return true;
-        if (!(o instanceof Task task)) return false;
-        return Objects.equals(taskId, task.taskId);
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return Objects.equals(id, task.id);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(taskId);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString()
     {
-        return String.format("Task: %s, %s",
-                title, status);
+        return String.format(
+                "%s: %s -> due to %s",
+                this.title,
+                this.description,
+                this.dueTo
+        );
     }
 }

@@ -54,16 +54,6 @@ create table tasks
     created_at  timestamp   default now()
 );
 
-create table attachments
-(
-    id          uuid primary key,
-    name        varchar(30)                                                    not null,
-    path        varchar(200)                                                   not null,
-    task_id     uuid references tasks (id) on delete cascade on update cascade not null,
-    user_id     uuid references users (id) on delete cascade on update cascade not null,
-    attached_at timestamp default now()
-);
-
 create table comments
 (
     id         uuid primary key,

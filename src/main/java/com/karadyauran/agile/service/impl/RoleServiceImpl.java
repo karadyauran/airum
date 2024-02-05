@@ -56,12 +56,12 @@ public class RoleServiceImpl implements RoleService
     @Transactional
     public RoleDto change(UUID id, String name)
     {
-        if (checkRoleById(id))
+        if (roleIsNotExists(id))
         {
             throw new RoleWasNotFoundException(ErrorMessage.ROLE_WAS_NOT_FOUND);
         }
 
-        if (checkRoleByName(name))
+        if (roleIsAlreadyExistsByName(id, name))
         {
             throw new RoleIsAlreadyExists(ErrorMessage.ROLE_IS_ALREADY_EXISTS);
         }
@@ -76,7 +76,7 @@ public class RoleServiceImpl implements RoleService
     @Transactional
     public void delete(UUID id)
     {
-        if (checkRoleById(id))
+        if (roleIsNotExists(id))
         {
             throw new RoleWasNotFoundException(ErrorMessage.ROLE_WAS_NOT_FOUND);
         }
@@ -84,13 +84,15 @@ public class RoleServiceImpl implements RoleService
         repository.deleteById(id);
     }
 
-    private boolean checkRoleById(UUID id)
+    private boolean roleIsNotExists(UUID id)
     {
-        return repository.findById(id).orElse(null) == null;
+        return !repository.existsById(id);
     }
 
-    private boolean checkRoleByName(String name)
+    private boolean roleIsAlreadyExistsByName(UUID id, String name)
     {
-        return repository.findByName(name).orElse(null) != null;
+        var role =  repository.findByNameAndProjectId(name, id).orElse(null);
+        return role == null;
     }
 }
+

@@ -65,7 +65,7 @@ public class CommentServiceImpl implements CommentService
             throw new UserWasNotFoundException(ErrorMessage.USER_WAS_NOT_FOUND);
         }
 
-        UUID taskId = comment.getTaskId();
+        var taskId = comment.getTaskId();
 
         if (taskIsNotExists(taskId))
         {

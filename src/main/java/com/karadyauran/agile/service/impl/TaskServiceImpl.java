@@ -38,7 +38,7 @@ public class TaskServiceImpl implements TaskService
     @Override
     public TaskDto getTaskById(UUID id)
     {
-        if (checkTaskById(id))
+        if (taskIsNotExists(id))
         {
             throw new TaskWasNotFoundException(ErrorMessage.TASK_WAS_NOT_FOUND);
         }
@@ -52,7 +52,7 @@ public class TaskServiceImpl implements TaskService
     @Override
     public List<TaskDto> getTasksByProjectId(UUID id)
     {
-        if (checkProjectById(id))
+        if (projectIsNotExists(id))
         {
             throw new ProjectWasNotFoundException(ErrorMessage.PROJECT_WAS_NOT_FOUND);
         }
@@ -66,7 +66,7 @@ public class TaskServiceImpl implements TaskService
     @Override
     public List<TaskDto> getTasksForProjectByStatus(UUID id, String status)
     {
-        if (checkProjectById(id))
+        if (projectIsNotExists(id))
         {
             throw new ProjectWasNotFoundException(ErrorMessage.PROJECT_WAS_NOT_FOUND);
         }
@@ -81,7 +81,7 @@ public class TaskServiceImpl implements TaskService
     @Transactional
     public TaskDto changeTaskTitle(UUID id, String newTitle)
     {
-        if (checkTaskById(id))
+        if (taskIsNotExists(id))
         {
             throw new TaskWasNotFoundException(ErrorMessage.TASK_WAS_NOT_FOUND);
         }
@@ -97,7 +97,7 @@ public class TaskServiceImpl implements TaskService
     @Transactional
     public TaskDto changeTaskDescription(UUID id, String newDescription)
     {
-        if (checkTaskById(id))
+        if (taskIsNotExists(id))
         {
             throw new TaskWasNotFoundException(ErrorMessage.TASK_WAS_NOT_FOUND);
         }
@@ -113,12 +113,12 @@ public class TaskServiceImpl implements TaskService
     @Transactional
     public TaskDto assignToUser(UUID id, UUID userId)
     {
-        if (checkTaskById(id))
+        if (taskIsNotExists(id))
         {
             throw new TaskWasNotFoundException(ErrorMessage.TASK_WAS_NOT_FOUND);
         }
 
-        if (checkUserById(id))
+        if (userIsNotExists(id))
         {
             throw new UserWasNotFoundException(ErrorMessage.USER_WAS_NOT_FOUND);
         }
@@ -134,7 +134,7 @@ public class TaskServiceImpl implements TaskService
     @Transactional
     public TaskDto changeDate(UUID id, Date date)
     {
-        if (checkTaskById(id))
+        if (taskIsNotExists(id))
         {
             throw new TaskWasNotFoundException(ErrorMessage.TASK_WAS_NOT_FOUND);
         }
@@ -150,7 +150,7 @@ public class TaskServiceImpl implements TaskService
     @Transactional
     public void delete(UUID id)
     {
-        if (checkTaskById(id))
+        if (taskIsNotExists(id))
         {
             throw new TaskWasNotFoundException(ErrorMessage.TASK_WAS_NOT_FOUND);
         }
@@ -165,18 +165,18 @@ public class TaskServiceImpl implements TaskService
         return taskMapper.toDto(task);
     }
 
-    private boolean checkUserById(UUID id)
+    private boolean userIsNotExists(UUID id)
     {
-        return userRepository.findById(id).orElse(null) == null;
+        return !userRepository.existsById(id);
     }
 
-    private boolean checkProjectById(UUID id)
+    private boolean projectIsNotExists(UUID id)
     {
-        return projectRepository.findById(id).orElse(null) == null;
+        return !projectRepository.existsById(id);
     }
 
-    private boolean checkTaskById(UUID id)
+    private boolean taskIsNotExists(UUID id)
     {
-        return taskRepository.findById(id).orElse(null) == null;
+        return !taskRepository.existsById(id);
     }
 }

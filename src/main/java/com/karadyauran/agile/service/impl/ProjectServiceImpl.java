@@ -56,7 +56,7 @@ public class ProjectServiceImpl implements ProjectService
     @Transactional
     public ProjectDto changeName(UUID id, String newName)
     {
-        if (checkProject(id))
+        if (projectIsNotExists(id))
         {
             throw new ProjectWasNotFoundException(ErrorMessage.PROJECT_WAS_NOT_FOUND);
         }
@@ -71,7 +71,7 @@ public class ProjectServiceImpl implements ProjectService
     @Transactional
     public ProjectDto changeDescription(UUID id, String newDescription)
     {
-        if (checkProject(id))
+        if (projectIsNotExists(id))
         {
             throw new ProjectWasNotFoundException(ErrorMessage.PROJECT_WAS_NOT_FOUND);
         }
@@ -86,7 +86,7 @@ public class ProjectServiceImpl implements ProjectService
     @Transactional
     public ProjectDto handleProject(UUID id, UUID newOwner)
     {
-        if (checkProject(id))
+        if (projectIsNotExists(id))
         {
             throw new ProjectWasNotFoundException(ErrorMessage.PROJECT_WAS_NOT_FOUND);
         }
@@ -107,7 +107,7 @@ public class ProjectServiceImpl implements ProjectService
     @Override
     public void delete(UUID id)
     {
-        if (checkProject(id))
+        if (projectIsNotExists(id))
         {
             throw new ProjectWasNotFoundException(ErrorMessage.PROJECT_WAS_NOT_FOUND);
         }
@@ -115,8 +115,8 @@ public class ProjectServiceImpl implements ProjectService
         repository.deleteById(id);
     }
 
-    private boolean checkProject(UUID id)
+    private boolean projectIsNotExists(UUID id)
     {
-        return repository.findById(id).orElse(null) == null;
+        return !repository.existsById(id);
     }
 }

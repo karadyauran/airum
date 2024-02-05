@@ -33,7 +33,7 @@ public class NotificationServiceImpl implements NotificationService
     @Override
     public List<NotificationDto> getNotifications(UUID user1, UUID user2)
     {
-        if (checkUser(user1) || checkUser(user2))
+        if (userIsNotExists(user1) || userIsNotExists(user2))
         {
             throw  new UserWasNotFoundException(ErrorMessage.USER_WAS_NOT_FOUND);
         }
@@ -50,7 +50,7 @@ public class NotificationServiceImpl implements NotificationService
         var sender = notification.getSender();
         var receiver = notification.getReceiver();
 
-        if (checkUser(receiver) || checkUser(sender))
+        if (userIsNotExists(receiver) || userIsNotExists(sender))
         {
             throw  new UserWasNotFoundException(ErrorMessage.USER_WAS_NOT_FOUND);
         }
@@ -59,8 +59,8 @@ public class NotificationServiceImpl implements NotificationService
         return notificationMapper.toDto(notification);
     }
 
-    private boolean checkUser(UUID id)
+    private boolean userIsNotExists(UUID id)
     {
-        return userRepository.findById(id).orElse(null) == null;
+        return !userRepository.existsById(id);
     }
 }

@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService
     @Transactional
     public UserDto changeUsername(UUID id, String username)
     {
-        if (checkUserById(id))
+        if (userIsNotExists(id))
         {
             throw new UserWasNotFoundException(ErrorMessage.USER_WAS_NOT_FOUND);
         }
@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService
     @Transactional
     public UserDto changeFirstname(UUID id, String firstname)
     {
-        if (checkUserById(id))
+        if (userIsNotExists(id))
         {
             throw new UserWasNotFoundException(ErrorMessage.USER_WAS_NOT_FOUND);
         }
@@ -104,7 +104,7 @@ public class UserServiceImpl implements UserService
     @Transactional
     public UserDto changeSurname(UUID id, String surname)
     {
-        if (checkUserById(id))
+        if (userIsNotExists(id))
         {
             throw new UserWasNotFoundException(ErrorMessage.USER_WAS_NOT_FOUND);
         }
@@ -120,7 +120,7 @@ public class UserServiceImpl implements UserService
     @Transactional
     public UserDto changeEmail(UUID id, String email)
     {
-        if (checkUserById(id))
+        if (userIsNotExists(id))
         {
             throw new UserWasNotFoundException(ErrorMessage.USER_WAS_NOT_FOUND);
         }
@@ -141,7 +141,7 @@ public class UserServiceImpl implements UserService
     @Transactional
     public void delete(UUID id)
     {
-        if (checkUserById(id))
+        if (userIsNotExists(id))
         {
             throw new UserWasNotFoundException(ErrorMessage.USER_WAS_NOT_FOUND);
         }
@@ -164,9 +164,9 @@ public class UserServiceImpl implements UserService
         return mapper.toDto(saved);
     }
 
-    private boolean checkUserById(UUID id)
+    private boolean userIsNotExists(UUID id)
     {
-        return repository.findById(id).orElse(null) == null;
+        return !repository.existsById(id);
     }
 
     private boolean checkUserByUsername(String username)

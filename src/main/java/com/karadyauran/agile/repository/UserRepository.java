@@ -1,28 +1,32 @@
 package com.karadyauran.agile.repository;
 
 import com.karadyauran.agile.entity.User;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
-@Repository
 public interface UserRepository extends JpaRepository<User, UUID>
 {
-    User findUserByUserId(UUID id);
+    Optional<User> findByUsername(String username);
 
-    @NotNull
-    @Query("SELECT u FROM User u")
-    List<User> findAll();
-
-    Long deleteUserByUserId(UUID id);
+    Optional<User> findByEmail(String email);
 
     @Modifying
-    @Query("UPDATE User u SET u.username = :newUsername WHERE u.userId = :userId")
-    int updateUsernameById(@Param("userId") UUID userId, @Param("newUsername") String newUsername);
+    @Query("update User u set u.username = :username where u.id = :id")
+    void changeUsername(UUID id, String username);
+
+    @Modifying
+    @Query("update User u set u.firstname = :firstname where u.id = :id")
+    void changeFirstname(UUID id, String firstname);
+
+    @Modifying
+    @Query("update User u set u.surname = :surname where u.id = :id")
+    void changeSurname(UUID id, String surname);
+
+    @Modifying
+    @Query("update User u set u.email = :email where u.id = :id")
+    void changeEmail(UUID id, String email);
 }

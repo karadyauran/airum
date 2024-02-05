@@ -1,16 +1,22 @@
 package com.karadyauran.agile.dto;
 
-import com.karadyauran.agile.entity.User;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.Builder;
-import lombok.Value;
 
-@Value
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.AllArgsConstructor;
+
+import java.sql.Timestamp;
+
+@Getter
+@Setter
 @Builder
-@Tag(name = "Notification", description = "Dto for notification")
+@NoArgsConstructor
+@AllArgsConstructor
 public class NotificationDto
 {
-    String message;
-    User sender;
-    User receiver;
+   String message;
+   UserDto sender;
+   Timestamp sentAt;
 }

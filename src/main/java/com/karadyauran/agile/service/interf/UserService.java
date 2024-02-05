@@ -1,19 +1,27 @@
 package com.karadyauran.agile.service.interf;
 
 import com.karadyauran.agile.dto.UserDto;
-import com.karadyauran.agile.entity.User;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface UserService
 {
-    UserDto getUserById(String id);
+    UserDto getUserById(UUID id);
 
-    List<User> findAll();
+    UserDto getUserByUsername(String username);
 
-    boolean deleteUser(String id);
+    List<UserDto> getAll();
 
-    User create(User user);
+    UserDto changeUsername(UUID id, String username);
 
-    boolean updateUsername(String id, String username);
+    UserDto changeFirstname(UUID id, String firstname);
+
+    UserDto changeSurname(UUID id, String surname);
+
+    UserDto changeEmail(UUID id, String email);
+
+    void delete(UUID id);
+
+    UserDto create(UserDto dto);
 }

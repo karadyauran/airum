@@ -1,59 +1,45 @@
 package com.karadyauran.agile.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UuidGenerator;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.UUID;
 
+@Data
 @Entity
 @Table(name = "notifications")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Notification
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "n_notification_id")
-    private UUID notificationId;
+    @UuidGenerator
+    @Column(name = "id")
+    UUID id;
 
-    @Column(name = "n_sender_id", insertable = false, updatable = false)
-    private UUID senderId;
+    @Column(name = "sender")
+    UUID sender;
 
-    @Column(name = "n_receiver_id", insertable = false, updatable = false)
-    private UUID receiverId;
+    @Column(name = "receiver")
+    UUID receiver;
 
-    @Column(name = "n_notification_message")
-    private String message;
+    @Column(name = "message")
+    String message;
 
-    @Column(name = "n_created_at")
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    @ManyToOne
-    @JsonBackReference("notificationSenderReference")
-    @JoinColumn(name = "n_sender_id", referencedColumnName = "u_user_id")
-    private User sender;
+    @CreationTimestamp
+    @Column(name = "sent_at", updatable = false)
+    Timestamp sentAt;
 
     @ManyToOne
-    @JsonBackReference("notificationReceiverReference")
-    @JoinColumn(name = "n_receiver_id", referencedColumnName = "u_user_id")
-    private User receiver;
+    @JoinColumn(name = "sender", updatable = false, insertable = false)
+    User senderUser;
 
     @Override
     public boolean equals(Object o)
@@ -61,18 +47,23 @@ public class Notification
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Notification that = (Notification) o;
-        return Objects.equals(notificationId, that.notificationId);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(notificationId);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString()
     {
-        return String.format("Notification: %s, %s, '%s'", senderId, receiverId, message);
+        return String.format(
+                "%s: %s\nto %s",
+                this.sender,
+                this.message,
+                this.receiver
+        );
     }
 }

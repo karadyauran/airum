@@ -1,19 +1,23 @@
 package com.karadyauran.agile.dto;
 
-import com.karadyauran.agile.entity.User;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.Builder;
-import lombok.Value;
+import com.karadyauran.agile.dto.shortDto.TaskShortDto;
+import com.karadyauran.agile.dto.shortDto.UserShortDto;
+import lombok.*;
 
+import java.sql.Timestamp;
 import java.util.List;
 
-@Value
+@Getter
+@Setter
 @Builder
-@Tag(name = "Project", description = "Dto for project")
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProjectDto
 {
-    User owner;
-    String projectName;
+    String id;
+    String name;
     String description;
-    List<User> users;
+    List<UserShortDto> members;
+    List<TaskShortDto> tasks;
+    Timestamp createdAt;
 }

@@ -1,59 +1,48 @@
 package com.karadyauran.agile.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UuidGenerator;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Column;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.UUID;
 
+@Data
 @Entity
-@Table(name = "task_comments")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "comments")
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Comment
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "tc_comment_id")
-    private UUID commentId;
+    @UuidGenerator
+    @Column(name = "id")
+    UUID id;
 
-    @Column(name = "tc_task_id", insertable = false, updatable = false)
-    private UUID taskId;
+    @Column(name = "task_id")
+    UUID taskId;
 
-    @Column(name = "tc_user_id", insertable = false, updatable = false)
-    private UUID userId;
+    @Column(name = "user_id")
+    UUID userId;
 
-    @Column(name = "tc_comment")
-    private String text;
+    @Column(name = "comment")
+    String comment;
 
-    @Column(name = "tc_created_at")
-    private LocalDateTime createdAt = LocalDateTime.now();
+    @Column(name = "changed")
+    boolean changed;
+
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    Timestamp createdAt;
 
     @ManyToOne
-    @JsonBackReference("commentTaskReference")
-    @JoinColumn(name = "tc_task_id", referencedColumnName = "t_task_id")
-    private Task task;
-
-    @ManyToOne
-    @JsonBackReference("commentUserReference")
-    @JoinColumn(name = "tc_user_id", referencedColumnName = "u_user_id")
-    private User commentUser;
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    User user;
 
     @Override
     public boolean equals(Object o)
@@ -61,19 +50,22 @@ public class Comment
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Comment comment = (Comment) o;
-        return Objects.equals(commentId, comment.commentId);
+        return Objects.equals(id, comment.id);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(commentId);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString()
     {
-        return String.format("Comment: %s, %s",
-                taskId, text);
+        return String.format(
+                "%s -> %s",
+                this.comment,
+                this.user
+        );
     }
 }

@@ -1,39 +1,40 @@
 package com.karadyauran.agile.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Column;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.UuidGenerator;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.util.UUID;
 import java.util.Objects;
+import java.util.UUID;
 
-
+@Data
 @Entity
 @Table(name = "roles")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Role
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "r_role_id")
-    private UUID roleId;
+    @UuidGenerator
+    @Column(name = "id")
+    UUID id;
 
-    @Column(name = "r_role_name")
-    private String roleName;
+    @Column(name = "name")
+    String name;
 
-    @Column(name = "r_role_description")
-    private String description;
+    @Column(name = "project_id")
+    UUID projectId;
+
+    @ManyToOne
+    @JoinTable(
+            name = "user_projects",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    User user;
 
     @Override
     public boolean equals(Object o)
@@ -41,18 +42,23 @@ public class Role
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Role role = (Role) o;
-        return Objects.equals(roleId, role.roleId);
+        return Objects.equals(id, role.id);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(roleId);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString()
     {
-        return roleName;
+        return String.format(
+                "\n[ROLE]\n%s\n%s\n%s\n",
+                projectId,
+                name,
+                user
+        );
     }
 }

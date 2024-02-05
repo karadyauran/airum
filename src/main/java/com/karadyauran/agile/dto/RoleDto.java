@@ -1,14 +1,13 @@
 package com.karadyauran.agile.dto;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.Builder;
-import lombok.Value;
+import lombok.*;
 
-@Value
+@Getter
+@Setter
 @Builder
-@Tag(name = "Role", description = "Dto for role")
+@NoArgsConstructor
+@AllArgsConstructor
 public class RoleDto
 {
-    String roleName;
-    String description;
+    String name;
 }

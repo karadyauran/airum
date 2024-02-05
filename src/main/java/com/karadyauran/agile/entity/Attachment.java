@@ -1,69 +1,47 @@
 package com.karadyauran.agile.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.karadyauran.agile.entity.enums.FileFormat;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Column;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UuidGenerator;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.UUID;
 
+@Data
 @Entity
-@Table(name = "task_attachments")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "attachments")
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Attachment
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "ta_attachment_id")
-    private UUID attachmentId;
+    @UuidGenerator
+    @Column(name = "id")
+    UUID id;
 
-    @Column(name = "ta_task_id", insertable = false, updatable = false)
-    private UUID taskId;
+    @Column(name = "name")
+    String name;
 
-    @Column(name = "ta_user_id", insertable = false, updatable = false)
-    private UUID userId;
+    @Column(name = "path")
+    String path;
 
-    @Column(name = "ta_attachment_name")
-    private String attachmentName;
+    @Column(name = "task_id")
+    UUID taskId;
 
-    @Column(name = "ta_attachment_type")
-    @Enumerated(EnumType.STRING)
-    private FileFormat attachmentType;
+    @Column(name = "user_id")
+    UUID userId;
 
-    @Column(name = "ta_attachment_path")
-    private String attachmentPath;
-
-    @Column(name = "ta_created_at")
-    private LocalDateTime createdAt = LocalDateTime.now();
-
-    @ManyToOne
-    @JsonBackReference("attachmentTaskReference")
-    @JoinColumn(name = "ta_task_id", referencedColumnName = "t_task_id")
-    private Task task;
-
-    @ManyToOne
-    @JsonBackReference("attachmentUserReference")
-    @JoinColumn(name = "ta_user_id", referencedColumnName = "u_user_id")
-    private User user;
+    @CreationTimestamp
+    @Column(name = "attached_at", updatable = false)
+    Timestamp attachedAt;
 
     @Override
     public boolean equals(Object o)
@@ -71,19 +49,22 @@ public class Attachment
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Attachment that = (Attachment) o;
-        return Objects.equals(attachmentId, that.attachmentId);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(attachmentId);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString()
     {
-        return String.format("Attachment: %s, %s",
-                taskId, attachmentName);
+        return String.format(
+                "%s -> %s",
+                this.name,
+                this.path
+        );
     }
 }

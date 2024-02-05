@@ -12,7 +12,7 @@ public interface RoleService
 
     List<RoleDto> getAllRolesForProject(UUID projectId);
 
-    RoleDto create(RoleDto role);
+    RoleDto create(Role role);
 
     RoleDto change(UUID id, String name);
 

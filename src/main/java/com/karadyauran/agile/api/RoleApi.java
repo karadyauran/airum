@@ -2,6 +2,8 @@ package com.karadyauran.agile.api;
 
 import com.karadyauran.agile.dto.RoleDto;
 import com.karadyauran.agile.entity.Role;
+import com.karadyauran.agile.validation.interf.Uuid;
+import jakarta.validation.constraints.Size;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,17 +13,17 @@ import java.util.UUID;
 public interface RoleApi
 {
     @GetMapping("role/{id}")
-    ResponseEntity<RoleDto> getRoleById(@PathVariable UUID id);
+    ResponseEntity<RoleDto> getRoleById(@Uuid @PathVariable UUID id);
 
     @GetMapping("role/all")
-    ResponseEntity<List<RoleDto>> getRolesForProject(@RequestParam UUID project);
+    ResponseEntity<List<RoleDto>> getRolesForProject(@Uuid @RequestParam UUID project);
 
     @PostMapping("role/create")
-    ResponseEntity<RoleDto> create(RoleDto role);
+    ResponseEntity<RoleDto> create(Role role);
 
     @PutMapping("role/change-name")
-    ResponseEntity<RoleDto> change(@RequestParam UUID id, @RequestParam String name);
+    ResponseEntity<RoleDto> change(@Uuid @RequestParam UUID id, @Size(min = 2, max = 20) @RequestParam String name);
 
     @DeleteMapping("role/delete/{id}")
-    ResponseEntity<Void> delete(@PathVariable UUID id);
+    ResponseEntity<Void> delete(@Uuid @PathVariable UUID id);
 }

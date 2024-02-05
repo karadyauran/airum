@@ -2,6 +2,8 @@ package com.karadyauran.agile.api;
 
 import com.karadyauran.agile.dto.CommentDto;
 import com.karadyauran.agile.entity.Comment;
+import com.karadyauran.agile.validation.interf.Uuid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,14 +13,14 @@ import java.util.UUID;
 public interface CommentApi
 {
     @GetMapping("comment/{id}")
-    ResponseEntity<CommentDto> getComment(@PathVariable UUID id);
+    ResponseEntity<CommentDto> getComment(@Uuid @PathVariable UUID id);
 
     @GetMapping("comment")
-    ResponseEntity<List<CommentDto>> getCommentsForTask(@RequestParam UUID taskId);
+    ResponseEntity<List<CommentDto>> getCommentsForTask(@Uuid @RequestParam UUID taskId);
 
     @PostMapping("comment/create")
     ResponseEntity<CommentDto> create(@RequestBody Comment comment);
 
     @PutMapping("comment/change-comment")
-    ResponseEntity<CommentDto> changeComment(@RequestParam UUID id, @RequestParam String newComment);
+    ResponseEntity<CommentDto> changeComment(@Uuid @RequestParam UUID id, @NotNull @RequestParam String newComment);
 }

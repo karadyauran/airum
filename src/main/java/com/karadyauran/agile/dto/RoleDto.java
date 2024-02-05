@@ -1,5 +1,6 @@
 package com.karadyauran.agile.dto;
 
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Getter

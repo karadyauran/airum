@@ -1,6 +1,8 @@
 package com.karadyauran.agile.entity;
 
+import com.karadyauran.agile.validation.interf.Uuid;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +26,15 @@ public class Notification
     @Column(name = "id")
     UUID id;
 
+    @Uuid
     @Column(name = "sender")
     UUID sender;
 
+    @Uuid
     @Column(name = "receiver")
     UUID receiver;
 
+    @NotNull
     @Column(name = "message")
     String message;
 

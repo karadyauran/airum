@@ -1,6 +1,8 @@
 package com.karadyauran.agile.entity;
 
+import com.karadyauran.agile.validation.interf.Uuid;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -22,9 +24,11 @@ public class Role
     @Column(name = "id")
     UUID id;
 
+    @Size(min = 2, max = 20)
     @Column(name = "name")
     String name;
 
+    @Uuid
     @Column(name = "project_id")
     UUID projectId;
 

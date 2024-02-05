@@ -13,8 +13,6 @@ import java.util.UUID;
 @Repository
 public interface RoleRepository extends JpaRepository<Role, UUID>
 {
-    Optional<Role> findByNameAndProjectId(String name, UUID projectId);
-
     List<Role> findByProjectId(UUID id);
 
     @Modifying

@@ -2,7 +2,6 @@ package com.karadyauran.agile.service.impl;
 
 import com.karadyauran.agile.dto.RoleDto;
 import com.karadyauran.agile.entity.Role;
-import com.karadyauran.agile.error.RoleIsAlreadyExists;
 import com.karadyauran.agile.error.RoleWasNotFoundException;
 import com.karadyauran.agile.error.message.ErrorMessage;
 import com.karadyauran.agile.mapper.RoleMapper;

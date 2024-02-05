@@ -31,9 +31,6 @@ public interface ProjectApi
     @PutMapping("project/handle-project")
     ResponseEntity<ProjectDto> handleProject(@Uuid @RequestParam UUID id, @Uuid @RequestParam UUID newOwner);
 
-    @PutMapping("project/add-user")
-    ResponseEntity<ProjectDto> addUser(@Uuid @RequestParam UUID id, @Uuid @RequestParam UUID user);
-
     @PostMapping("project/create")
     ResponseEntity<ProjectDto> create(@RequestBody Project project);
 

@@ -3,7 +3,6 @@ package com.karadyauran.agile.web;
 import com.karadyauran.agile.api.RoleApi;
 import com.karadyauran.agile.dto.RoleDto;
 import com.karadyauran.agile.entity.Role;
-import com.karadyauran.agile.mapper.RoleMapper;
 import com.karadyauran.agile.service.interf.RoleService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

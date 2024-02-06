@@ -2,11 +2,11 @@ package com.karadyauran.agile.dto;
 
 import com.karadyauran.agile.dto.shortDto.TaskShortDto;
 import com.karadyauran.agile.dto.shortDto.UserShortDto;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.util.List;

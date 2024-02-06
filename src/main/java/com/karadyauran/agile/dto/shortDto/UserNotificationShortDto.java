@@ -11,8 +11,7 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProjectShortDto
+public class UserNotificationShortDto
 {
-    String id;
-    String name;
+    String username;
 }

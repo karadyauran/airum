@@ -1,13 +1,25 @@
 package com.karadyauran.agile.entity;
 
 import com.karadyauran.agile.entity.enums.TaskStatus;
-import jakarta.persistence.*;
+import com.karadyauran.agile.validation.interf.StatusValidator;
+import com.karadyauran.agile.validation.interf.Uuid;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UuidGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -26,25 +38,32 @@ public class Task
     @Column(name = "id")
     UUID id;
 
+    @Uuid
     @Column(name = "project_id")
     UUID projectId;
 
+    @Size(min = 5, max = 60)
     @Column(name = "title")
     String title;
 
+    @NotNull
     @Column(name = "description")
     String description;
 
+    @StatusValidator
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     TaskStatus status;
 
+    @Uuid
     @Column(name = "assigned_to")
     UUID assignedTo;
 
+    @Uuid
     @Column(name = "created_by", updatable = false)
     UUID createdBy;
 
+    @DateTimeFormat
     @Column(name = "due_to")
     Date dueTo;
 

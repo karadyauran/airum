@@ -1,11 +1,12 @@
 package com.karadyauran.agile.dto;
 
 
+import com.karadyauran.agile.dto.shortDto.UserNotificationShortDto;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.AllArgsConstructor;
 
 import java.sql.Timestamp;
 
@@ -16,7 +17,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class NotificationDto
 {
-   String message;
-   UserDto sender;
-   Timestamp sentAt;
+    String message;
+    UserNotificationShortDto sender;
+    Timestamp sentAt;
 }

@@ -51,7 +51,7 @@ public class CommentServiceImpl implements CommentService
         }
 
         return mapper.toDtoList(
-               commentRepository.findCommentsByTaskId(taskId)
+                commentRepository.findCommentsByTaskId(taskId)
         );
     }
 

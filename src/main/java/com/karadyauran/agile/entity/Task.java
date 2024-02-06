@@ -1,9 +1,16 @@
 package com.karadyauran.agile.entity;
 
 import com.karadyauran.agile.entity.enums.TaskStatus;
-import com.karadyauran.agile.validation.interf.Uuid;
 import com.karadyauran.agile.validation.interf.StatusValidator;
-import jakarta.persistence.*;
+import com.karadyauran.agile.validation.interf.Uuid;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;

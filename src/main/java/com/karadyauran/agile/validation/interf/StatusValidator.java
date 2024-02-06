@@ -10,8 +10,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.PARAMETER, ElementType.FIELD})
-@Constraint(validatedBy = { StatusAnnotationValidator.class})
+@Target({ ElementType.PARAMETER, ElementType.FIELD })
+@Constraint(validatedBy = { StatusAnnotationValidator.class })
 public @interface StatusValidator
 {
     String message() default "It`s not a STATUS";

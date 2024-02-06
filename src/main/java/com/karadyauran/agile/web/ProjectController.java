@@ -45,8 +45,8 @@ public class ProjectController implements ProjectApi
     public ResponseEntity<List<ProjectDto>> getUserProjects(UUID userId)
     {
         return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(service.getUserProjects(userId));
+                .status(HttpStatus.OK)
+                .body(service.getUserProjects(userId));
     }
 
     @Override

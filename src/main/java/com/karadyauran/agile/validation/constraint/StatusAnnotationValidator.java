@@ -5,7 +5,8 @@ import com.karadyauran.agile.validation.interf.StatusValidator;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class StatusAnnotationValidator implements ConstraintValidator<StatusValidator, String> {
+public class StatusAnnotationValidator implements ConstraintValidator<StatusValidator, String>
+{
 
     @Override
     public void initialize(StatusValidator constraintAnnotation)
@@ -17,7 +18,7 @@ public class StatusAnnotationValidator implements ConstraintValidator<StatusVali
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext)
     {
         var fields = TaskStatus.values();
-        for(TaskStatus field : fields)
+        for (TaskStatus field : fields)
         {
             if (field.name().equals(s)) return true;
         }

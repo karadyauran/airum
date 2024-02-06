@@ -2,12 +2,17 @@ package com.karadyauran.agile.api;
 
 import com.karadyauran.agile.dto.TaskDto;
 import com.karadyauran.agile.entity.Task;
-import com.karadyauran.agile.validation.interf.Uuid;
 import com.karadyauran.agile.validation.interf.StatusValidator;
+import com.karadyauran.agile.validation.interf.Uuid;
 import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
 import java.util.List;
@@ -22,7 +27,7 @@ public interface TaskApi
     ResponseEntity<List<TaskDto>> getTasksByProjectId(@Uuid @RequestParam UUID id);
 
     @GetMapping("task/")
-    ResponseEntity<List<TaskDto>> getTasksForProjectByStatus(@Uuid @RequestParam UUID id, @StatusValidator  @RequestParam String status);
+    ResponseEntity<List<TaskDto>> getTasksForProjectByStatus(@Uuid @RequestParam UUID id, @StatusValidator @RequestParam String status);
 
     @PutMapping("task/change-title")
     ResponseEntity<TaskDto> changeTaskTitle(@Uuid @RequestParam UUID id, @Size(min = 5, max = 60) @RequestParam String newTitle);

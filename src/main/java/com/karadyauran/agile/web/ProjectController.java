@@ -10,12 +10,14 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.UUID;
 
 @Slf4j
+@Validated
 @RestController
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
@@ -43,8 +45,8 @@ public class ProjectController implements ProjectApi
     public ResponseEntity<List<ProjectDto>> getUserProjects(UUID userId)
     {
         return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(service.getUserProjects(userId));
+                .status(HttpStatus.OK)
+                .body(service.getUserProjects(userId));
     }
 
     @Override

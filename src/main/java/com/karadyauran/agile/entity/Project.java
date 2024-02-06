@@ -1,6 +1,14 @@
 package com.karadyauran.agile.entity;
 
-import jakarta.persistence.*;
+import com.karadyauran.agile.validation.interf.Uuid;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -25,12 +33,15 @@ public class Project
     @Column(name = "id")
     UUID id;
 
+    @Uuid
     @Column(name = "creator_id")
     UUID creatorId;
 
+    @Size(min = 5, max = 60)
     @Column(name = "name")
     String name;
 
+    @NotNull
     @Column(name = "description")
     String description;
 

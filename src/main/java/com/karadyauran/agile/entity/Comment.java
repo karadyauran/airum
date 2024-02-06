@@ -1,6 +1,13 @@
 package com.karadyauran.agile.entity;
 
-import jakarta.persistence.*;
+import com.karadyauran.agile.validation.interf.Uuid;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +31,15 @@ public class Comment
     @Column(name = "id")
     UUID id;
 
+    @Uuid
     @Column(name = "task_id")
     UUID taskId;
 
+    @Uuid
     @Column(name = "user_id")
     UUID userId;
 
+    @NotNull
     @Column(name = "comment")
     String comment;
 

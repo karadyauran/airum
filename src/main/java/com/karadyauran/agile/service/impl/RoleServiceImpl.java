@@ -1,7 +1,7 @@
 package com.karadyauran.agile.service.impl;
 
 import com.karadyauran.agile.dto.RoleDto;
-import com.karadyauran.agile.error.RoleIsAlreadyExists;
+import com.karadyauran.agile.entity.Role;
 import com.karadyauran.agile.error.RoleWasNotFoundException;
 import com.karadyauran.agile.error.message.ErrorMessage;
 import com.karadyauran.agile.mapper.RoleMapper;
@@ -45,11 +45,10 @@ public class RoleServiceImpl implements RoleService
     }
 
     @Override
-    public RoleDto create(RoleDto role)
+    public RoleDto create(Role role)
     {
-        var entity = mapper.toEntity(role);
-        repository.save(entity);
-        return role;
+        repository.save(role);
+        return mapper.toDto(role);
     }
 
     @Override
@@ -59,11 +58,6 @@ public class RoleServiceImpl implements RoleService
         if (roleIsNotExists(id))
         {
             throw new RoleWasNotFoundException(ErrorMessage.ROLE_WAS_NOT_FOUND);
-        }
-
-        if (roleIsAlreadyExistsByName(id, name))
-        {
-            throw new RoleIsAlreadyExists(ErrorMessage.ROLE_IS_ALREADY_EXISTS);
         }
 
         repository.changeName(id, name);
@@ -87,12 +81,6 @@ public class RoleServiceImpl implements RoleService
     private boolean roleIsNotExists(UUID id)
     {
         return !repository.existsById(id);
-    }
-
-    private boolean roleIsAlreadyExistsByName(UUID id, String name)
-    {
-        var role =  repository.findByNameAndProjectId(name, id).orElse(null);
-        return role == null;
     }
 }
 

@@ -1,6 +1,14 @@
 package com.karadyauran.agile.web;
 
-import com.karadyauran.agile.error.*;
+
+import com.karadyauran.agile.error.CommentWasNotFoundException;
+import com.karadyauran.agile.error.EmailIsAlreadyExists;
+import com.karadyauran.agile.error.ProjectWasNotFoundException;
+import com.karadyauran.agile.error.RoleIsAlreadyExists;
+import com.karadyauran.agile.error.RoleWasNotFoundException;
+import com.karadyauran.agile.error.TaskWasNotFoundException;
+import com.karadyauran.agile.error.UserWasNotFoundException;
+import com.karadyauran.agile.error.UsernameIsAlreadyExists;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,7 +20,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ExceptionHandlerAspect
 {
     @ExceptionHandler(UserWasNotFoundException.class)
-    public ResponseEntity<String> handleUserWasNotFoundException(UserWasNotFoundException ex) {
+    public ResponseEntity<String> handleUserWasNotFoundException(UserWasNotFoundException ex)
+    {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return ResponseEntity
@@ -22,7 +31,8 @@ public class ExceptionHandlerAspect
     }
 
     @ExceptionHandler(UsernameIsAlreadyExists.class)
-    public ResponseEntity<String> handleUsernameIsAlreadyExists(UsernameIsAlreadyExists ex) {
+    public ResponseEntity<String> handleUsernameIsAlreadyExists(UsernameIsAlreadyExists ex)
+    {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return ResponseEntity
@@ -32,7 +42,8 @@ public class ExceptionHandlerAspect
     }
 
     @ExceptionHandler(EmailIsAlreadyExists.class)
-    public ResponseEntity<String> handleEmailIsAlreadyExists(EmailIsAlreadyExists ex) {
+    public ResponseEntity<String> handleEmailIsAlreadyExists(EmailIsAlreadyExists ex)
+    {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return ResponseEntity
@@ -42,7 +53,8 @@ public class ExceptionHandlerAspect
     }
 
     @ExceptionHandler(TaskWasNotFoundException.class)
-    public ResponseEntity<String> handleTaskWasNotFoundException(TaskWasNotFoundException ex) {
+    public ResponseEntity<String> handleTaskWasNotFoundException(TaskWasNotFoundException ex)
+    {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return ResponseEntity
@@ -52,7 +64,8 @@ public class ExceptionHandlerAspect
     }
 
     @ExceptionHandler(RoleWasNotFoundException.class)
-    public ResponseEntity<String> handleRoleWasNotFoundException(RoleWasNotFoundException ex) {
+    public ResponseEntity<String> handleRoleWasNotFoundException(RoleWasNotFoundException ex)
+    {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return ResponseEntity
@@ -62,7 +75,8 @@ public class ExceptionHandlerAspect
     }
 
     @ExceptionHandler(RoleIsAlreadyExists.class)
-    public ResponseEntity<String> handleRoleIsAlreadyExists(RoleIsAlreadyExists ex) {
+    public ResponseEntity<String> handleRoleIsAlreadyExists(RoleIsAlreadyExists ex)
+    {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return ResponseEntity
@@ -72,7 +86,8 @@ public class ExceptionHandlerAspect
     }
 
     @ExceptionHandler(ProjectWasNotFoundException.class)
-    public ResponseEntity<String> handleProjectWasNotFoundException(ProjectWasNotFoundException ex) {
+    public ResponseEntity<String> handleProjectWasNotFoundException(ProjectWasNotFoundException ex)
+    {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return ResponseEntity
@@ -82,7 +97,8 @@ public class ExceptionHandlerAspect
     }
 
     @ExceptionHandler(CommentWasNotFoundException.class)
-    public ResponseEntity<String> handleCommentWasNotFoundException(CommentWasNotFoundException ex) {
+    public ResponseEntity<String> handleCommentWasNotFoundException(CommentWasNotFoundException ex)
+    {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return ResponseEntity

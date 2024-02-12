@@ -1,17 +1,15 @@
 package com.karadyauran.agile.dto.shortDto;
 
 import com.karadyauran.agile.dto.RoleDto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
+@Component
 public class UserShortDto
 {
     String username;

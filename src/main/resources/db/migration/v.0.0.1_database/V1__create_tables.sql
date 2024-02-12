@@ -36,9 +36,10 @@ create table roles
 
 create table user_projects
 (
+    id         uuid primary key,
     user_id    uuid references users (id) on delete cascade on update cascade    not null,
     project_id uuid references projects (id) on delete cascade on update cascade not null,
-    role_id    uuid references roles (id) on delete cascade on update cascade    not null
+    role_id    uuid references roles (id) on delete cascade on update cascade
 );
 
 create table tasks

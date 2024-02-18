@@ -4,6 +4,10 @@ server:
     context-path: /
 
 spring:
+  security:
+    user:
+      name: agile
+      password: 123123
   datasource:
     url: jdbc:postgresql://localhost:3432/agile?currentSchema=agile
     username: postgres

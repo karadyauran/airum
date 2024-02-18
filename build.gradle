@@ -47,6 +47,11 @@ dependencies {
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.5'
     testImplementation 'org.springframework.security:spring-security-test:6.0.2'
 
+    // Tokens for security
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.12.3'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.12.3'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.12.3'
+
     // PostgreSQL Database Dependencies
     implementation group: 'org.postgresql', name: 'postgresql', version: postgreVersion
 

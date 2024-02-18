@@ -1,77 +1,54 @@
 package com.karadyauran.agile.config;
 
-import com.karadyauran.agile.util.JwtRequestFilter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.DefaultSecurityFilterChain;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import static java.util.Arrays.asList;
-
-@EnableWebSecurity
-@EnableMethodSecurity(securedEnabled = true)
 @Configuration
-public class SecurityConfig
-{
+@EnableWebSecurity
+@RequiredArgsConstructor
+public class SecurityConfig {
 
-    public static final String ACTUATOR_PATH = "/actuator/**";
-    public static final String AUTH_PATH = "/auth/**";
-    public static final String SWAGGER_UI_PATH = "/agile/v3/swagger-ui/**";
-    public static final String SWAGGER_UI_HTML_PATH = "/agile/v3/swagger-ui.html";
-    public static final String V_3_API_DOCS_PATH = "/agile/v3/api-docs/**";
-    public static final String V_3_API_DOCS_YAML_PATH = "/agile/v3/api-docs.yaml";
-    public static final String ERROR = "/error";
-
-    private static final List<String> permitAllMatchers = new ArrayList<>(
-            asList(ACTUATOR_PATH, AUTH_PATH, SWAGGER_UI_PATH, V_3_API_DOCS_PATH, V_3_API_DOCS_YAML_PATH,
-                    ERROR, SWAGGER_UI_HTML_PATH));
+    private final JwtAuthenticationFilter jwtAuthFilter;
+    private final AuthenticationProvider authenticationProvider;
 
     @Bean
-    public DefaultSecurityFilterChain securityFilterChain(HttpSecurity http,
-                                                          JwtRequestFilter jwtRequestFilter)
-            throws Exception
-    {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
+                        authorizationManagerRequestMatcherRegistry
+                                .requestMatchers(
+                                        new AntPathRequestMatcher("/api/product/**"),
+                                        new AntPathRequestMatcher("/api/user/**"),
+                                        new AntPathRequestMatcher("/api/start/**"),
+                                        new AntPathRequestMatcher("/images/**"),
+                                        new AntPathRequestMatcher("/api/enum/**"),
 
-        return http
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(permitAllMatchers.toArray(new String[0]))
-                        .permitAll()
-                        .requestMatchers("/agile/admin/**", "/agile/secured/**")
-                        .hasAnyRole("ADMIN", "SUPERADMIN")
-                        .requestMatchers("/agile/management/**")
-                        .hasAnyRole("SUPERADMIN", "MANAGER")
-                        .anyRequest()
-                        .authenticated())
-                .sessionManagement(
-                        session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .csrf(AbstractHttpConfigurer::disable)
-                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
-    }
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder()
-    {
-        return new BCryptPasswordEncoder();
-    }
+                                        new AntPathRequestMatcher("/**"),
+                                        new AntPathRequestMatcher("/registration"),
+                                        new AntPathRequestMatcher("/login"),
+                                        new AntPathRequestMatcher("/login/**"),
+                                        new AntPathRequestMatcher("/authentication/login/**")
+                                )
+                                .permitAll()
+                                .anyRequest()
+                                .authenticated())
+                .sessionManagement(sessionManagement ->
+                        sessionManagement
+                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
-    @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration authenticationConfiguration)
-            throws Exception
-    {
-        return authenticationConfiguration.getAuthenticationManager();
+        return http.build();
     }
 }
-

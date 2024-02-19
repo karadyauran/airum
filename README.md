@@ -1,5 +1,5 @@
-# 👨‍💻 Agile
-This Agile Project Management Tool is designed to facilitate project tracking and management, offering features like task assignments, project timelines, and collaboration tools.
+# 👨‍💻 airum
+Airum is designed to facilitate project tracking and management, offering features like task assignments, project timelines, and collaboration tools.
 
 ## 📦 Technologies
 The main stack of technologies:

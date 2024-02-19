@@ -3,9 +3,9 @@ version: '3.8'
 services:
   postgres:
     image: postgres
-    container_name: agile
+    container_name: airum
     environment:
-      POSTGRES_DB: agile
+      POSTGRES_DB: airum
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123123
     ports:

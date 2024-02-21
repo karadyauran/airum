@@ -8,6 +8,7 @@ import com.karadyauran.airum.mapper.NotificationMapper;
 import com.karadyauran.airum.repository.NotificationRepository;
 import com.karadyauran.airum.repository.UserRepository;
 import com.karadyauran.airum.service.interf.NotificationService;
+import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -29,6 +30,7 @@ public class NotificationServiceImpl implements NotificationService
     NotificationMapper notificationMapper;
 
     @Override
+    @Transactional
     public List<NotificationDto> getNotifications(UUID user1, UUID user2)
     {
         if (userIsNotExists(user1) || userIsNotExists(user2))
@@ -43,6 +45,7 @@ public class NotificationServiceImpl implements NotificationService
     }
 
     @Override
+    @Transactional
     public NotificationDto send(Notification notification)
     {
         var sender = notification.getSender();

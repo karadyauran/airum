@@ -36,6 +36,7 @@ public class TaskServiceImpl implements TaskService
     UserRepository userRepository;
 
     @Override
+    @Transactional
     public TaskDto getTaskById(UUID id)
     {
         if (taskIsNotExists(id))
@@ -50,6 +51,7 @@ public class TaskServiceImpl implements TaskService
     }
 
     @Override
+    @Transactional
     public List<TaskDto> getTasksByProjectId(UUID id)
     {
         if (projectIsNotExists(id))
@@ -64,6 +66,7 @@ public class TaskServiceImpl implements TaskService
     }
 
     @Override
+    @Transactional
     public List<TaskDto> getTasksForProjectByStatus(UUID id, String status)
     {
         if (projectIsNotExists(id))
@@ -159,6 +162,7 @@ public class TaskServiceImpl implements TaskService
     }
 
     @Override
+    @Transactional
     public TaskDto create(Task task)
     {
         taskRepository.save(task);

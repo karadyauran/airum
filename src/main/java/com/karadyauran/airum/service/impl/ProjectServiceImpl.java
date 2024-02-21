@@ -28,6 +28,7 @@ public class ProjectServiceImpl implements ProjectService
     ProjectMapper mapper;
 
     @Override
+    @Transactional
     public ProjectDto getProject(UUID id)
     {
         return mapper.toDto(
@@ -37,6 +38,7 @@ public class ProjectServiceImpl implements ProjectService
     }
 
     @Override
+    @Transactional
     public List<ProjectDto> getProjectByName(String name)
     {
         return mapper.toDtoList(
@@ -45,6 +47,7 @@ public class ProjectServiceImpl implements ProjectService
     }
 
     @Override
+    @Transactional
     public List<ProjectDto> getUserProjects(UUID creatorId)
     {
         return mapper.toDtoList(
@@ -98,6 +101,7 @@ public class ProjectServiceImpl implements ProjectService
     }
 
     @Override
+    @Transactional
     public ProjectDto create(Project project)
     {
         repository.save(project);
@@ -105,6 +109,7 @@ public class ProjectServiceImpl implements ProjectService
     }
 
     @Override
+    @Transactional
     public void delete(UUID id)
     {
         if (projectIsNotExists(id))

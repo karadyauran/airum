@@ -34,6 +34,7 @@ public class CommentServiceImpl implements CommentService
     CommentMapper mapper;
 
     @Override
+    @Transactional
     public CommentDto getComment(UUID id)
     {
         return mapper.toDto(
@@ -43,6 +44,7 @@ public class CommentServiceImpl implements CommentService
     }
 
     @Override
+    @Transactional
     public List<CommentDto> getCommentsForTask(UUID taskId)
     {
         if (taskIsNotExists(taskId))
@@ -56,6 +58,7 @@ public class CommentServiceImpl implements CommentService
     }
 
     @Override
+    @Transactional
     public CommentDto create(Comment comment)
     {
         UUID userId = comment.getUserId();

@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService
     UserMapper mapper;
 
     @Override
+    @Transactional
     public UserDto getUserById(UUID id)
     {
         log.debug("Looking for the user with id {}", id);
@@ -41,6 +42,7 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
+    @Transactional
     public UserDto getUserByUsername(String username)
     {
         log.debug("Looking for the user with username {}", username);
@@ -54,6 +56,7 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
+    @Transactional
     public List<UserDto> getAll()
     {
         log.debug("Looking for all users");
@@ -150,6 +153,7 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
+    @Transactional
     public UserDto create(UserDto dto)
     {
         log.debug("Saving new user {}", dto.getUsername());

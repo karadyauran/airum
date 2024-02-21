@@ -7,6 +7,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -52,6 +53,12 @@ public class User
     @Column(name = "registered_at", updatable = false)
     Timestamp registeredAt;
 
+    @OneToMany(mappedBy = "assignedToUser")
+    List<Task> tasks;
+
+    @OneToMany(mappedBy = "user")
+    List<Comment> comments;
+
     @ManyToMany
     @JoinTable(
             name = "user_projects",
@@ -59,15 +66,6 @@ public class User
             inverseJoinColumns = @JoinColumn(name = "project_id")
     )
     List<Project> projects;
-
-    @OneToMany(mappedBy = "user")
-    List<Role> roles;
-
-    @OneToMany(mappedBy = "assignedToUser")
-    List<Task> tasks;
-
-    @OneToMany(mappedBy = "user")
-    List<Comment> comments;
 
     @OneToMany(mappedBy = "senderUser")
     List<Notification> sent;

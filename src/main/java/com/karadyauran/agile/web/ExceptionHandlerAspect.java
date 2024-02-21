@@ -1,14 +1,13 @@
-package com.karadyauran.airum.web;
+package com.karadyauran.agile.web;
 
 
-import com.karadyauran.airum.error.CommentWasNotFoundException;
-import com.karadyauran.airum.error.EmailIsAlreadyExists;
-import com.karadyauran.airum.error.ProjectWasNotFoundException;
-import com.karadyauran.airum.error.RoleIsAlreadyExists;
-import com.karadyauran.airum.error.RoleWasNotFoundException;
-import com.karadyauran.airum.error.TaskWasNotFoundException;
-import com.karadyauran.airum.error.UserWasNotFoundException;
-import com.karadyauran.airum.error.UsernameIsAlreadyExists;
+import com.karadyauran.agile.error.CommentWasNotFoundException;
+import com.karadyauran.agile.error.EmailIsAlreadyExists;
+import com.karadyauran.agile.error.ProjectWasNotFoundException;
+import com.karadyauran.agile.error.RoleWasNotFoundException;
+import com.karadyauran.agile.error.TaskWasNotFoundException;
+import com.karadyauran.agile.error.UserWasNotFoundException;
+import com.karadyauran.agile.error.UsernameIsAlreadyExists;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -65,17 +64,6 @@ public class ExceptionHandlerAspect
 
     @ExceptionHandler(RoleWasNotFoundException.class)
     public ResponseEntity<String> handleRoleWasNotFoundException(RoleWasNotFoundException ex)
-    {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .headers(headers)
-                .body(ex.getMessage());
-    }
-
-    @ExceptionHandler(RoleIsAlreadyExists.class)
-    public ResponseEntity<String> handleRoleIsAlreadyExists(RoleIsAlreadyExists ex)
     {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

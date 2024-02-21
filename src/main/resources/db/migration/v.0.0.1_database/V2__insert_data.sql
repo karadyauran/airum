@@ -20,32 +20,16 @@ values ('34c5773b-0a9b-40c3-988e-e8f3a530c8c5', 'e3ea02ff-2e76-49be-8598-18f2495
        ('8ec8eaf0-b1de-4f4b-8715-64b2959bffd2', '14b75de4-c006-445a-b131-7ffa477d7665', 'Deckow-Johnson',
         'Hic ratione blanditiis rerum distinctio ea sed tenetur illo ab dolor eaque.');
 
--- ROLES
-insert into roles (id, name, project_id)
-values ('6ab5ad83-f1c5-45e0-9ca3-601ed5f9b748', 'Consultant', '34c5773b-0a9b-40c3-988e-e8f3a530c8c5'),
-       ('0d4c75c5-58c8-45de-825a-01fb996c155f', 'Assistant', '34c5773b-0a9b-40c3-988e-e8f3a530c8c5'),
-       ('b319a4a1-d3a8-48cd-935b-774b73aea027', 'Engineer', '8ec8eaf0-b1de-4f4b-8715-64b2959bffd2'),
-       ('9dce419e-8f35-4c96-83bf-37db3f9390e8', 'Associate', '8ec8eaf0-b1de-4f4b-8715-64b2959bffd2'),
-       ('aad42db1-8fcb-43be-9404-9598e1787a61', 'Agent', '8ec8eaf0-b1de-4f4b-8715-64b2959bffd2');
-
 -- USER_PROJECT
-insert into user_projects (user_id, project_id, role_id)
-values ('c23ebbb0-4d47-42b3-982b-0b963d917a25', '34c5773b-0a9b-40c3-988e-e8f3a530c8c5',
-        '0d4c75c5-58c8-45de-825a-01fb996c155f'),
-       ('7dc91392-0dce-45e8-b3a8-c4e711b2f45f', '34c5773b-0a9b-40c3-988e-e8f3a530c8c5',
-        '6ab5ad83-f1c5-45e0-9ca3-601ed5f9b748'),
-       ('c23ebbb0-4d47-42b3-982b-0b963d917a25', '34c5773b-0a9b-40c3-988e-e8f3a530c8c5',
-        '9dce419e-8f35-4c96-83bf-37db3f9390e8'),
-       ('14b75de4-c006-445a-b131-7ffa477d7665', '34c5773b-0a9b-40c3-988e-e8f3a530c8c5',
-        'aad42db1-8fcb-43be-9404-9598e1787a61'),
-       ('7dc91392-0dce-45e8-b3a8-c4e711b2f45f', '34c5773b-0a9b-40c3-988e-e8f3a530c8c5',
-        'b319a4a1-d3a8-48cd-935b-774b73aea027'),
-       ('14b75de4-c006-445a-b131-7ffa477d7665', '8ec8eaf0-b1de-4f4b-8715-64b2959bffd2',
-        'aad42db1-8fcb-43be-9404-9598e1787a61'),
-       ('e3ea02ff-2e76-49be-8598-18f2495a8946', '8ec8eaf0-b1de-4f4b-8715-64b2959bffd2',
-        'b319a4a1-d3a8-48cd-935b-774b73aea027'),
-       ('96993edc-7ccc-46f4-90ba-926930be623d', '8ec8eaf0-b1de-4f4b-8715-64b2959bffd2',
-        '0d4c75c5-58c8-45de-825a-01fb996c155f');
+insert into user_projects (user_id, project_id)
+values ('c23ebbb0-4d47-42b3-982b-0b963d917a25', '34c5773b-0a9b-40c3-988e-e8f3a530c8c5'),
+       ('7dc91392-0dce-45e8-b3a8-c4e711b2f45f', '34c5773b-0a9b-40c3-988e-e8f3a530c8c5'),
+       ('c23ebbb0-4d47-42b3-982b-0b963d917a25', '34c5773b-0a9b-40c3-988e-e8f3a530c8c5'),
+       ('14b75de4-c006-445a-b131-7ffa477d7665', '34c5773b-0a9b-40c3-988e-e8f3a530c8c5'),
+       ('7dc91392-0dce-45e8-b3a8-c4e711b2f45f', '34c5773b-0a9b-40c3-988e-e8f3a530c8c5'),
+       ('14b75de4-c006-445a-b131-7ffa477d7665', '8ec8eaf0-b1de-4f4b-8715-64b2959bffd2'),
+       ('e3ea02ff-2e76-49be-8598-18f2495a8946', '8ec8eaf0-b1de-4f4b-8715-64b2959bffd2'),
+       ('96993edc-7ccc-46f4-90ba-926930be623d', '8ec8eaf0-b1de-4f4b-8715-64b2959bffd2');
 
 -- TASKS
 INSERT INTO tasks (id, project_id, assigned_to, created_by, title, description, status, due_to)

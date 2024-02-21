@@ -15,7 +15,7 @@ spring:
     password: ${spring.datasource.password}
     encoding: UTF-8
     create-schemas: true
-    schemas: agile
+    schemas: airum
 
 springdoc:
   webjars:

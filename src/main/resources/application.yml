@@ -5,12 +5,12 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:3432/agile?currentSchema=agile
+    url: jdbc:postgresql://localhost:3432/airum?currentSchema=airum
     username: postgres
     password: 123123
     driver-class-name: org.postgresql.Driver
   flyway:
-    url: jdbc:postgresql://localhost:3432/agile?currentSchema=agile
+    url: jdbc:postgresql://localhost:3432/airum?currentSchema=airum
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
     encoding: UTF-8

@@ -19,8 +19,8 @@ The main stack of technologies:
 ## 👾 Installation
 
 ```bash
-git clone https://github.com/karadyauran/Agile.git
-cd Agile
+git clone https://github.com/karadyauran/airum.git
+cd airum
 ```
 ## 🤝 Contributing
 

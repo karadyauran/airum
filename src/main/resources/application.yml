@@ -17,6 +17,13 @@ spring:
     create-schemas: true
     schemas: airum
 
+    h2:
+      console:
+        enabled: true
+        settings:
+          web-allow-others: true
+
+
 springdoc:
   webjars:
     prefix:

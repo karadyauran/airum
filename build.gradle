@@ -35,6 +35,8 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
+    testImplementation group: 'com.h2database', name: 'h2', version: '2.2.224'
+
     // Spring Boot Core Dependencies
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-web'

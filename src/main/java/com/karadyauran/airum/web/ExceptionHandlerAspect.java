@@ -1,13 +1,13 @@
-package com.karadyauran.agile.web;
+package com.karadyauran.airum.web;
 
 
-import com.karadyauran.agile.error.CommentWasNotFoundException;
-import com.karadyauran.agile.error.EmailIsAlreadyExists;
-import com.karadyauran.agile.error.ProjectWasNotFoundException;
-import com.karadyauran.agile.error.RoleWasNotFoundException;
-import com.karadyauran.agile.error.TaskWasNotFoundException;
-import com.karadyauran.agile.error.UserWasNotFoundException;
-import com.karadyauran.agile.error.UsernameIsAlreadyExists;
+import com.karadyauran.airum.error.CommentWasNotFoundException;
+import com.karadyauran.airum.error.EmailIsAlreadyExists;
+import com.karadyauran.airum.error.ProjectWasNotFoundException;
+import com.karadyauran.airum.error.RoleWasNotFoundException;
+import com.karadyauran.airum.error.TaskWasNotFoundException;
+import com.karadyauran.airum.error.UserWasNotFoundException;
+import com.karadyauran.airum.error.UsernameIsAlreadyExists;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

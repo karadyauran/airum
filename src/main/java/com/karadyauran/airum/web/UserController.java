@@ -223,7 +223,7 @@ public class UserController implements UserApi
             description = "UserDto would be the answer",
             tags = "USERS",
             requestBody = @RequestBody(
-                    description = "USERS DATA",
+                    description = "USER'S DATA",
                     required = true, //обязательно ли тело запроса для сохранения
                     content = @Content(
                             mediaType = "application/json",

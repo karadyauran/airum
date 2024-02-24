@@ -6,6 +6,7 @@ import com.karadyauran.airum.service.interf.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -204,6 +205,7 @@ public class UserController implements UserApi
     }
 
     // TODO translate on english
+
     /**
      * Этот каскадный тип применяет операцию remove()
      * всем связанным сущностям, когда родительская сущность удаляется.
@@ -220,7 +222,7 @@ public class UserController implements UserApi
     @Operation(summary = "Creates new user",
             description = "UserDto would be the answer",
             tags = "USERS",
-            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+            requestBody = @RequestBody(
                     description = "USERS DATA",
                     required = true, //обязательно ли тело запроса для сохранения
                     content = @Content(

@@ -1,6 +1,7 @@
 package com.karadyauran.airum.service.impl;
 
 import com.karadyauran.airum.dto.UserDto;
+import com.karadyauran.airum.dto.UserRegistrationDto;
 import com.karadyauran.airum.error.EmailIsAlreadyExists;
 import com.karadyauran.airum.error.UserWasNotFoundException;
 import com.karadyauran.airum.error.UsernameIsAlreadyExists;
@@ -154,7 +155,7 @@ public class UserServiceImpl implements UserService
 
     @Override
     @Transactional
-    public UserDto create(UserDto dto)
+    public UserDto create(UserRegistrationDto dto)
     {
         log.debug("Saving new user {}", dto.getUsername());
 

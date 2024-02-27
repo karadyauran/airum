@@ -1,6 +1,7 @@
 package com.karadyauran.airum.mapper;
 
 import com.karadyauran.airum.dto.UserDto;
+import com.karadyauran.airum.dto.UserRegistrationDto;
 import com.karadyauran.airum.dto.shortDto.UserShortDto;
 import com.karadyauran.airum.entity.User;
 import org.mapstruct.Mapper;
@@ -16,6 +17,8 @@ public interface UserMapper
     List<UserDto> toDtoList(List<User> users);
 
     User toEntity(UserDto dto);
+
+    User toEntity(UserRegistrationDto dto);
 
     // USER SHORT DTO
 

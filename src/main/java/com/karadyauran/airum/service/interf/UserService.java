@@ -1,6 +1,7 @@
 package com.karadyauran.airum.service.interf;
 
 import com.karadyauran.airum.dto.UserDto;
+import com.karadyauran.airum.dto.UserRegistrationDto;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,5 +24,5 @@ public interface UserService
 
     void delete(UUID id);
 
-    UserDto create(UserDto dto);
+    UserDto create(UserRegistrationDto dto);
 }

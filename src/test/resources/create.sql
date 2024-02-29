@@ -123,3 +123,7 @@ VALUES ('86036cd8-4fbc-4dab-8f74-ec4cc82df6a4', '34c5773b-0a9b-40c3-988e-e8f3a53
         'Mollitia consequatur provident.', 'Corrupti iure minus fugit eum eos enim quam.', 'TODO',
         '2024-03-21');
 
+-- MESSAGES
+INSERT INTO notifications(id, sender, receiver, message)
+VALUES ('2d7e620a-8a3e-4d2e-b4de-a61126ab3b67', 'c23ebbb0-4d47-42b3-982b-0b963d917a25',
+        '7dc91392-0dce-45e8-b3a8-c4e711b2f45f', 'hellooooooO!')

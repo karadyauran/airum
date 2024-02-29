@@ -5,6 +5,7 @@ import com.karadyauran.airum.dto.TaskDto;
 import com.karadyauran.airum.entity.Task;
 import com.karadyauran.airum.service.interf.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -31,23 +32,14 @@ public class TaskController implements TaskApi
 {
     TaskService service;
 
-    @Operation(summary = "Gets task by it's id",
-            description = "Returns TaskDto entity",
-            tags = "TASKS",
-            // TODO make documentation on github
-            /*externalDocs = @ExternalDocumentation(
-                    description = "Вот тут вся документация",
-                    url = "https://google.com/"
-            ),*/
+    @Operation(summary = "Get Task by ID",
+            description = "Fetches a task by its unique identifier.",
+            tags = { "TASKS" },
             responses = {
-                    @ApiResponse(responseCode = "200", description = "found"),
-                    @ApiResponse(responseCode = "500", description = "have not been fount")
-            }
-            // TODO fill this field for security requirements
-            /*security = {
-                    @SecurityRequirement(name = "требования к безопасности")
-            },*/
-    )
+                    @ApiResponse(responseCode = "200", description = "Task found",
+                            content = @Content(schema = @Schema(implementation = TaskDto.class))),
+                    @ApiResponse(responseCode = "404", description = "Task not found")
+            })
     @Override
     public ResponseEntity<TaskDto> getTaskById(UUID id)
     {
@@ -56,23 +48,15 @@ public class TaskController implements TaskApi
                 .body(service.getTaskById(id));
     }
 
-    @Operation(summary = "Gets tasks by project id",
-            description = "Returns List of TaskDto entities",
-            tags = "TASKS",
-            // TODO make documentation on github
-            /*externalDocs = @ExternalDocumentation(
-                    description = "Вот тут вся документация",
-                    url = "https://google.com/"
-            ),*/
+    @Operation(summary = "Get Tasks by Project ID",
+            description = "Fetches all tasks associated with a given project ID.",
+            tags = { "TASKS" },
             responses = {
-                    @ApiResponse(responseCode = "200", description = "found"),
-                    @ApiResponse(responseCode = "500", description = "have not been fount")
-            }
-            // TODO fill this field for security requirements
-            /*security = {
-                    @SecurityRequirement(name = "требования к безопасности")
-            },*/
-    )
+                    @ApiResponse(responseCode = "200", description = "Tasks found",
+                            content = @Content(mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = TaskDto.class)))),
+                    @ApiResponse(responseCode = "404", description = "No tasks found for the project")
+            })
     @Override
     public ResponseEntity<List<TaskDto>> getTasksByProjectId(UUID id)
     {
@@ -81,23 +65,15 @@ public class TaskController implements TaskApi
                 .body(service.getTasksByProjectId(id));
     }
 
-    @Operation(summary = "Gets tasks by project id and status",
-            description = "Returns List of TaskDto entities",
-            tags = "TASKS",
-            // TODO make documentation on github
-            /*externalDocs = @ExternalDocumentation(
-                    description = "Вот тут вся документация",
-                    url = "https://google.com/"
-            ),*/
+    @Operation(summary = "Get Tasks for Project by Status",
+            description = "Fetches tasks for a project filtered by status.",
+            tags = { "TASKS" },
             responses = {
-                    @ApiResponse(responseCode = "200", description = "found"),
-                    @ApiResponse(responseCode = "500", description = "have not been fount")
-            }
-            // TODO fill this field for security requirements
-            /*security = {
-                    @SecurityRequirement(name = "требования к безопасности")
-            },*/
-    )
+                    @ApiResponse(responseCode = "200", description = "Tasks found",
+                            content = @Content(mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = TaskDto.class)))),
+                    @ApiResponse(responseCode = "404", description = "No tasks found with the specified status")
+            })
     @Override
     public ResponseEntity<List<TaskDto>> getTasksForProjectByStatus(UUID id, String status)
     {
@@ -106,23 +82,14 @@ public class TaskController implements TaskApi
                 .body(service.getTasksForProjectByStatus(id, status));
     }
 
-    @Operation(summary = "Changes title for Task",
-            description = "Returns TaskDto entity",
-            tags = "TASKS",
-            // TODO make documentation on github
-            /*externalDocs = @ExternalDocumentation(
-                    description = "Вот тут вся документация",
-                    url = "https://google.com/"
-            ),*/
+    @Operation(summary = "Change Task Title",
+            description = "Updates the title of the specified task.",
+            tags = { "TASKS" },
             responses = {
-                    @ApiResponse(responseCode = "200", description = "found"),
-                    @ApiResponse(responseCode = "500", description = "have not been fount")
-            }
-            // TODO fill this field for security requirements
-            /*security = {
-                    @SecurityRequirement(name = "требования к безопасности")
-            },*/
-    )
+                    @ApiResponse(responseCode = "200", description = "Task title updated",
+                            content = @Content(schema = @Schema(implementation = TaskDto.class))),
+                    @ApiResponse(responseCode = "404", description = "Task not found")
+            })
     @Override
     public ResponseEntity<TaskDto> changeTaskTitle(UUID id, String newTitle)
     {
@@ -131,23 +98,14 @@ public class TaskController implements TaskApi
                 .body(service.changeTaskTitle(id, newTitle));
     }
 
-    @Operation(summary = "Changes description for Task",
-            description = "Returns TaskDto entity",
-            tags = "TASKS",
-            // TODO make documentation on github
-            /*externalDocs = @ExternalDocumentation(
-                    description = "Вот тут вся документация",
-                    url = "https://google.com/"
-            ),*/
+    @Operation(summary = "Change Task Description",
+            description = "Updates the description of the specified task.",
+            tags = { "TASKS" },
             responses = {
-                    @ApiResponse(responseCode = "200", description = "found"),
-                    @ApiResponse(responseCode = "500", description = "have not been fount")
-            }
-            // TODO fill this field for security requirements
-            /*security = {
-                    @SecurityRequirement(name = "требования к безопасности")
-            },*/
-    )
+                    @ApiResponse(responseCode = "200", description = "Task description updated",
+                            content = @Content(schema = @Schema(implementation = TaskDto.class))),
+                    @ApiResponse(responseCode = "404", description = "Task not found")
+            })
     @Override
     public ResponseEntity<TaskDto> changeTaskDescription(UUID id, String newDescription)
     {
@@ -156,23 +114,14 @@ public class TaskController implements TaskApi
                 .body(service.changeTaskDescription(id, newDescription));
     }
 
-    @Operation(summary = "Assigns task to user",
-            description = "Returns TaskDto entity",
-            tags = "TASKS",
-            // TODO make documentation on github
-            /*externalDocs = @ExternalDocumentation(
-                    description = "Вот тут вся документация",
-                    url = "https://google.com/"
-            ),*/
+    @Operation(summary = "Assign Task to User",
+            description = "Assigns the specified task to a user.",
+            tags = { "TASKS" },
             responses = {
-                    @ApiResponse(responseCode = "200", description = "found"),
-                    @ApiResponse(responseCode = "500", description = "have not been fount")
-            }
-            // TODO fill this field for security requirements
-            /*security = {
-                    @SecurityRequirement(name = "требования к безопасности")
-            },*/
-    )
+                    @ApiResponse(responseCode = "200", description = "Task assigned to user",
+                            content = @Content(schema = @Schema(implementation = TaskDto.class))),
+                    @ApiResponse(responseCode = "404", description = "Task or user not found")
+            })
     @Override
     public ResponseEntity<TaskDto> assignToUser(UUID id, UUID user)
     {
@@ -181,23 +130,14 @@ public class TaskController implements TaskApi
                 .body(service.assignToUser(id, user));
     }
 
-    @Operation(summary = "Changes date for Task",
-            description = "Returns TaskDto entity",
-            tags = "TASKS",
-            // TODO make documentation on github
-            /*externalDocs = @ExternalDocumentation(
-                    description = "Вот тут вся документация",
-                    url = "https://google.com/"
-            ),*/
+    @Operation(summary = "Change Task Date",
+            description = "Updates the due date of the specified task.",
+            tags = { "TASKS" },
             responses = {
-                    @ApiResponse(responseCode = "200", description = "found"),
-                    @ApiResponse(responseCode = "500", description = "have not been fount")
-            }
-            // TODO fill this field for security requirements
-            /*security = {
-                    @SecurityRequirement(name = "требования к безопасности")
-            },*/
-    )
+                    @ApiResponse(responseCode = "200", description = "Task date updated",
+                            content = @Content(schema = @Schema(implementation = TaskDto.class))),
+                    @ApiResponse(responseCode = "404", description = "Task not found")
+            })
     @Override
     public ResponseEntity<TaskDto> changeDate(UUID id, Date newDate)
     {
@@ -206,12 +146,13 @@ public class TaskController implements TaskApi
                 .body(service.changeDate(id, newDate));
     }
 
-    /**
-     * Deletes task
-     *
-     * @param id
-     * @return ResponseEntity
-     */
+    @Operation(summary = "Delete Task",
+            description = "Deletes the specified task.",
+            tags = { "TASKS" },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Task deleted successfully"),
+                    @ApiResponse(responseCode = "404", description = "Task not found")
+            })
     @Override
     public ResponseEntity<Void> delete(UUID id)
     {
@@ -219,20 +160,15 @@ public class TaskController implements TaskApi
         return ResponseEntity.ok().build();
     }
 
-    // TODO translate on english
-    @Operation(summary = "Creates new task",
-            description = "TaskDto would be the answer",
-            tags = "TASKS",
-            requestBody = @RequestBody(
-                    description = "TASK'S DATA",
-                    required = true, //обязательно ли тело запроса для сохранения
-                    content = @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = TaskDto.class) // points on class,
-                            // который служит примером реализации схемы для объекта API
-                    )
-            )
-    )
+    @Operation(summary = "Create Task",
+            description = "Creates a new task with the given details.",
+            tags = { "TASKS" },
+            requestBody = @RequestBody(description = "Task to be created", required = true,
+                    content = @Content(schema = @Schema(implementation = Task.class))),
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Task created successfully"),
+                    @ApiResponse(responseCode = "400", description = "Invalid task details provided")
+            })
     @Override
     public ResponseEntity<TaskDto> create(Task task)
     {

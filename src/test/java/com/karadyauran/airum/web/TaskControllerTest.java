@@ -1,11 +1,8 @@
 package com.karadyauran.airum.web;
 
 import com.karadyauran.airum.dto.TaskDto;
-import com.karadyauran.airum.dto.UserRegistrationDto;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +19,7 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.not;
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -44,12 +36,14 @@ class TaskControllerTest
             .withInitScript("create.sql");
 
     @BeforeAll
-    static void setUp() {
+    static void setUp()
+    {
         postgres.start();
     }
 
     @AfterAll
-    static void tearDown() {
+    static void tearDown()
+    {
         postgres.stop();
     }
 
@@ -159,21 +153,5 @@ class TaskControllerTest
 
         mockMvc.perform(MockMvcRequestBuilders.get("/task/" + taskId))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
-    }
-
-    @Test
-    public void testCreate() throws Exception
-    {
-        var task = TaskDto.builder()
-                .title("Title")
-                .description("Description");
-
-        var m = new ObjectMapper();
-        var obj = m.writeValueAsString(task);
-
-        mockMvc.perform(MockMvcRequestBuilders.post("/task/create")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(obj))
-                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

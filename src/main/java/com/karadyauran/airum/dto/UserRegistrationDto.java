@@ -1,6 +1,5 @@
 package com.karadyauran.airum.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.karadyauran.airum.dto.shortDto.ProjectShortDto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;

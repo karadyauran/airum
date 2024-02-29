@@ -16,6 +16,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class CommentDto
 {
+    String id;
     String comment;
     UserShortDto commenter;
     Boolean changed;

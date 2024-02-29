@@ -121,7 +121,7 @@ public class TaskServiceImpl implements TaskService
             throw new TaskWasNotFoundException(ErrorMessage.TASK_WAS_NOT_FOUND);
         }
 
-        if (userIsNotExists(id))
+        if (userIsNotExists(userId))
         {
             throw new UserWasNotFoundException(ErrorMessage.USER_WAS_NOT_FOUND);
         }

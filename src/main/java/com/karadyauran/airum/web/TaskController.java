@@ -2,7 +2,6 @@ package com.karadyauran.airum.web;
 
 import com.karadyauran.airum.api.TaskApi;
 import com.karadyauran.airum.dto.TaskDto;
-import com.karadyauran.airum.dto.UserDto;
 import com.karadyauran.airum.entity.Task;
 import com.karadyauran.airum.service.interf.TaskService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -209,6 +208,7 @@ public class TaskController implements TaskApi
 
     /**
      * Deletes task
+     *
      * @param id
      * @return ResponseEntity
      */

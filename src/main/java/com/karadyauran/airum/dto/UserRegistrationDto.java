@@ -1,6 +1,5 @@
 package com.karadyauran.airum.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.karadyauran.airum.dto.shortDto.ProjectShortDto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
@@ -19,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class UserDto
+public class UserRegistrationDto
 {
     String id;
     @Size(max = 40)
@@ -30,7 +29,6 @@ public class UserDto
     String surname;
     @Email(message = "Email is not valid")
     String email;
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     String password;
     List<ProjectShortDto> projects;
 }

@@ -17,6 +17,7 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class NotificationDto
 {
+    String id;
     String message;
     UserNotificationShortDto sender;
     Timestamp sentAt;

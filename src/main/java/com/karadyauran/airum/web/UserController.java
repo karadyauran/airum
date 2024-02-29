@@ -2,6 +2,7 @@ package com.karadyauran.airum.web;
 
 import com.karadyauran.airum.api.UserApi;
 import com.karadyauran.airum.dto.UserDto;
+import com.karadyauran.airum.dto.UserRegistrationDto;
 import com.karadyauran.airum.service.interf.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -232,8 +233,9 @@ public class UserController implements UserApi
                     )
             )
     )
+
     @Override
-    public ResponseEntity<UserDto> create(UserDto dto)
+    public ResponseEntity<UserDto> create(UserRegistrationDto dto)
     {
         return ResponseEntity
                 .status(HttpStatus.OK)

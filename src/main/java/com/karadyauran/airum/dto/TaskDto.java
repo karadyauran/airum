@@ -16,9 +16,10 @@ import java.util.Date;
 @AllArgsConstructor
 public class TaskDto
 {
+    String id;
     String title;
     String description;
-    UserShortDto assignedTo;
-    UserShortDto createdBy;
+    UserShortDto assignedToUser;
+    UserShortDto createdByUser;
     Date dueTo;
 }

@@ -1,6 +1,7 @@
 package com.karadyauran.airum.api;
 
 import com.karadyauran.airum.dto.UserDto;
+import com.karadyauran.airum.dto.UserRegistrationDto;
 import com.karadyauran.airum.validation.interf.Uuid;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
@@ -45,5 +46,5 @@ public interface UserApi
     ResponseEntity<Void> deleteById(@Uuid @PathVariable UUID id);
 
     @PostMapping("user/create")
-    ResponseEntity<UserDto> create(@Valid @RequestBody UserDto dto);
+    ResponseEntity<UserDto> create(@Valid @RequestBody UserRegistrationDto dto);
 }

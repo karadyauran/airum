@@ -13,5 +13,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserNotificationShortDto
 {
+    String id;
     String username;
 }

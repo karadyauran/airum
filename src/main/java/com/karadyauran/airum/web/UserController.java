@@ -5,10 +5,13 @@ import com.karadyauran.airum.dto.UserDto;
 import com.karadyauran.airum.dto.UserRegistrationDto;
 import com.karadyauran.airum.service.interf.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -26,27 +29,22 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
+@Tag(name = "USERS", description = "Operations related to Users in the System")
 public class UserController implements UserApi
 {
+
     UserService service;
 
-    @Operation(summary = "Gets user by it's id",
-            description = "Returns UserDto entity",
-            tags = "USERS",
-            // TODO make documentation on github
-            /*externalDocs = @ExternalDocumentation(
-                    description = "Вот тут вся документация",
-                    url = "https://google.com/"
-            ),*/
+    @Operation(summary = "Gets user by their ID",
+            description = "Returns UserDto entity for the specified user ID.",
+            tags = { "USERS" },
             responses = {
-                    @ApiResponse(responseCode = "200", description = "found"),
-                    @ApiResponse(responseCode = "500", description = "have not been fount")
-            }
-            // TODO fill this field for security requirements
-            /*security = {
-                    @SecurityRequirement(name = "требования к безопасности")
-            },*/
-    )
+                    @ApiResponse(responseCode = "200", description = "User found",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = UserDto.class))),
+                    @ApiResponse(responseCode = "404", description = "User not found")
+            },
+            security = @SecurityRequirement(name = "bearerAuth"))
     @Override
     public ResponseEntity<UserDto> findById(UUID id)
     {
@@ -55,23 +53,15 @@ public class UserController implements UserApi
                 .body(service.getUserById(id));
     }
 
-    @Operation(summary = "Gets user by it's username",
-            description = "Returns UserDto entity",
-            tags = "USERS",
-            // TODO make documentation on github
-            /*externalDocs = @ExternalDocumentation(
-                    description = "Вот тут вся документация",
-                    url = "https://google.com/"
-            ),*/
+    @Operation(summary = "Get User by Username",
+            description = "Fetches a user by their username.",
+            tags = { "USERS" },
             responses = {
-                    @ApiResponse(responseCode = "200", description = "found"),
-                    @ApiResponse(responseCode = "500", description = "have not been fount")
-            }
-            // TODO fill this fields for security requirements
-            /*security = {
-                    @SecurityRequirement(name = "требования к безопасности")
-            },*/
-    )
+                    @ApiResponse(responseCode = "200", description = "User found",
+                            content = @Content(schema = @Schema(implementation = UserDto.class))),
+                    @ApiResponse(responseCode = "404", description = "User not found")
+            },
+            security = @SecurityRequirement(name = "bearerAuth"))
     @Override
     public ResponseEntity<UserDto> findByIUsername(String username)
     {
@@ -80,23 +70,16 @@ public class UserController implements UserApi
                 .body(service.getUserByUsername(username));
     }
 
-    @Operation(summary = "Finds all users in database",
-            description = "Returns List of UserDto entities",
-            tags = "USERS",
-            // TODO make documentation on github
-            /*externalDocs = @ExternalDocumentation(
-                    description = "Вот тут вся документация",
-                    url = "https://google.com/"
-            ),*/
+    @Operation(summary = "Find All Users",
+            description = "Returns a list of all users in the system.",
+            tags = { "USERS" },
             responses = {
-                    @ApiResponse(responseCode = "200", description = "found"),
-                    @ApiResponse(responseCode = "500", description = "have not been fount")
-            }
-            // TODO fill this field for security requirements
-            /*security = {
-                    @SecurityRequirement(name = "требования к безопасности")
-            },*/
-    )
+                    @ApiResponse(responseCode = "200", description = "Users found",
+                            content = @Content(mediaType = "application/json",
+                                    array = @ArraySchema(schema = @Schema(implementation = UserDto.class)))),
+                    @ApiResponse(responseCode = "404", description = "No users found")
+            })
+
     @Override
     public ResponseEntity<List<UserDto>> findAll()
     {
@@ -105,23 +88,15 @@ public class UserController implements UserApi
                 .body(service.getAll());
     }
 
-    @Operation(summary = "Changes username for User",
-            description = "Returns UserDto entity",
-            tags = "USERS",
-            // TODO make documentation on github
-            /*externalDocs = @ExternalDocumentation(
-                    description = "Вот тут вся документация",
-                    url = "https://google.com/"
-            ),*/
+    @Operation(summary = "Change User's Username",
+            description = "Updates the username of the specified user.",
+            tags = { "USERS" },
             responses = {
-                    @ApiResponse(responseCode = "200", description = "found"),
-                    @ApiResponse(responseCode = "500", description = "have not been fount")
-            }
-            // TODO fill this field for security requirements
-            /*security = {
-                    @SecurityRequirement(name = "требования к безопасности")
-            },*/
-    )
+                    @ApiResponse(responseCode = "200", description = "Username updated successfully",
+                            content = @Content(schema = @Schema(implementation = UserDto.class))),
+                    @ApiResponse(responseCode = "404", description = "User not found")
+            },
+            security = @SecurityRequirement(name = "bearerAuth"))
     @Override
     public ResponseEntity<UserDto> changeUsername(UUID id, String username)
     {
@@ -130,23 +105,15 @@ public class UserController implements UserApi
                 .body(service.changeUsername(id, username));
     }
 
-    @Operation(summary = "Changes firstname for User",
-            description = "Returns UserDto entity",
-            tags = "USERS",
-            // TODO make documentation on github
-            /*externalDocs = @ExternalDocumentation(
-                    description = "Вот тут вся документация",
-                    url = "https://google.com/"
-            ),*/
+    @Operation(summary = "Change User's Firstname",
+            description = "Updates the firstname of the specified user.",
+            tags = { "USERS" },
             responses = {
-                    @ApiResponse(responseCode = "200", description = "found"),
-                    @ApiResponse(responseCode = "500", description = "have not been fount")
-            }
-            // TODO fill this field for security requirements
-            /*security = {
-                    @SecurityRequirement(name = "требования к безопасности")
-            },*/
-    )
+                    @ApiResponse(responseCode = "200", description = "Firstname updated successfully",
+                            content = @Content(schema = @Schema(implementation = UserDto.class))),
+                    @ApiResponse(responseCode = "404", description = "User not found")
+            },
+            security = @SecurityRequirement(name = "bearerAuth"))
     @Override
     public ResponseEntity<UserDto> changeFirstname(UUID id, String firstname)
     {
@@ -155,23 +122,15 @@ public class UserController implements UserApi
                 .body(service.changeFirstname(id, firstname));
     }
 
-    @Operation(summary = "Changes surname for User",
-            description = "Returns UserDto entity",
-            tags = "USERS",
-            // TODO make documentation on github
-            /*externalDocs = @ExternalDocumentation(
-                    description = "Вот тут вся документация",
-                    url = "https://google.com/"
-            ),*/
+    @Operation(summary = "Change User's Surname",
+            description = "Updates the surname of the specified user.",
+            tags = { "USERS" },
             responses = {
-                    @ApiResponse(responseCode = "200", description = "found"),
-                    @ApiResponse(responseCode = "500", description = "have not been fount")
-            }
-            // TODO fill this field for security requirements
-            /*security = {
-                    @SecurityRequirement(name = "требования к безопасности")
-            },*/
-    )
+                    @ApiResponse(responseCode = "200", description = "Surname updated successfully",
+                            content = @Content(schema = @Schema(implementation = UserDto.class))),
+                    @ApiResponse(responseCode = "404", description = "User not found")
+            },
+            security = @SecurityRequirement(name = "bearerAuth"))
     @Override
     public ResponseEntity<UserDto> changeSurname(UUID id, String surname)
     {
@@ -180,23 +139,15 @@ public class UserController implements UserApi
                 .body(service.changeSurname(id, surname));
     }
 
-    @Operation(summary = "Changes email for User",
-            description = "Returns UserDto entity",
-            tags = "USERS",
-            // TODO make documentation on github
-            /*externalDocs = @ExternalDocumentation(
-                    description = "Вот тут вся документация",
-                    url = "https://google.com/"
-            ),*/
+    @Operation(summary = "Change User's Email",
+            description = "Updates the email of the specified user.",
+            tags = { "USERS" },
             responses = {
-                    @ApiResponse(responseCode = "200", description = "found"),
-                    @ApiResponse(responseCode = "500", description = "have not been fount")
-            }
-            // TODO fill this field for security requirements
-            /*security = {
-                    @SecurityRequirement(name = "требования к безопасности")
-            },*/
-    )
+                    @ApiResponse(responseCode = "200", description = "Email updated successfully",
+                            content = @Content(schema = @Schema(implementation = UserDto.class))),
+                    @ApiResponse(responseCode = "404", description = "User not found")
+            },
+            security = @SecurityRequirement(name = "bearerAuth"))
     @Override
     public ResponseEntity<UserDto> changeEmail(UUID id, String email)
     {
@@ -205,12 +156,14 @@ public class UserController implements UserApi
                 .body(service.changeEmail(id, email));
     }
 
-    // TODO translate on english
-
-    /**
-     * Этот каскадный тип применяет операцию remove()
-     * всем связанным сущностям, когда родительская сущность удаляется.
-     */
+    @Operation(summary = "Delete User by ID",
+            description = "Deletes a user by their unique identifier.",
+            tags = { "USERS" },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "User deleted successfully"),
+                    @ApiResponse(responseCode = "404", description = "User not found")
+            },
+            security = @SecurityRequirement(name = "bearerAuth"))
     @Override
     public ResponseEntity<Void> deleteById(UUID id)
     {
@@ -219,21 +172,19 @@ public class UserController implements UserApi
     }
 
 
-    // TODO translate on english
-    @Operation(summary = "Creates new user",
-            description = "UserDto would be the answer",
-            tags = "USERS",
-            requestBody = @RequestBody(
-                    description = "USER'S DATA",
-                    required = true, //обязательно ли тело запроса для сохранения
-                    content = @Content(
-                            mediaType = "application/json",
-                            schema = @Schema(implementation = UserDto.class) // points on class,
-                            // который служит примером реализации схемы для объекта API
-                    )
-            )
-    )
-
+    @Operation(summary = "Creates a new user",
+            description = "Creates a new user in the system based on the provided UserRegistrationDto.",
+            tags = { "USERS" },
+            requestBody = @RequestBody(description = "User Registration Data", required = true,
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = UserRegistrationDto.class))),
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "User created successfully",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = UserDto.class))),
+                    @ApiResponse(responseCode = "400", description = "Invalid user data provided")
+            },
+            security = @SecurityRequirement(name = "bearerAuth"))
     @Override
     public ResponseEntity<UserDto> create(UserRegistrationDto dto)
     {

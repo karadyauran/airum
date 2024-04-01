@@ -1,6 +1,5 @@
 package com.karadyauran.airum.web;
 
-import com.karadyauran.airum.dto.UserDto;
 import com.karadyauran.airum.dto.UserRegistrationDto;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -38,12 +37,14 @@ class UserControllerTest
             .withInitScript("create.sql");
 
     @BeforeAll
-    static void setUp() {
+    static void setUp()
+    {
         postgres.start();
     }
 
     @AfterAll
-    static void tearDown() {
+    static void tearDown()
+    {
         postgres.stop();
     }
 
@@ -159,8 +160,8 @@ class UserControllerTest
         var obj = m.writeValueAsString(user);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/user/create")
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(obj))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(obj))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
